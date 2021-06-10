@@ -1,0 +1,68 @@
+ユーザ管理
+create table user_data (
+id int primary key auto_increment,
+email varchar(255) not null,
+password char(30) not null,
+name varchar(255),
+position int
+)
+
+
+リアクション
+create table reaction (
+id int primary key auto_increment,
+email varchar(255) not null,
+reaction int,
+reply_date datetime not null default current_timestamp
+)
+
+
+掲示板
+create table board (
+id int primary key auto_increment,
+email varchar(255) not null,
+reply_status int,
+question_code int,
+question text,
+reply_date datetime not null default current_timestamp
+)
+
+
+掲示板返信
+create table board_reply (
+id int primary key auto_increment,
+email varchar(255) not null,
+q_reply_code int,
+question_reply text,
+reply_date  datetime not null default current_timestamp
+)
+
+気になる
+create table likes (
+id int primary key auto_increment,
+email varchar(255) not null,
+question_code int not null default '0',
+reply_date  datetime not null default current_timestamp
+)
+
+集計
+SELECT
+  question_code,
+  COUNT(question_code) AS cnt
+FROM
+  likes 
+GROUP BY
+  question_code
+;
+
+もっともいいねされている質問の順に表示
+SELECT
+   question_code,
+  COUNT(question_code) AS like_count
+FROM
+  likes question_code
+GROUP BY 
+  question_code
+ORDER BY
+  like_count DESC, question_code DESC
+;
