@@ -26,9 +26,19 @@
   <!-- 折りたたみメニューここまで -->
 
   <!-- 投稿フォームのボタン -->
-  <!-- memo クリック時の処理をjsで追加予定 -->
-  <input type ="submit" value="投稿フォーム">
+  <input type ="button" value="投稿フォーム" onclick = "showpost()">
   <!-- 投稿フォームのボタン ここまで -->
+
+   <!-- 投稿フォーム -->
+  <div id = "post">
+  <input type = "text" ><input type = "submit" value="投稿">
+  <input type ="button" value ="閉じる" onclick = "hidepost()">
+  </div>
+  <!-- 投稿フォームここまで -->
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="JavaScript/script.js"></script>
 
 </body>
 </html>

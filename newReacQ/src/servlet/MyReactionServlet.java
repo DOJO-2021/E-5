@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,7 +33,7 @@ public class MyReactionServlet extends HttpServlet {
 		//講師or受講者を選別（session、position）
 		if (session.getAttribute("position") == 0) {
 			// 処理を行う(select、emailが受講者、日付も選択可)
-			//セッションスコープからemailを取得
+			//セッションアトリビュートでemailを取得
 			String email = (String)session.getAttribute("email");
 
 			//リクエストパラメータ(日付)を取得する

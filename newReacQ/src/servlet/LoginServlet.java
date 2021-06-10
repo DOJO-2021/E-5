@@ -41,10 +41,10 @@ public class  LoginServlet extends HttpServlet {
         UserData Ud = (UserData) session.getAttribute("account");
 
         // ロールでフォワード先を振り分ける
-        if(Ud.getRole() == 1) {
+        if(Ud.getPosition() == 0) {
             RequestDispatcher rd = request.getRequestDispatcher("menu.jsp");
             rd.forward(request, response);
-        } else if(Ud.getRole() == 2) {
+        } else if(Ud.getPosition() == 1) {
             RequestDispatcher rd = request.getRequestDispatcher("menuT.jsp");
             rd.forward(request, response);
         }
