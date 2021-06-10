@@ -10,7 +10,7 @@
   <input type="radio" name="" value="すべて">すべて <input type="radio" name="" value="回答受付中">回答受付中 <input type="radio" name="" value="解決済み">解決済み <input type="radio" name="example" value="気になる"> 「気になる」した質問 <input type ="text" name="" placeholder="検索"><input type ="submit" name="" value="search">
   <p>検索結果</p>
   <!-- 投稿された質問の折りたたみメニュー -->
-  <c:forEach var="e" items="" >
+  <c:forEach var="e" items="${Qlist}" >
     <div class="wrap">
       <label for="">▼質問 <input type ="button" value="気になる" id=""></label>
       <input type="checkbox" id="label1" class="switch" />

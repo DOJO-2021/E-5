@@ -1,1 +1,16 @@
 @charset "UTF-8";
+​
+body{
+	background:#B8DA92;
+}
+​
+.header-logo{
+	float:center;
+	color:#FBFDFC;
+}
+​
+.li{
+	list-style:none;
+	float:left;
+	color:#FBFDFC;
+}

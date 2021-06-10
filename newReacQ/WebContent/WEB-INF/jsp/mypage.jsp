@@ -62,6 +62,7 @@
 			</tr>
 			<tr>
 			<th>氏名</th><td><input type="text" name="NAME" value="${e.name}"></td>
+			<input type="hidden" name="POSITION" value="${e.position}">
 			</tr>
 		</table>
 		<input type="submit" name="SUBMIT" value="更新"><br>
