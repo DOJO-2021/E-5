@@ -23,11 +23,12 @@ public class UserDataDao {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
 
 			// SELECT文を準備する
 			String sql = "select count(*) from user_data where email = ? and password = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
+
 			pStmt.setString(1, email);
 			pStmt.setString(2, password);
 
@@ -64,6 +65,62 @@ public class UserDataDao {
 		// 結果を返す
 		return loginResult;
 	}
+
+
+	//emailとpasswordからpositionを特定する
+	// 引数userで検索項目を指定し、検索結果のリストを返す
+	public int selectP(String email, String password) {
+		Connection conn = null;
+		int position;
+
+		try {
+			// h2に接続するためのJDBCドライバを読み込む
+			// クラスっていう名前のクラス
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
+
+			// SQL文を準備する
+			String sql = "select * from user_data where email = ? and password = ?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる
+			pStmt.setString(1, email);
+			pStmt.setString(2, password);
+
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+			position = rs.getInt("position");
+		}
+		//JDBS関連の
+		catch (SQLException e) {
+			e.printStackTrace();
+			position = 2;
+		}
+		//ドライバがない時の処理
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			position = 2;
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+					position = 2;
+				}
+			}
+		}
+
+		// 結果を返す
+		return position;
+	}
+
 
 	//emailで人を特定する
 	// 引数userで検索項目を指定し、検索結果のリストを返す

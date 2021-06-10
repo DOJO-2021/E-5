@@ -33,7 +33,7 @@ public class MyUserDataServlet extends HttpServlet {
 			return;
 		}
 
-		if (sesseion.getAttribute("position") == 0) {
+		if (session.getAttribute("position") == 0) {
 			String email = (String)session.getAttribute("email");
 			String password = (String)session.getAttribute("password");
 
@@ -48,7 +48,7 @@ public class MyUserDataServlet extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");
 			dispatcher.forward(request, response);
 		}
-		else if (sesseion.getAttribute("position") == 1) {
+		else if (session.getAttribute("position") == 1) {
 			String email = (String)session.getAttribute("email");
 			String password = (String)session.getAttribute("password");
 

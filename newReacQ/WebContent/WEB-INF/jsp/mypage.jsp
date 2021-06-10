@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ReacQ</title>
+<title>ReacQ|mypage</title>
 </head>
 <body>
 	<!-- リアクション集計の表示 -->

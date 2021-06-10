@@ -1,5 +1,5 @@
-<!--<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>-->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,17 +18,17 @@
         ログイン
         <span class="underline"></span>
       </button>
-      <form class="form form-login">
+      <form class="form form-login" method="POST" action="/newReacQ/LoginServlet">
         <!--フォームグループ化(fieldset)-->
         <fieldset>
           <legend>Please, enter your email and password for login.</legend>
           <div class="input-block">
             <label for="login-email">E-mail</label>
-            <input id="login-email" type="email" required>
+            <input id="login-email" type="email" name="EMAIL" required>
           </div>
           <div class="input-block">
             <label for="login-password">Password</label>
-            <input id="login-password" type="password" required>
+            <input id="login-password" type="password" name="PASSWORD" required>
           </div>
         </fieldset>
         <!--ログインボタン-->
