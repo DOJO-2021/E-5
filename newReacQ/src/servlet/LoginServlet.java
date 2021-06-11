@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.UserDataDao;
 import model.UserData;
 
 /**
@@ -18,14 +19,6 @@ import model.UserData;
 @WebServlet("/LoginServlet")
 public class  LoginServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public LoginServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -49,4 +42,35 @@ public class  LoginServlet extends HttpServlet {
             rd.forward(request, response);
         }
     }
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// リクエストパラメータを取得する
+		request.setCharacterEncoding("UTF-8");
+		String email = request.getParameter("EMAIL");
+		String password = request.getParameter("PASSWORD");
+
+		UserDataDao uDao = new UserDataDao();
+		int position = uDao.selectP(email, password);
+
+        // セッションからログイン情報を取得
+        HttpSession session = request.getSession();
+        session.setAttribute("email", email);
+        session.setAttribute("password", password);
+        session.setAttribute("position", position);
+
+		// ログイン成功
+		if (uDao.isLoginOK(email, password)) {
+
+
+			// メニューサーブレットにリダイレクトする
+			response.sendRedirect("/newReacQ/MenuReactionServlet");
+		}
+
+		// ログイン失敗
+		else {
+			// 結果ページにフォワードする
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+			dispatcher.forward(request, response);
+		}
+	}
 }

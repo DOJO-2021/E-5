@@ -7,8 +7,6 @@
   box-sizing: border-box;
 }
 ​
-​
-​
 body {
   margin: 0;
   font-family: Roboto, -apple-system, 'Helvetica Neue', 'Segoe UI', Arial, sans-serif;
@@ -42,6 +40,7 @@ body {
   animation: showLayer .3s ease-in forwards;
 }
 ​
+
 @keyframes showLayer {
   50% {
     z-index: 1;
@@ -59,6 +58,7 @@ body {
     z-index: 1;
   }
 }
+
 ​
 .switcher {
   position: relative;
@@ -140,6 +140,7 @@ body {
   animation: showLogin .3s ease-in forwards;
 }
 ​
+
 @keyframes showLogin {
   0% {
     background: #d7e7f1;
@@ -203,6 +204,7 @@ body {
     transform: translate(-40%, 10px) scaleY(.8);
   }
 }
+
 ​
 .form fieldset {
   position: relative;

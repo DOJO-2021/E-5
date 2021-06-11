@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.BoardDao;
 import model.Board;
 
 /**
@@ -33,8 +34,10 @@ public class MyBoardServlet extends HttpServlet {
 		}
 
 
-		//講師or受講者を選別（session、position）
-		if (session.getAttribute("position") == 0) {
+		//講師か受講者かを判別するpositionを取得
+		int pos =(int)session.getAttribute("position");
+
+		if (pos == 1) {
 			// 処理を行う(select、emailが受講者、日付も選択可)
 			//セッションアトリビュートでemailを取得
 			String email = (String)session.getAttribute("email");
@@ -43,7 +46,7 @@ public class MyBoardServlet extends HttpServlet {
 			request.setCharacterEncoding("UTF-8");
 			String date = request.getParameter("date");
 
-			BoardDAO bDao = new BoardDAO();
+			BoardDao bDao = new BoardDao();
 			List<Board> myboardList = bDao.select(new Board(0, email, 0, 0, "", date));
 
 			//リクエストスコープに格納する
@@ -54,13 +57,13 @@ public class MyBoardServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 
-		else if (session.getAttribute("position") == 1) {
+		else if (pos == 1) {
 			// 処理を行う(select、日付選択可)
 			//リクエストパラメータ(日付)を取得する
 			request.setCharacterEncoding("UTF-8");
 			String date = request.getParameter("date");
 
-			BoardDAO bDao = new BoardDAO();
+			BoardDao bDao = new BoardDao();
 			List<Board> myboardList = bDao.select(new Board(0, "", 0, 0, "", date));
 
 			//リクエストスコープに格納する

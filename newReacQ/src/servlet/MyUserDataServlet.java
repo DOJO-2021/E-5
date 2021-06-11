@@ -33,7 +33,10 @@ public class MyUserDataServlet extends HttpServlet {
 			return;
 		}
 
-		if (sesseion.getAttribute("position") == 0) {
+		//講師か受講者かを判別するpositionを取得
+		int position =(int)session.getAttribute("position");
+
+		if (position == 1) {
 			String email = (String)session.getAttribute("email");
 			String password = (String)session.getAttribute("password");
 
@@ -48,7 +51,7 @@ public class MyUserDataServlet extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");
 			dispatcher.forward(request, response);
 		}
-		else if (sesseion.getAttribute("position") == 1) {
+		else if (position == 0) {
 			String email = (String)session.getAttribute("email");
 			String password = (String)session.getAttribute("password");
 
@@ -85,7 +88,10 @@ public class MyUserDataServlet extends HttpServlet {
 		int position = Integer.parseInt(request.getParameter("POSITION"));
 
 
-		if (sesseion.getAttribute("position") == 0) {
+		//講師か受講者かを判別するpositionを取得
+		int pos =(int)session.getAttribute("position");
+
+		if (pos == 1) {
 			// 更新または削除を行う
 			UserDataDao uDao = new UserDataDao();
 			if (request.getParameter("SUBMIT").equals("更新")) {
@@ -110,7 +116,7 @@ public class MyUserDataServlet extends HttpServlet {
 		dispatcher.forward(request, response);
 		}
 
-		else if (sesseion.getAttribute("position") == 1) {
+		else if (pos == 0) {
 			// 更新または削除を行う
 			UserDataDao uDao = new UserDataDao();
 			if (request.getParameter("SUBMIT").equals("更新")) {
