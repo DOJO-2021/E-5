@@ -17,5 +17,8 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/h2-1.4.199.jar2 MB バイナリ2 MB — クリックしてダウンロード.url"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jstl-api-1.2.jar31 kB バイナリ31 kB — クリックしてダウンロード.url"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jstl-impl-1.2.jar392 kB バイナリ392 kB — クリックしてダウンロード.url"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/h2-1.4.199.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jstl-api-1.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jstl-impl-1.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
