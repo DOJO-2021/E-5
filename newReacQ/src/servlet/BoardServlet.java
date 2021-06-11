@@ -57,7 +57,7 @@ public class BoardServlet extends HttpServlet {
 
 		//検索処理を行う
 		BoardDao bDao = new BoardDao();
-		List<Board> Qlist = bDao.select(new Board(0, email, reply_status, question, reply_date));
+		List<Board> Qlist = bDao.select(new Board(0, email, reply_status, 0, question, reply_date));
 
 
 		// 検索結果をリクエストスコープに格納する
