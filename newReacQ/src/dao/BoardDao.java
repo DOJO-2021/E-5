@@ -99,7 +99,7 @@ public class BoardDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/ReacQ", "sa", "");
 
 			// SQL文を準備する
-			String sql = "select id, email, reply_status, question_code, question, reply_date  from board order by id desc limit 1";
+			String sql = "select id, email, reply_status, question_code, question, reply_date  from board order by id desc limit 5";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を実行し、結果表を取得する

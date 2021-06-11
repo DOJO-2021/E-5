@@ -48,20 +48,17 @@ public class BoardServlet extends HttpServlet {
 			return;
 		}
 
+		// 検索ワードを取得する
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
-		String email = request.getParameter("EMAIL");
-		int reply_status = Integer.parseInt(request.getParameter("REPLY_STATUS"));
 		String question =request.getParameter("QUESTION");
-		String reply_date =request.getParameter("REPLY_DATE");
 
 		//検索処理を行う
 		BoardDao bDao = new BoardDao();
-		List<Board> Qlist = bDao.select(new Board(0, email, reply_status, 0, question, reply_date));
-
+		List<Board> resultlist = bDao.select(new Board(0, "", 0, 0, question, ""));
 
 		// 検索結果をリクエストスコープに格納する
-		  request.setAttribute("Qlist", Qlist);
+		  request.setAttribute("resultlist", resultlist);
 
 		// 結果ページにフォワードする
 		  RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/searchresult.jsp");

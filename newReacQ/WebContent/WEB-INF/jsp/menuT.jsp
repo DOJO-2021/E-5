@@ -10,19 +10,7 @@
   <link rel="stylesheet" href="">
 </head>
 <body	>
-		<!-- ヘッダー -->
-	<div class="header">
-		<div class="header-logo"><a href="/newReacQ/MenuServlet">Reac<img src="images/logo.png" alt="ReacQ"></a></div>
-		<div class="header-list">
-		  <ul>
-		    <li><a href="/newReacQ/MenuServlet">トップ</a></li>
-		    <li><a href="/newReacQ/MenuBoardServlet">掲示板</a></li>
-		    <li><a href="/newReacQ/MyUserDataServlet">マイページ</a></li>
-		    <li><a href="/newReacQ/LoginServlet">ログアウト</a></li>
-		  </ul>
-		</div>
-	</div>
-
+			<!-- リアクション -->
 	<div class="contentsR">
 		<p>リアクション</p>
 		<form method="POST" action="/newReacQ/MenuReactionServlet">
@@ -54,27 +42,10 @@
 		<form method="GET" action="/newReacQ/BoardServlet">
 			<!-- 最新の投稿テーブル -->
 		    <table>
-		    	<c:forEach var="e" items="${Qlist}" >
+		    	<c:forEach var="e" items="${newlist}" >
 		        <tr>
 		            <th>回答日時</th>
 		            <td>${e.reply_date}</td>
-		        </tr>
-		        <tr>
-		        	<th>質問内容</th>
-		        	<td>${e.question}</td>
-		        </tr>
-		        </c:forEach>
-		    </table>
-		</form>
-
-		<p>自分の投稿</p>
-		<form method="GET" action="/newReacQ/MyBoardServlet">
-		    <!-- 自分の投稿テーブル -->
-		    <table>
-		    	<c:forEach var="e" items="${Qlist}" >
-		        <tr>
-		            <th>email</th>
-		            <td>${e.email}</td>
 		        </tr>
 		        <tr>
 		        	<th>質問内容</th>
