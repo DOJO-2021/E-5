@@ -22,7 +22,7 @@ create table board (
 id int primary key auto_increment,
 email varchar(255) not null,
 reply_status int,
-question_code int,
+question_code int not null default '0',
 question text,
 reply_date datetime not null default current_timestamp
 )
