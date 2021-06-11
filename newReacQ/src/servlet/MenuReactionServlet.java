@@ -21,9 +21,11 @@ public class MenuReactionServlet extends HttpServlet {
      */
     //
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	//ログインページにフォワード
-      RequestDispatcher dispatcher=request.getRequestDispatcher("/WEB-INF/jsp/menu.jsp");
-      dispatcher.forward(request, response);
+
+		//ログインページにフォワード
+    	RequestDispatcher dispatcher=request.getRequestDispatcher("/WEB-INF/jsp/menu.jsp");
+		dispatcher.forward(request, response);
+
 	}
 
 }

@@ -50,6 +50,7 @@
 
 	<!-- アカウント管理 -->
 	<h2>アカウント管理</h2>
+
 	<c:forEach var="e" items="${userList}" >
 	<form method="POST" action="/newReacQ/MyUserDataServlet">
 		<!-- ポジション以外のアカウント管理テーブルの表示 -->
