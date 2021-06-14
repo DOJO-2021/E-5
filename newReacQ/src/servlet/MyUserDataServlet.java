@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
 
 import dao.UserDataDao;
 import model.UserData;
@@ -68,9 +67,11 @@ public class MyUserDataServlet extends HttpServlet {
 		}
 	}
 
+
+	/*
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
@@ -142,5 +143,6 @@ public class MyUserDataServlet extends HttpServlet {
 		}
 
 	}
+	*/
 
 }

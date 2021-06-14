@@ -6,8 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>ReacQ|mypage</title>
+<link rel="stylesheet" href="/WebContent/css/mypage.css">
 </head>
 <body>
+<jsp:include page="header.jsp" flush="true" />
 	<!-- リアクション集計の表示 -->
 	<h2>リアクション履歴</h2>
 	<!-- デートピッカー -->
@@ -69,5 +71,6 @@
 		<input type="submit" name="SUBMIT" value="更新"><br>
 	</form>
 	</c:forEach>
+<jsp:include page="footer.jsp" flush="true" />
 </body>
 </html>
