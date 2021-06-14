@@ -8,7 +8,7 @@
 <title>ReacQ</title>
 <link rel="stylesheet" href="/newReacQ/css/menu.css">
 </head>
-<body	>
+<body>
 	<div class="contentsR">
 		<p>リアクション</p>
 		<form method="POST" action="/newReacQ/MenuReactionServlet">
