@@ -12,6 +12,7 @@
 <jsp:include page="header.jsp" flush="true" />
 	<!-- リアクション集計の表示 -->
 	<h2>リアクション履歴</h2>
+	<p>${position}</p>
 	<!-- デートピッカー -->
 	<form method="POST" action="/newReacQ/MyReactionServlet">
 		<table class="table">
@@ -44,6 +45,7 @@
 			</tr>
 			<tr>
 			<th>氏名</th><td><input type="text" name="NAME" value="${e.name}"></td>
+			<input type="hidden" name="POSITION" value="${e.position}">
 			</tr>
 		</table>
 		<input type="submit" name="SUBMIT" value="更新"><br>

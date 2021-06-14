@@ -12,7 +12,8 @@
 <jsp:include page="header.jsp" flush="true" />
 	<!-- リアクション集計の表示 -->
 	<h2>リアクション履歴</h2>
-	<!-- デートピッカー -->
+
+	<!-- デートピッカー-->
 	<form method="POST" action="/newReacQ/MyReactionServlet">
 		<table class="table">
 			<tr>
@@ -20,7 +21,7 @@
 			</tr>
 		</table>
 	</form>
-	<!-- リアクショングラフ -->
+	<!-- リアクショングラフ-->
 	<table class="table">
 		<tr>
 		<td><img src="/simpleBC/images/" alt="河童_説明可グラフ" width="30" height="80"></td><td><img src="/simpleBC/images/" alt="河童_分かるグラフ" width="30" height="50"></td><td><img src="/simpleBC/images/" alt="河童_分かるかもグラフ" width="30" height="100"></td><td><img src="/simpleBC/images/" alt="河童_分からないグラフ" width="30" height="80"></td>
@@ -30,9 +31,9 @@
 		</tr>
 	</table>
 
-	<!-- 掲示板履歴の表示 -->
+	<!-- 掲示板履歴の表示-->
 	<h2>掲示板履歴</h2>
-	<!-- デートピッカー -->
+	<!-- デートピッカー-->
 	<form method="POST" action="/newReacQ/MyBoardServlet">
 		<table class="table">
 			<tr>
@@ -40,21 +41,21 @@
 			</tr>
 		</table>
 	</form>
-	<!-- 質問履歴の表示 -->
-	<!-- <c:forEach var="e" items="" > -->
+	<!-- 質問履歴の表示-->
+	<!-- <c:forEach var="e" items="" >-->
 		<table class="table">
 			<tr>
 			<td>質問内容${e.question}</td>
 			</tr>
 		</table>
-	<!-- </c:forEach> -->
+	<!-- </c:forEach>-->
 
-	<!-- アカウント管理 -->
+	<!-- アカウント管理-->
 	<h2>アカウント管理</h2>
 
 	<c:forEach var="e" items="${userList}" >
 	<form method="POST" action="/newReacQ/MyUserDataServlet">
-		<!-- ポジション以外のアカウント管理テーブルの表示 -->
+		<!-- ポジション以外のアカウント管理テーブルの表示-->
 		<table class="table">
 			<tr>
 			<input type="hidden" name="ID" value="${e.id}">

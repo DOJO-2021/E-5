@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.UserDataDao;
-import model.UserData;
+import model.User;
 
 /**
  * Servlet implementation class LoginServlet
@@ -29,6 +29,8 @@ public class  LoginServlet extends HttpServlet {
       RequestDispatcher dispatcher=request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
       dispatcher.forward(request, response);
 
+
+      /*
         // セッションからログイン情報を取得
         HttpSession session = request.getSession();
         UserData Ud = (UserData) session.getAttribute("account");
@@ -41,22 +43,27 @@ public class  LoginServlet extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("menuT.jsp");
             rd.forward(request, response);
         }
+        */
+
+
     }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
 		String email = request.getParameter("EMAIL");
 		String password = request.getParameter("PASSWORD");
 
 		UserDataDao uDao = new UserDataDao();
-		int position = uDao.selectP(email, password);
+		//String position = Integer.toString(uDao.selectP(email));
+		String position = "0";
 
-        // セッションからログイン情報を取得
-        HttpSession session = request.getSession();
-        session.setAttribute("email", email);
-        session.setAttribute("password", password);
-        session.setAttribute("position", position);
+		HttpSession session = request.getSession();
+		session.setAttribute("account", new User(email, password));
+		session.setAttribute("position", position);
+
 
 		// ログイン成功
 		if (uDao.isLoginOK(email, password)) {

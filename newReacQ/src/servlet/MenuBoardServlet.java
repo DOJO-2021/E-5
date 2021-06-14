@@ -35,9 +35,9 @@ public class MenuBoardServlet extends HttpServlet {
 
 
 		//講師か受講者かを判別するpositionを取得
-		int pos =(int)session.getAttribute("position");
+		String pos =(String)session.getAttribute("position");
 
-		if (pos == 0) {
+		if (pos.equals("0")) {
 			// 処理を行う
 			//セッションアトリビュートでemailを取得
 			String email = (String)session.getAttribute("EMAIL");
@@ -58,7 +58,7 @@ public class MenuBoardServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 
-		if (pos == 1) {
+		if (pos.equals("1")) {
 			// 処理を行う
 			//セッションアトリビュートでemailを取得
 			String email = (String)session.getAttribute("EMAIL");

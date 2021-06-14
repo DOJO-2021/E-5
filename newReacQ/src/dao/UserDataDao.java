@@ -26,7 +26,7 @@ public class UserDataDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
 
 			// SELECT文を準備する
-			String sql = "select count(*) from user_data where email = ? and password = ?";
+			String sql = "select count(*) as cnt from user_data where email = ? and password = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			pStmt.setString(1, email);
@@ -37,7 +37,7 @@ public class UserDataDao {
 
 			// ユーザーIDとパスワードが一致するユーザーがいたかどうかをチェックする
 			rs.next();
-			if (rs.getInt("count(*)") == 1) {
+			if (rs.getInt("cnt") == 1) {
 				loginResult = true;
 			}
 		}
@@ -69,9 +69,10 @@ public class UserDataDao {
 
 	//emailとpasswordからpositionを特定する
 	// 引数userで検索項目を指定し、検索結果のリストを返す
-	public int selectP(String email, String password) {
+	public int selectP(String email) {
 		Connection conn = null;
 		int position;
+
 
 		try {
 			// h2に接続するためのJDBCドライバを読み込む
@@ -82,18 +83,20 @@ public class UserDataDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
 
 			// SQL文を準備する
-			String sql = "select position from user_data where email = ? and password = ?";
+			String sql = "select position from user_data where email=?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
 			pStmt.setString(1, email);
-			pStmt.setString(2, password);
 
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
-
+			//System.out.println(rs.toString());
 			position = rs.getInt("position");
+
 		}
+
+		//position = 0;
 		//JDBS関連の
 		catch (SQLException e) {
 			e.printStackTrace();
@@ -116,7 +119,6 @@ public class UserDataDao {
 				}
 			}
 		}
-
 		// 結果を返す
 		return position;
 	}

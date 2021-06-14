@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.ReactionDao;
-import model.Reaction;
 
 /**
  * Servlet implementation class MyReactionServlet
@@ -47,10 +45,16 @@ public class MyReactionServlet extends HttpServlet {
 			String date = request.getParameter("date");
 
 			ReactionDao rDao = new ReactionDao();
-			List<Reaction> myreactionList = rDao.select(new Reaction(0, email, 0, 0, "", date));
+			int reaction0 = rDao.countmypage(email, 0, date);
+			int reaction1 = rDao.countmypage(email, 1, date);
+			int reaction2 = rDao.countmypage(email, 2, date);
+			int reaction3 = rDao.countmypage(email, 3, date);
 
 			//リクエストスコープに格納する
-			request.setAttribute("myreactionList", myreactionList);
+			request.setAttribute("myrea0", reaction0);
+			request.setAttribute("myrea1", reaction1);
+			request.setAttribute("myrea2", reaction2);
+			request.setAttribute("myrea3", reaction3);
 
 			// フォワードする
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");
@@ -64,10 +68,16 @@ public class MyReactionServlet extends HttpServlet {
 			String date = request.getParameter("date");
 
 			ReactionDao rDao = new ReactionDao();
-			List<Reaction> myreactionList = rDao.select(new Reaction(0, "", 0, 0, "", date));
+			int reaction0 = rDao.countmyT(0, date);
+			int reaction1 = rDao.countmyT(1, date);
+			int reaction2 = rDao.countmyT(2, date);
+			int reaction3 = rDao.countmyT(3, date);
 
 			//リクエストスコープに格納する
-			request.setAttribute("myreactionList", myreactionList);
+			request.setAttribute("myrea0", reaction0);
+			request.setAttribute("myrea1", reaction1);
+			request.setAttribute("myrea2", reaction2);
+			request.setAttribute("myrea3", reaction3);
 
 			// フォワードする
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypageT.jsp");

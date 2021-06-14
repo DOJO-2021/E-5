@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,9 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import dao.UserDataDao;
-import model.UserData;
 
 /**
  * Servlet implementation class MyUserDataServlet
@@ -27,15 +23,17 @@ public class MyUserDataServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
-		if (session.getAttribute("email") == null) {
+		if (session.getAttribute("account") == null) {
 			response.sendRedirect("/newReacQ/LoginServlet");
 			return;
 		}
 
-		//講師か受講者かを判別するpositionを取得
-		int position =(int)session.getAttribute("position");
+		String pos = (String)session.getAttribute("position");
 
-		if (position == 1) {
+		//講師か受講者かを判別するpositionを取得
+		if (pos.equals("1")) {
+
+			/*
 			String email = (String)session.getAttribute("email");
 			String password = (String)session.getAttribute("password");
 
@@ -45,12 +43,16 @@ public class MyUserDataServlet extends HttpServlet {
 
 			//リクエストスコープに格納する
 			request.setAttribute("userList", userList);
+			*/
 
 			// フォワードする
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");
 			dispatcher.forward(request, response);
 		}
-		else if (position == 0) {
+
+		else if (pos.equals("0")) {
+
+			/*
 			String email = (String)session.getAttribute("email");
 			String password = (String)session.getAttribute("password");
 
@@ -60,12 +62,17 @@ public class MyUserDataServlet extends HttpServlet {
 
 			//リクエストスコープに格納する
 			request.setAttribute("userList", userList);
+			*/
 
 			// フォワードする
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypageT.jsp");
 			dispatcher.forward(request, response);
 		}
 	}
+
+
+
+
 
 
 	/*

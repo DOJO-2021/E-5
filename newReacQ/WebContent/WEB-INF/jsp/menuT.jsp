@@ -6,10 +6,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="/newReacQ/css/menu.css">
 <title>ReacQ</title>
-  <link rel="stylesheet" href="">
 </head>
 <body	>
+<jsp:include page="/WEB-INF/jsp/header.jsp" />
 			<!-- リアクション -->
 	<div class="contentsR">
 		<p>リアクション</p>
@@ -55,9 +56,5 @@
 		    </table>
 		</form>
 	</div>
-
- <footer class="footer">
- 	<p>&copy;Copyright ReacQ All Right Reserved.</p>
- </footer>
-</body>
+<jsp:include page="/WEB-INF/jsp/footer.jsp" />
 </html>
