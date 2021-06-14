@@ -92,6 +92,9 @@ public class UserDataDao {
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
 			//System.out.println(rs.toString());
+			//position = rs.getByte("position");
+
+			rs.next();
 			position = rs.getInt("position");
 
 		}

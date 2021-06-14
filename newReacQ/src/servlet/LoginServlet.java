@@ -57,8 +57,8 @@ public class  LoginServlet extends HttpServlet {
 		String password = request.getParameter("PASSWORD");
 
 		UserDataDao uDao = new UserDataDao();
-		//String position = Integer.toString(uDao.selectP(email));
-		String position = "0";
+		String position = Integer.toString(uDao.selectP(email));
+		//String position = "0";
 
 		HttpSession session = request.getSession();
 		session.setAttribute("account", new User(email, password));

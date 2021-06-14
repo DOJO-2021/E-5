@@ -11,7 +11,7 @@ public class UserDataTest {
 
 		// selectP()のテスト
 		System.out.println("---------- selectP()のテスト ----------");
-		int pos = uDao.selectP("Teacher1@email.jp");
+		int pos = (int)uDao.selectP("Teacher1@email.jp");
 		System.out.println("position：" + pos);
 
 
