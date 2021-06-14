@@ -82,7 +82,7 @@ public class UserDataDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
 
 			// SQL文を準備する
-			String sql = "select * from user_data where email = ? and password = ?";
+			String sql = "select count(*) as pos from user_data where email = ? and password = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -92,7 +92,7 @@ public class UserDataDao {
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
 
-			position = rs.getInt("position");
+			position = rs.getInt("pos");
 		}
 		//JDBS関連の
 		catch (SQLException e) {
