@@ -2,6 +2,24 @@
 
 body{
 	background:#B8DA92;
+	display:flex;
+
+}
+
+
+.header-logo{
+	padding:30px 50px;
+	color:#FBFDFC;
+	float:center;
+}
+
+
+li{
+	list-style:none;
+	float:left;
+	color:#FBFDFC;
+	border-bottom:2px solid #FBFDFC;
+
 }
 
 .contentsR{
@@ -10,8 +28,18 @@ body{
 	margin:5em;
 	border:solid 2px;
 	background-color:#FBFDFC;
+	border-radius:25px;
+
 }
 
 .contentsB{
 	color:#296337;
+	width:500px;
+	margin:5em;
+	border:solid 2px;
+	background-color:#FBFDFC;
+}
+
+footer{
+	float:none;
 }

@@ -1,9 +1,7 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,14 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.BoardDao;
-import model.Board;
+import dao.BoardReplyDao;
+import model.BoardReply;
 
 /**
  * Servlet implementation class BoardServlet
  */
 @WebServlet("/BoardServlet")
-public class BoardServlet extends HttpServlet {
+public class BoardReplyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
@@ -31,10 +29,6 @@ public class BoardServlet extends HttpServlet {
 			response.sendRedirect("/newReacQ/LoginServlet");
 			return;
 		}
-
-		// 掲示板ページにフォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/board.jsp");
-		dispatcher.forward(request, response);
 	}
 
 	/**
@@ -48,22 +42,28 @@ public class BoardServlet extends HttpServlet {
 			return;
 		}
 
-		// 検索ワードを取得する
+
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
-		String question =request.getParameter("QUESTION");
+		int id = Integer.parseInt(request.getParameter("ID"));
+		String email =request.getParameter("EMAIL");
+		int q_reply_code =Integer.parseInt(request.getParameter("Q_REPLY_CODE"));
+		String question_reply =request.getParameter("QUESTION_REPLY");
+		String reply_date =request.getParameter("REPLY_DATE");
 
-		//検索処理を行う
-		BoardDao bDao = new BoardDao();
-		List<Board> resultlist = bDao.select(new Board(0, "", 0, 0, question, ""));
 
-		// 検索結果をリクエストスコープに格納する
-		  request.setAttribute("resultlist", resultlist);
+		//回答内容をデータベースに反映する
+		BoardReplyDao brDao = new BoardReplyDao();{
+		if (request.getParameter("SUBMIT").equals("回答"))
+			if (brDao.insert(new BoardReply(id, email, q_reply_code, question_reply, reply_date ))) {
+				request.setAttribute("result",
+				new Result("回答を送信しました！", "/newReacQ/BoardServlet"));
+			}
+			else {
+				request.setAttribute("result",
+				new Result("回答を送信できませんでした", "/newReacQ/BoardServlet"));
+			}
+		}
 
-		// 結果ページにフォワードする
-		  RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/searchresult.jsp");
-		  dispatcher.forward(request, response);
 	}
-
-
 }

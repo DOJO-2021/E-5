@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+import dao.UserDataDao;
+import model.UserData;
 
 /**
  * Servlet implementation class MyUserDataServlet
@@ -33,17 +39,14 @@ public class MyUserDataServlet extends HttpServlet {
 		//講師か受講者かを判別するpositionを取得
 		if (pos.equals("1")) {
 
-			/*
 			String email = (String)session.getAttribute("email");
-			String password = (String)session.getAttribute("password");
 
 			// 処理を行う
 			UserDataDao uDao = new UserDataDao();
-			List<UserData> userList = uDao.select(new UserData(0, email, password, "", 0));
+			List<UserData> userList = uDao.select(email);
 
 			//リクエストスコープに格納する
 			request.setAttribute("userList", userList);
-			*/
 
 			// フォワードする
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");
@@ -52,17 +55,14 @@ public class MyUserDataServlet extends HttpServlet {
 
 		else if (pos.equals("0")) {
 
-			/*
 			String email = (String)session.getAttribute("email");
-			String password = (String)session.getAttribute("password");
 
 			// 処理を行う
 			UserDataDao uDao = new UserDataDao();
-			List<UserData> userList = uDao.select(new UserData(0, email, password, "", 0));
+			List<UserData> userList = uDao.select(email);
 
 			//リクエストスコープに格納する
 			request.setAttribute("userList", userList);
-			*/
 
 			// フォワードする
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypageT.jsp");
@@ -71,13 +71,9 @@ public class MyUserDataServlet extends HttpServlet {
 	}
 
 
-
-
-
-
-	/*
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	**/
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
@@ -87,51 +83,64 @@ public class MyUserDataServlet extends HttpServlet {
 			return;
 		}
 
-		// リクエストパラメータを取得する
-		request.setCharacterEncoding("UTF-8");
-		int id = Integer.parseInt(request.getParameter("ID"));
-		String email = request.getParameter("EMAIL");
-		String password = request.getParameter("PASSWORD");
-		String name = request.getParameter("NAME");
-		int position = Integer.parseInt(request.getParameter("POSITION"));
-
-
 		//講師か受講者かを判別するpositionを取得
-		int pos =(int)session.getAttribute("position");
+		String pos =(String)session.getAttribute("position");
+		if (pos.equals("1")) {
 
-		if (pos == 1) {
+			// リクエストパラメータを取得する
+			request.setCharacterEncoding("UTF-8");
+			int id = Integer.parseInt(request.getParameter("ID"));
+			String email = request.getParameter("EMAIL");
+			String password = request.getParameter("PASSWORD");
+			String name = request.getParameter("NAME");
+			int position = Integer.parseInt(request.getParameter("POSITION"));
+
 			// 更新または削除を行う
 			UserDataDao uDao = new UserDataDao();
 			if (request.getParameter("SUBMIT").equals("更新")) {
-				// 更新成功/メニューに戻る
+
+
+				// 更新成功/mypageに戻る
 				if (uDao.update(new UserData(id, email, password, name, position))) {
 					// 処理を行う
-					List<UserData> userList = uDao.select(new UserData(id, email, password, name, position));
+					List<UserData> userList = uDao.select(email);
 					//リクエストスコープに格納する
 					request.setAttribute("userList", userList);
 					// 結果ページにフォワードする
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");
 					dispatcher.forward(request, response);
 				}
-				// 更新失敗/検索に戻る
+				// 更新失敗/mypageに戻る
 				else {
-					JOptionPane.showMessageDialog(null, "更新失敗");
+					JFrame frame = new JFrame();
+					JOptionPane.showMessageDialog(frame, "更新失敗");
 				}
 			}
 
 		// 結果ページにフォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");
 		dispatcher.forward(request, response);
 		}
 
-		else if (pos == 0) {
+		else if (pos.equals("0")) {
+
+			// リクエストパラメータを取得する
+			request.setCharacterEncoding("UTF-8");
+			int id = Integer.parseInt(request.getParameter("ID"));
+			String email = request.getParameter("EMAIL");
+			String password = request.getParameter("PASSWORD");
+			String name = request.getParameter("NAME");
+			int position = Integer.parseInt(request.getParameter("POSITION"));
+
 			// 更新または削除を行う
 			UserDataDao uDao = new UserDataDao();
 			if (request.getParameter("SUBMIT").equals("更新")) {
+
 				// 更新成功/メニューに戻る
 				if (uDao.update(new UserData(id, email, password, name, position))) {
+
 					// 処理を行う
-					List<UserData> userList = uDao.select(new UserData(id, email, password, name, position));
+					List<UserData> userList = uDao.select(email);
 					//リクエストスコープに格納する
 					request.setAttribute("userList", userList);
 					// 結果ページにフォワードする
@@ -140,16 +149,14 @@ public class MyUserDataServlet extends HttpServlet {
 				}
 				// 更新失敗/検索に戻る
 				else {
-					JOptionPane.showMessageDialog(null, "更新失敗");
+					JFrame frame = new JFrame();
+					JOptionPane.showMessageDialog(frame, "更新失敗");
 				}
 			}
 
 		// 結果ページにフォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/resultT.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypageT.jsp");
 		dispatcher.forward(request, response);
 		}
-
 	}
-	*/
-
 }

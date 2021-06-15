@@ -16,7 +16,7 @@ public class BoardReplyDao {
 	//検索結果
 	public List<BoardReply> select(int reply_code) {
 		Connection conn = null;
-		List<BoardReply> resultlist = new ArrayList<BoardReply>();
+		List<BoardReply> Replylist = new ArrayList<BoardReply>();
 
 		try {
 
@@ -45,16 +45,16 @@ public class BoardReplyDao {
 					rs.getString("question_reply"),
 					rs.getString("reply_date")
 			);
-			resultlist.add(b);
+			Replylist.add(b);
 			}
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
-			resultlist = null;
+			Replylist = null;
 		}
 		catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			resultlist = null;
+			Replylist = null;
 		}
 		finally {
 			// データベースを切断
@@ -64,12 +64,12 @@ public class BoardReplyDao {
 				}
 				catch (SQLException e) {
 					e.printStackTrace();
-					resultlist = null;
+					Replylist = null;
 				}
 			}
 		}
 			// 結果を返す
-		return resultlist;
+		return Replylist;
 	}
 
 	public boolean insert(BoardReply b) {

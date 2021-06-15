@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/newReacQ/css/menu.css">
 <title>ReacQ</title>
 </head>
-<body	>
+<body>
 <jsp:include page="/WEB-INF/jsp/header.jsp" />
 
 	<!-- リアクション -->
@@ -31,30 +31,34 @@
 					<td><input type ="submit" value="分からない"><img src="/newReacQ/images/" alt="河童_分からない"></td>
 				</tr>
 			</table>
-			<button type="reset" value = "リセット"></button>
+			<input type="submit" value = "リセット">
 		</form>
 	</div>
 
 			<!-- 掲示板 -->
 	<div class="contentsB">
-		<p>掲示板</p>
-		<p><a href="/newReacQ/BoardServlet">全部見る</a></p>
+		<p>掲示板</p><a href="/newReacQ/BoardServlet">全部見る</a><br>
 		<p>最新の投稿</p>
+
 		<form method="GET" action="/newReacQ/BoardServlet">
 			<!-- 最新の投稿テーブル -->
+		    <div id ="table">
 		    <table>
-		    	<c:forEach var="e" items="${newlist}" >
+ 			<c:forEach var="e" items="${newList}" >
 		        <tr>
-		            <th>回答日時</th>
-		            <td>${e.reply_date}</td>
+		        	<th>回答日時</th>
+		        	<td>${e.reply_date}</td>
 		        </tr>
 		        <tr>
 		        	<th>質問内容</th>
 		        	<td>${e.question}</td>
 		        </tr>
-		        </c:forEach>
+			</c:forEach>
 		    </table>
+			</div>
 		</form>
 	</div>
+
+</body>
 <jsp:include page="/WEB-INF/jsp/footer.jsp" />
 </html>

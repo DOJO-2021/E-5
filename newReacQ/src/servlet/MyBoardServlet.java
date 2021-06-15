@@ -27,50 +27,31 @@ public class MyBoardServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
 		HttpSession session = request.getSession();
-
 		if (session.getAttribute("email") == null) {
 			response.sendRedirect("/simpleBC/LoginServlet");
 			return;
 		}
 
-
 		//講師か受講者かを判別するpositionを取得
-		int pos =(int)session.getAttribute("position");
+		String pos =(String)session.getAttribute("position");
 
-		if (pos == 1) {
+		if (pos.equals("1")) {
 			// 処理を行う(select、emailが受講者、日付も選択可)
 			//セッションアトリビュートでemailを取得
 			String email = (String)session.getAttribute("email");
 
 			//リクエストパラメータ(日付)を取得する
 			request.setCharacterEncoding("UTF-8");
-			String date = request.getParameter("date");
+			String selectdate = request.getParameter("REPLY_DATE_B");
 
 			BoardDao bDao = new BoardDao();
-			List<Board> myboardList = bDao.select(new Board(0, email, 0, 0, "", date));
+			List<Board> myboardList = bDao.selectmypage(email, selectdate);
 
 			//リクエストスコープに格納する
 			request.setAttribute("myboardList", myboardList);
 
 			// フォワードする
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");
-			dispatcher.forward(request, response);
-		}
-
-		else if (pos == 1) {
-			// 処理を行う(select、日付選択可)
-			//リクエストパラメータ(日付)を取得する
-			request.setCharacterEncoding("UTF-8");
-			String date = request.getParameter("date");
-
-			BoardDao bDao = new BoardDao();
-			List<Board> myboardList = bDao.select(new Board(0, "", 0, 0, "", date));
-
-			//リクエストスコープに格納する
-			request.setAttribute("myboardList", myboardList);
-
-			// フォワードする
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypageT.jsp");
 			dispatcher.forward(request, response);
 		}
 	}

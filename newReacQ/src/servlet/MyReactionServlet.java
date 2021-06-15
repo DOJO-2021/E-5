@@ -33,9 +33,9 @@ public class MyReactionServlet extends HttpServlet {
 
 
 		//講師か受講者かを判別するpositionを取得
-		int pos =(int)session.getAttribute("position");
+		String pos =(String)session.getAttribute("position");
 
-		if (pos == 0) {
+		if (pos.equals("1")) {
 			// 処理を行う(select、emailが受講者、日付も選択可)
 			//セッションアトリビュートでemailを取得
 			String email = (String)session.getAttribute("email");
@@ -61,7 +61,7 @@ public class MyReactionServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 
-		else if (pos == 1) {
+		else if (pos.equals("0")) {
 			// 処理を行う(select、日付選択可)
 			//リクエストパラメータ(日付)を取得する
 			request.setCharacterEncoding("UTF-8");

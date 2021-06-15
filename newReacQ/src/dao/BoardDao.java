@@ -499,4 +499,64 @@ public class BoardDao {
 		// 結果を返す
 		return result;
 	}
+
+	//「気になる」の数を集計
+	public List<Board> selectlike(String email) {
+		Connection conn = null;
+		List<Board> Likelist = new ArrayList<Board>();
+
+		try {
+
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/ReacQ", "sa", "");
+
+			// SQL文を準備する
+			String sql = "select email from likes";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる
+			pStmt.setString(1, "email");
+
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+			// 結果表をコレクションにコピーする
+			while (rs.next()) {
+				Board b = new Board(
+						0,
+						rs.getString("email"),
+						rs.getInt("reply_status"),
+						rs.getInt("qustion_code"),
+						rs.getString("question"),
+						rs.getString("reply_date")
+			);
+			Likelist.add(b);
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			Likelist = null;
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			Likelist = null;
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+					Likelist = null;
+				}
+			}
+		}
+			// 結果を返す
+		return Likelist;
+	}
 }

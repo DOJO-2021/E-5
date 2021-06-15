@@ -15,7 +15,7 @@ import model.UserData;
 /**
  * Servlet implementation class TeacherNewServlet
  */
-@WebServlet("/TeacherNewServlet")
+@WebServlet("/ResistServlet")
 public class ResistServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -44,20 +44,10 @@ public class ResistServlet extends HttpServlet {
 		// 登録処理を行う
 		UserDataDao uDao = new UserDataDao();
 		if (uDao.insert(new UserData(0, email, password, name, position))) {	// 登録成功
-			/*
-			request.setAttribute("result",
-			new Result("登録成功！", "レコードを登録しました。", "/UserLike/TeacherLoginServlet"));
-			*/
-		}
-		else {	// 登録失敗
-			/*
-			request.setAttribute("result",
-			new Result("登録失敗！", "レコードを登録できませんでした。", "/UserLike/TeacherLoginServlet"));
-			*/
-		}
 
 		// 結果ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 		dispatcher.forward(request, response);
+		}
 	}
 }

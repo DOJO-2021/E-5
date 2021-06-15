@@ -129,7 +129,7 @@ public class UserDataDao {
 
 	//emailで人を特定する
 	// 引数userで検索項目を指定し、検索結果のリストを返す
-	public List<UserData> select(UserData user) {
+	public List<UserData> select(String email) {
 		Connection conn = null;
 		//検索結果を入れるコレクションを用意
 		List<UserData> userList = new ArrayList<UserData>();
@@ -143,12 +143,11 @@ public class UserDataDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
 
 			// SQL文を準備する
-			String sql = "select * from user_data where email = ? and password = ?";
+			String sql = "select * from user_data where email = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			pStmt.setString(1, user.getEmail());
-			pStmt.setString(2, user.getPassword());
+			pStmt.setString(1, email);
 
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
