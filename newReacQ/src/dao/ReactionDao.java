@@ -12,10 +12,11 @@ import model.Reaction;
 
 public class ReactionDao {
 	// 引数paramで検索項目を指定し、検索結果のリストを返す
-	public int countmenu(int reaction, Timestamp date) {
+	public int countmenu(int reaction, String date) {
 		Connection conn = null;
 		//リアクションの数を入れるコレクションを用意
 		int count;
+		Timestamp ts = Timestamp.valueOf(date);
 
 		try {
 			// h2に接続するためのJDBCドライバを読み込む
@@ -31,11 +32,12 @@ public class ReactionDao {
 
 			// SQL文を完成させる
 			pStmt.setInt(1, reaction);
-			pStmt.setTimestamp(2, date);
+			pStmt.setTimestamp(2, ts);
 
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
 
+			rs.next();
 			count = rs.getInt("cnt");
 		}
 		//JDBS関連の
@@ -71,6 +73,7 @@ public class ReactionDao {
 		Connection conn = null;
 		//リアクションの数を入れるコレクションを用意
 		int count;
+		Timestamp ts = Timestamp.valueOf(date);
 
 		try {
 			// h2に接続するためのJDBCドライバを読み込む
@@ -87,11 +90,12 @@ public class ReactionDao {
 			// SQL文を完成させる
 			pStmt.setString(1, email);
 			pStmt.setInt(2, reaction);
-			pStmt.setString(3, date +"%");
+			pStmt.setTimestamp(3, ts);
 
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
 
+			rs.next();
 			count = rs.getInt("cnt");
 		}
 		//JDBS関連の
@@ -127,6 +131,7 @@ public class ReactionDao {
 		Connection conn = null;
 		//リアクションの数を入れるコレクションを用意
 		int count;
+		Timestamp ts = Timestamp.valueOf(date);
 
 		try {
 			// h2に接続するためのJDBCドライバを読み込む
@@ -142,11 +147,12 @@ public class ReactionDao {
 
 			// SQL文を完成させる
 			pStmt.setInt(1, reaction);
-			pStmt.setString(2, date);
+			pStmt.setTimestamp(2, ts);
 
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
 
+			rs.next();
 			count = rs.getInt("cnt");
 		}
 		//JDBS関連の
@@ -181,6 +187,7 @@ public class ReactionDao {
 	public boolean insert(Reaction reaction) {
 		Connection conn = null;
 		boolean result = false;
+		Timestamp ts = Timestamp.valueOf(reaction.getReply_date());
 
 		try {
 			// JDBCドライバを読み込む
@@ -206,8 +213,8 @@ public class ReactionDao {
 			else {
 				pStmt.setString(2, "null");
 			}
-			if (reaction.getReply_date() != null) {
-				pStmt.setString(3, reaction.getReply_date());
+			if (ts != null) {
+				pStmt.setTimestamp(3, ts);
 			}
 			else {
 				pStmt.setString(3, "null");

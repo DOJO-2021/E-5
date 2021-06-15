@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.UserDataDao;
-import model.User;
 
 /**
  * Servlet implementation class LoginServlet
@@ -57,17 +56,16 @@ public class  LoginServlet extends HttpServlet {
 		String password = request.getParameter("PASSWORD");
 
 		UserDataDao uDao = new UserDataDao();
-		String position = Integer.toString(uDao.selectP(email));
-		//String position = "0";
-
-		HttpSession session = request.getSession();
-		session.setAttribute("account", new User(email, password));
-		session.setAttribute("position", position);
-
 
 		// ログイン成功
 		if (uDao.isLoginOK(email, password)) {
 
+			String position = Integer.toString(uDao.selectP(email));
+			//String position = "0";
+
+			HttpSession session = request.getSession();
+			session.setAttribute("email", email);
+			session.setAttribute("position", position);
 
 			// メニューサーブレットにリダイレクトする
 			response.sendRedirect("/newReacQ/MenuReactionServlet");

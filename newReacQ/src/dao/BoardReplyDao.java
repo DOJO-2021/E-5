@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,6 +75,7 @@ public class BoardReplyDao {
 	public boolean insert(BoardReply b) {
 		Connection conn = null;
 		boolean result = false;
+		Timestamp ts = Timestamp.valueOf(b.getReply_date());
 
 		try {
 			// JDBCドライバを読み込む
@@ -90,7 +92,7 @@ public class BoardReplyDao {
 			pStmt.setString(1, b.getEmail());
 			pStmt.setInt(2, b.getQ_reply_code());
 			pStmt.setString(3, b.getQuestion_reply());
-			pStmt.setString(4, b.getReply_date());
+			pStmt.setTimestamp(4, ts);
 
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {

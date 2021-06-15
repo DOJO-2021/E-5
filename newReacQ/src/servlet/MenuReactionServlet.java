@@ -25,7 +25,7 @@ public class MenuReactionServlet extends HttpServlet {
     	// もしもログインしていなかったらログインサーブレットにリダイレクトする
     	HttpSession session = request.getSession();
 
-    	if (session.getAttribute("account") == null) {
+    	if (session.getAttribute("email") == null) {
     		response.sendRedirect("/newReacQ/LoginServlet");
     		return;
     	}
@@ -35,45 +35,50 @@ public class MenuReactionServlet extends HttpServlet {
     	String pos = (String)session.getAttribute("position");
 
     	if (pos.equals("1")) {
+
     		/*
     		// 処理を行う(select、emailが受講者、日付も選択可)
     		//セッションアトリビュートでemailを取得
-    		String email = (String)session.getAttribute("email");
+    		//String email = (String)session.getAttribute("email");
 
     		//リクエストパラメータ(日付)を取得する
     		request.setCharacterEncoding("UTF-8");
     		String date = request.getParameter("date");
 
     		ReactionDao rDao = new ReactionDao();
-    		List<Reaction> myreactionList = rDao.select(new Reaction(0, email, 0, 0, "", date));
+    		int myreaction0 = rDao.countmenu(0, date);
 
     		//リクエストスコープに格納する
-    		request.setAttribute("myreactionList", myreactionList);
-    		*/
+    		request.setAttribute("myreaction0", myreaction0);
+
+*/
 
     		// フォワードする
     		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/menu.jsp");
     		dispatcher.forward(request, response);
     	}
 
-    		else if (pos.equals("0")) {
-    			/*
-    			// 処理を行う(select、日付選択可)
-    			//リクエストパラメータ(日付)を取得する
-    			request.setCharacterEncoding("UTF-8");
-    			String date = request.getParameter("date");
+   		else if (pos.equals("0")) {
+   			/*
+       		// 処理を行う(select、emailが受講者、日付も選択可)
+       		//セッションアトリビュートでemailを取得
+       		//String email = (String)session.getAttribute("email");
 
-    			ReactionDao rDao = new ReactionDao();
-    			List<Reaction> myreactionList = rDao.select(new Reaction(0, "", 0, 0, "", date));
+       		//リクエストパラメータ(日付)を取得する
+       		request.setCharacterEncoding("UTF-8");
+       		String date = request.getParameter("date");
 
-    			//リクエストスコープに格納する
-    			request.setAttribute("myreactionList", myreactionList);
-    			*/
+       		ReactionDao rDao = new ReactionDao();
+       		int myreaction0 = rDao.countmenu(0, date);
 
-    			// フォワードする
-    			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/menuT.jsp");
-    			dispatcher.forward(request, response);
-    		}
+        	//リクエストスコープに格納する
+        	request.setAttribute("myreaction0", myreaction0);
+        	*/
+
+    		// フォワードする
+    		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/menuT.jsp");
+    		dispatcher.forward(request, response);
+   		}
 
 	}
 

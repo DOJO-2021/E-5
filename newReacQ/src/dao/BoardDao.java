@@ -204,9 +204,10 @@ public class BoardDao {
 
 	// dateで検索項目を指定し、検索結果のリストを返す
 	//mypageTで使用
-	public List<Board> selectmenu(Timestamp date) {
+	public List<Board> selectmenu(String date) {
 		Connection conn = null;
 		List<Board> Qlist = new ArrayList<Board>();
+		Timestamp ts = Timestamp.valueOf(date);
 
 		try {
 			// JDBCドライバを読み込む
@@ -220,7 +221,7 @@ public class BoardDao {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			pStmt.setTimestamp(1, date);
+			pStmt.setTimestamp(1, ts);
 
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
@@ -264,9 +265,10 @@ public class BoardDao {
 
 	// emailとdateで検索項目を指定し、検索結果のリストを返す
 	// mypageで使用
-	public List<Board> selectmypage(String email, Timestamp date) {
+	public List<Board> selectmypage(String email, String date) {
 		Connection conn = null;
 		List<Board> Qlist = new ArrayList<Board>();
+		Timestamp ts = Timestamp.valueOf(date);
 
 		try {
 			// JDBCドライバを読み込む
@@ -281,7 +283,7 @@ public class BoardDao {
 
 			// SQL文を完成させる
 			pStmt.setString(1, email);
-			pStmt.setTimestamp(1, date);
+			pStmt.setTimestamp(1, ts);
 
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
@@ -344,6 +346,7 @@ public class BoardDao {
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
 
+			rs.next();
 			count = rs.getInt("cnt");
 		}
 		//JDBS関連の
@@ -378,6 +381,7 @@ public class BoardDao {
 	public boolean insert(Board board) {
 		Connection conn = null;
 		boolean result = false;
+		Timestamp ts = Timestamp.valueOf(board.getReply_date());
 
 		try {
 			// JDBCドライバを読み込む
@@ -415,12 +419,14 @@ public class BoardDao {
 			else {
 				pStmt.setString(4, "null");
 			}
-			if (board.getReply_date() != null) {
-				pStmt.setString(5, board.getReply_date());
+			if (ts != null) {
+				pStmt.setTimestamp(5, ts);
 			}
-			else {
-				pStmt.setString(5, "null");
+			/*
+			 else {
+				pStmt.setTimestamp(5, 0000-00-00 00:00:00);
 			}
+			*/
 
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {

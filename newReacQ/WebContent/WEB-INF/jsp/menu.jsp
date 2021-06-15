@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="/newReacQ/css/menu.css">
 </head>
 <body>
+<jsp:include page="/WEB-INF/jsp/header.jsp" />
 	<div class="contentsR">
 		<p>リアクション</p>
 		<form method="POST" action="/newReacQ/MenuReactionServlet">
