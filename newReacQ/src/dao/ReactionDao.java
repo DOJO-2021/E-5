@@ -73,7 +73,6 @@ public class ReactionDao {
 		Connection conn = null;
 		//リアクションの数を入れるコレクションを用意
 		int count;
-		Timestamp ts = Timestamp.valueOf(date);
 
 		try {
 			// h2に接続するためのJDBCドライバを読み込む
@@ -84,13 +83,13 @@ public class ReactionDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
 
 			// SQL文を準備する
-			String sql = "select reply_date, count(*) as cnt from reaction where email = ? reaction = ? and reply_date like ?";
+			String sql = "select reply_date, count(*) as cnt from reaction where email = ? and reaction = ? and reply_date like ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
 			pStmt.setString(1, email);
 			pStmt.setInt(2, reaction);
-			pStmt.setTimestamp(3, ts);
+			pStmt.setString(3, date + "%");
 
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
@@ -131,7 +130,6 @@ public class ReactionDao {
 		Connection conn = null;
 		//リアクションの数を入れるコレクションを用意
 		int count;
-		Timestamp ts = Timestamp.valueOf(date);
 
 		try {
 			// h2に接続するためのJDBCドライバを読み込む
@@ -147,7 +145,7 @@ public class ReactionDao {
 
 			// SQL文を完成させる
 			pStmt.setInt(1, reaction);
-			pStmt.setTimestamp(2, ts);
+			pStmt.setString(2, date + "%");
 
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();

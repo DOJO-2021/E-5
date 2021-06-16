@@ -277,7 +277,7 @@ public class BoardDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
 
 			// SQL文を準備する
-			String sql = "select * from board WHERE email = ? and to_char(reply_date,'yyyy-mm-dd') like ?";
+			String sql = "select * from board WHERE email = ? and reply_date like ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる

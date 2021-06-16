@@ -17,7 +17,7 @@
 	<form method="POST" action="/newReacQ/MyReactionServlet">
 		<table class="table">
 			<tr>
-			<td>日付</td><td><input type="date" name="REPLY_DATE_R" id="date_r"></td>
+			<td>日付</td><td><input type="date" name="REPLY_DATE_R" id="date_r" value="${date_r}"></td>
 			</tr>
 		</table>
 		<input type="submit" name="SUBMIT" value="履歴の内容を更新する" onclick="send_r()"><br>
@@ -40,7 +40,7 @@
 	<form method="POST" action="/newReacQ/MyBoardServlet">
 		<table class="table">
 			<tr>
-			<td>日付</td><td><input type="text" name="REPLY_DATE_B" id="date_b" value="${reply_date}"></td>
+			<td>日付</td><td><input type="date" name="REPLY_DATE_B" id="date_b" value="${date_b}"></td>
 			</tr>
 		</table>
 		<input type="submit" name="SUBMIT" value="履歴の内容を更新する" onclick="send_b()"><br>

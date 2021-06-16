@@ -114,6 +114,7 @@ public class MyReactionServlet extends HttpServlet {
 			int reaction3 = rDao.countmypage(email, 3, date);
 
 			//リクエストスコープに格納する
+			request.setAttribute("date_r", date);
 			request.setAttribute("myrea0", reaction0);
 			request.setAttribute("myrea1", reaction1);
 			request.setAttribute("myrea2", reaction2);
@@ -137,6 +138,7 @@ public class MyReactionServlet extends HttpServlet {
 			int reaction3 = rDao.countmyT(3, date);
 
 			//リクエストスコープに格納する
+			request.setAttribute("date_r", date);
 			request.setAttribute("myrea0", reaction0);
 			request.setAttribute("myrea1", reaction1);
 			request.setAttribute("myrea2", reaction2);

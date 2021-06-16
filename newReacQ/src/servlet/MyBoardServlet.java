@@ -67,23 +67,29 @@ public class MyBoardServlet extends HttpServlet {
 			return;
 		}
 
-		// 処理を行う(select、emailが受講者、日付も選択可)
-		//セッションアトリビュートでemailを取得
-		String email = (String)session.getAttribute("email");
+		//講師か受講者かを判別するpositionを取得
+		String pos =(String)session.getAttribute("position");
 
-		//リクエストパラメータ(日付)を取得する
-		request.setCharacterEncoding("UTF-8");
-		String selectdate = request.getParameter("REPLY_DATE_B");
+		if (pos.equals("1")) {
+			// 処理を行う(select、emailが受講者、日付も選択可)
+			//セッションアトリビュートでemailを取得
+			String email = (String)session.getAttribute("email");
 
-		BoardDao bDao = new BoardDao();
-		List<Board> myboardList = bDao.selectmypage(new Board(0, email, 0, 0, "", selectdate));
+			//リクエストパラメータ(日付)を取得する
+			request.setCharacterEncoding("UTF-8");
+			String selectdate = request.getParameter("REPLY_DATE_B");
 
-		//リクエストスコープに格納する
-		request.setAttribute("myboardList", myboardList);
+			BoardDao bDao = new BoardDao();
+			List<Board> myboardList = bDao.selectmypage(new Board(0, email, 0, 0, "", selectdate));
 
-		// フォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");
-		dispatcher.forward(request, response);
+			//リクエストスコープに格納する
+			request.setAttribute("date_r", selectdate);
+			request.setAttribute("myboardList", myboardList);
+
+			// フォワードする
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");
+			dispatcher.forward(request, response);
+		}
 
 	}
 
