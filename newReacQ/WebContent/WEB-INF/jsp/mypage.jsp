@@ -14,12 +14,13 @@
 	<div class="contentsR">
 	<h2>リアクション履歴</h2>
 	<!-- デートピッカー-->
-	<form method="GET" action="/newReacQ/MyReactionServlet">
+	<form method="POST" action="/newReacQ/MyReactionServlet">
 		<table class="table">
 			<tr>
-			<td>日付</td><td><input type="date" name="REPLY_DATE_R" id="date_r" value="${reply_date}"></td>
+			<td>日付</td><td><input type="date" name="REPLY_DATE_R" id="date_r"></td>
 			</tr>
 		</table>
+		<input type="submit" name="SUBMIT" value="履歴の内容を更新する" onclick="send_r()"><br>
 	</form>
 	<!-- リアクショングラフ-->
 	<table class="table">
@@ -36,12 +37,13 @@
 	<div class="contentsB">
 	<h2>掲示板履歴</h2>
 	<!-- デートピッカー-->
-	<form method="GET" action="/newReacQ/MyBoardServlet">
+	<form method="POST" action="/newReacQ/MyBoardServlet">
 		<table class="table">
 			<tr>
-			<td>日付</td><td><input type="date" name="REPLY_DATE_B" id="date_b" value="${e.reply_date}"></td>
+			<td>日付</td><td><input type="text" name="REPLY_DATE_B" id="date_b" value="${reply_date}"></td>
 			</tr>
 		</table>
+		<input type="submit" name="SUBMIT" value="履歴の内容を更新する" onclick="send_b()"><br>
 	</form>
 	<!-- 質問履歴の表示-->
 	<c:forEach var="b" items="${myboardList}" >
@@ -50,7 +52,7 @@
 			<input type="hidden" name="POSITION" value="${b.id}">
 			<input type="hidden" name="POSITION" value="${b.email}">
 			<input type="hidden" name="POSITION" value="${b.reply_status}">
-			<input type="hidden" name="POSITION" value="${b.position_code}">
+			<input type="hidden" name="POSITION" value="${b.question_code}">
 			<td>質問内容</td><td>${b.question}</td>
 			<input type="hidden" name="POSITION" value="${b.reply_date}">
 			</tr>

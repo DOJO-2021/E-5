@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import dao.UserDataDao;
+import model.Result;
 import model.UserData;
 
 /**
@@ -112,8 +113,8 @@ public class MyUserDataServlet extends HttpServlet {
 				}
 				// 更新失敗/mypageに戻る
 				else {
-					JFrame frame = new JFrame();
-					JOptionPane.showMessageDialog(frame, "更新失敗");
+					request.setAttribute("result",
+							new Result("更新失敗！", "/newReacQ/MyUserDataServlet"));
 				}
 			}
 

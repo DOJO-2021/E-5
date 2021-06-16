@@ -24,7 +24,7 @@ public class BoardDao {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/ReacQ", "sa", "");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
 
 			// SQL文を準備する
 			String sql = "select id, email, reply_status, question_code, question, reply_date  from board WHERE reply_status = ? and question LIKE? ORDER BY id";
@@ -96,7 +96,7 @@ public class BoardDao {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/ReacQ", "sa", "");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
 
 			// SQL文を準備する
 			String sql = "select id, email, reply_status, question_code, question, reply_date  from board order by id desc limit 5";
@@ -154,7 +154,7 @@ public class BoardDao {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/ReacQ", "sa", "");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
 
 			// SQL文を準備する
 			String sql = "select id, email, reply_status, question_code, question, reply_date  from board where email = ? order by id desc limit 1";
@@ -214,7 +214,7 @@ public class BoardDao {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/ReacQ", "sa", "");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
 
 			// SQL文を準備する
 			String sql = "select id, email, reply_status, qustion_code, question, reply_date  from board WHERE reply_date = ?";
@@ -265,25 +265,25 @@ public class BoardDao {
 
 	// emailとdateで検索項目を指定し、検索結果のリストを返す
 	// mypageで使用
-	public List<Board> selectmypage(String email, String date) {
+	public List<Board> selectmypage(Board myb) {
 		Connection conn = null;
 		List<Board> Qlist = new ArrayList<Board>();
-		Timestamp ts = Timestamp.valueOf(date);
 
 		try {
 			// JDBCドライバを読み込む
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/ReacQ", "sa", "");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
 
 			// SQL文を準備する
-			String sql = "select id, email, reply_status, question_code, question, reply_date  from board WHERE email = ? and reply_date = ?";
+			String sql = "select * from board WHERE email = ? and to_char(reply_date,'yyyy-mm-dd') like ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			pStmt.setString(1, email);
-			pStmt.setTimestamp(1, ts);
+			pStmt.setString(1, myb.getEmail());
+			//pStmt.setTimestamp(2, ts);
+			pStmt.setString(2, myb.getReply_date() + "%");
 
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
@@ -291,10 +291,10 @@ public class BoardDao {
 			// 結果表をコレクションにコピーする
 			while (rs.next()) {
 				Board b = new Board(
-					0,
+					rs.getInt("id"),
 					rs.getString("email"),
 					rs.getInt("reply_status"),
-					rs.getInt("qustion_code"),
+					rs.getInt("question_code"),
 					rs.getString("question"),
 					rs.getString("reply_date")
 				);
@@ -388,7 +388,7 @@ public class BoardDao {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/ReacQ", "sa", "");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
 
 			// SQL文を準備する
 			String sql = "insert into Board values (null, ?, ?, ?, ?, ?)";
@@ -464,7 +464,7 @@ public class BoardDao {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/ReacQ", "sa", "");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
 
 			// SQL文を準備する
 			String sql = "delete from Board where id=?";
@@ -511,7 +511,7 @@ public class BoardDao {
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/ReacQ", "sa", "");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
 
 			// SQL文を準備する
 			String sql = "select email from likes";

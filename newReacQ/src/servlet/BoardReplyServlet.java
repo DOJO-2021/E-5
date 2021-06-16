@@ -11,11 +11,12 @@ import javax.servlet.http.HttpSession;
 
 import dao.BoardReplyDao;
 import model.BoardReply;
+import model.Result;
 
 /**
  * Servlet implementation class BoardServlet
  */
-@WebServlet("/BoardServlet")
+@WebServlet("/BoardReplyServlet")
 public class BoardReplyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

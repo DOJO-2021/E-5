@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/newReacQ/css/menu.css">
+<link rel="stylesheet" href="/newReacQ/css/">
 <title>ReacQ</title>
 </head>
 <body>
@@ -18,6 +18,11 @@
 		<form method="POST" action="/newReacQ/MenuReactionServlet">
 			<!-- リアクショングラフ -->
 			<table class="table">
+				<tr>
+				<td>項目</td>
+				<td><input type= "text"></td>
+				<td><input type="submit" name="post"  id="p_button" value="post"></td>
+				</tr>
 				<tr>
 					<td><img src="/newReacQ/images/" alt="河童_説明可グラフ" width="30" height="80"></td>
 					<td><img src="/newReacQ/images/" alt="河童_分かるグラフ" width="30" height="50"></td>
@@ -40,7 +45,7 @@
 		<p>掲示板</p><a href="/newReacQ/BoardServlet">全部見る</a><br>
 		<p>最新の投稿</p>
 
-		<form method="GET" action="/newReacQ/BoardServlet">
+		<form method="GET" action="/newReacQ/MenuBoardServlet">
 			<!-- 最新の投稿テーブル -->
 		    <div id ="table">
 		    <table>
@@ -59,6 +64,6 @@
 		</form>
 	</div>
 
-</body>
 <jsp:include page="/WEB-INF/jsp/footer.jsp" />
+</body>
 </html>

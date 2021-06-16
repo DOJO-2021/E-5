@@ -19,6 +19,7 @@
 		<table class="table">
 			<tr>
 			<td>日付</td><td><input type="date" name="REPLY_DATE"  id="date_r" value="${reply_date}"></td>
+			<input type="submit" name="SUBMIT" value="履歴の内容を更新する"><br>
 			</tr>
 		</table>
 	</form>

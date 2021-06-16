@@ -8,19 +8,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-/**
- * Servlet implementation class MenuReactionServlet
- */
 
-import dao.ReactionDao;
 @WebServlet("/MenuReactionServlet")
 public class MenuReactionServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-     */
-    //
-	private static final String date = null;
+	*/
+	//private static final String date = null;
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	// もしもログインしていなかったらログインサーブレットにリダイレクトする
     	HttpSession session = request.getSession();
@@ -28,9 +23,12 @@ public class MenuReactionServlet extends HttpServlet {
     		response.sendRedirect("/newReacQ/LoginServlet");
     		return;
     	}
+
+
     	//講師か受講者かを判別するpositionを取得
     	String pos = (String)session.getAttribute("position");
-    	if (pos.equals("0")) {
+    	if (pos.equals("1")) {
+    		/*
     		// 処理を行う
     		//セッションアトリビュートでemailを取得
     		String email = (String)session.getAttribute("email");
@@ -52,12 +50,14 @@ public class MenuReactionServlet extends HttpServlet {
 			request.setAttribute("myrea1", reaction1);
 			request.setAttribute("myrea2", reaction2);
 			request.setAttribute("myrea3", reaction3);
+			*/
 
     		// フォワードする
     		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/menu.jsp");
     		dispatcher.forward(request, response);
     	}
    		else if (pos.equals("0")) {
+   			/*
     		// 処理を行う
     		//セッションアトリビュートでemailを取得
     		String email = (String)session.getAttribute("email");
@@ -79,15 +79,12 @@ public class MenuReactionServlet extends HttpServlet {
 			request.setAttribute("myrea1", reaction1);
 			request.setAttribute("myrea2", reaction2);
 			request.setAttribute("myrea3", reaction3);
+			*/
 
     		// フォワードする
     		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/menuT.jsp");
     		dispatcher.forward(request, response);
     	}
 
-	}
-	private int getInt(String string) {
-		// TODO 自動生成されたメソッド・スタブ
-		return 0;
 	}
 }

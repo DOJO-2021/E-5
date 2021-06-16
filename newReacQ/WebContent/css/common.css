@@ -1,1 +1,32 @@
 @charset "UTF-8";
+.header{
+  width: 800px;
+  margin: 0 auto;
+}
+nav ul {
+  display: flex;
+  align-items: center;
+}
+nav ul li{
+  padding: 0 20px;
+  color:#FBFDFC;
+	border-bottom:2px solid #FBFDFC;
+}
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+a {
+  color: #000;
+  text-decoration: none;
+}
+.logo {
+  margin: 0 auto;
+  padding: 10px 20px;
+  display: inline-block;
+}
+
+.footer{
+	float:none;
+}
