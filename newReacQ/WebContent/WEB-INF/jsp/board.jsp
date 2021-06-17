@@ -12,6 +12,9 @@
   <input type="radio" name="qsort" value="すべて">すべて <input type="radio" name="qsort" value="回答受付中">回答受付中 <input type="radio" name="qsort" value="解決済み">解決済み <input type="radio" name="qsort" value="気になる"> 「気になる」した質問 <form action="/newReacQ/BoardServlet" method="POST"><input type ="text" name="" placeholder="検索"><input type ="submit" name="" value="検索"></form>
   <!-- 投稿された質問の折りたたみメニュー -->
   <section>
+  <c:forEach var="b" items="${Alllist}">
+  <p>${b.question}</p>
+  </c:forEach>
   <div class="accordion">
       <p class="question q-title">▼質問 <input type ="button" value="気になる" id=""></p>
       <div class="content">

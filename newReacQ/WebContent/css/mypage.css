@@ -2,7 +2,7 @@
 
 body{
 	background:#B8DA92;
-	display: grid;
+	align-content: stretch;
 }
 
 .header-logo{
@@ -18,12 +18,18 @@ li{
 	border-bottom:2px solid #FBFDFC;
 }
 
+.wrapper{
+	display: flex;
+	justify-content: flex-start;
+	flex-direction: column;
+}
 .contentsR{
 	color:#296337;
 	width:500px;
 	margin:5em;
 	border:solid 2px;
 	background-color:#FBFDFC;
+	flex-basis: 70%;
 
 }
 
@@ -33,7 +39,7 @@ li{
 	margin:5em;
 	border:solid 2px;
 	background-color:#FBFDFC;
-
+	flex-basis: 70%;
 }
 
 .contentsA{
@@ -42,5 +48,4 @@ li{
 	border:solid 2px;
 	background-color:#FBFDFC;
 	width: 150px;
-
 }

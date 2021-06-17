@@ -27,21 +27,21 @@ public class BoardDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
 
 			// SQL文を準備する
-			String sql = "select id, email, reply_status, question_code, question, reply_date  from board WHERE reply_status = ? and question LIKE? ORDER BY id";
+			String sql = "select id, email, reply_status, question_code, question, reply_date  from board WHERE question LIKE? ORDER BY id";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			if (param.getReply_status() != 0) {
-				pStmt.setInt(1, param.getReply_status());
-			}
-			else {
-				pStmt.setInt(1, 0);
-			}
+			//if (param.getReply_status() != 0) {
+				//pStmt.setInt(1, param.getReply_status());
+			//}
+			//else {
+			//	pStmt.setInt(1, 0);
+			//}
 			if (param.getQuestion() != null) {
-				pStmt.setString(2, "%" + param.getQuestion() + "%");
+				pStmt.setString(1, "%" + param.getQuestion() + "%");
 			}
 			else {
-				pStmt.setString(2, "%");
+				pStmt.setString(1, "%");
 			}
 
 			// SQL文を実行し、結果表を取得する
@@ -53,7 +53,7 @@ public class BoardDao {
 						0,
 						rs.getString("email"),
 						rs.getInt("reply_status"),
-						rs.getInt("qustion_code"),
+						rs.getInt("question_code"),
 						rs.getString("question"),
 						rs.getString("reply_date")
 			);
@@ -111,7 +111,7 @@ public class BoardDao {
 						0,
 						rs.getString("email"),
 						rs.getInt("reply_status"),
-						rs.getInt("qustion_code"),
+						rs.getInt("question_code"),
 						rs.getString("question"),
 						rs.getString("reply_date")
 			);
