@@ -39,16 +39,8 @@ public class MenuBoardServlet extends HttpServlet {
 
 		if (pos.equals("0")) {
 			// 処理を行う
-			//セッションアトリビュートでemailを取得
-			String email = (String)session.getAttribute("EMAIL");
-
-			//リクエストパラメータを取得する
-			request.setCharacterEncoding("UTF-8");
-			String date = request.getParameter("DATE");
-			String question = request.getParameter("QUESTION");
-
 			BoardDao bDao = new BoardDao();
-			 List<Board> newlist = bDao.select(new Board(0, email, 0, 0, question, date));
+			List<Board> newlist = bDao.selectlatest(new Board(0,"",0,0,"",""));
 
 			//リクエストスコープに格納する
 			request.setAttribute("newlist", newlist);
@@ -60,17 +52,10 @@ public class MenuBoardServlet extends HttpServlet {
 
 		if (pos.equals("1")) {
 			// 処理を行う
-			//セッションアトリビュートでemailを取得
-			String email = (String)session.getAttribute("EMAIL");
-
-			//リクエストパラメータを取得する
-			request.setCharacterEncoding("UTF-8");
-			String date = request.getParameter("DATE");
-			String question = request.getParameter("QUESTION");
-
+			String email =(String)session.getAttribute("email");
 			BoardDao bDao = new BoardDao();
-			 List<Board> newlist = bDao.select(new Board(0, email, 0, 0, question, date));
-			 List<Board> mynewlist = bDao.select(new Board(0, email, 0, 0, question, date));
+			 List<Board> newlist = bDao.selectlatest(new Board(0,"",0,0,"",""));
+			 List<Board> mynewlist = bDao.selectmynewlist(new Board(0,email,0,0,"",""));
 
 			//リクエストスコープに格納する
 			request.setAttribute("newlist", newlist);

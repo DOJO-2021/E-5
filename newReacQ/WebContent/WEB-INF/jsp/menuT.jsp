@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/newReacQ/css/">
+<link rel="stylesheet" href="/newReacQ/css/menu.css">
 <title>ReacQ</title>
 </head>
 <body>
@@ -21,13 +21,10 @@
 				<tr>
 				<td>項目</td>
 				<td><input type= "text"></td>
-				<td><input type="submit" name="post"  id="p_button" value="post"></td>
+				<td><input type="submit" name="POST" value="送信"></td>
 				</tr>
 				<tr>
-					<td><img src="/newReacQ/images/" alt="河童_説明可グラフ" width="30" height="80"></td>
-					<td><img src="/newReacQ/images/" alt="河童_分かるグラフ" width="30" height="50"></td>
-					<td><img src="/newReacQ/images/" alt="河童_分かるかもグラフ" width="30" height="100"></td>
-					<td><img src="/newReacQ/images/" alt="河童_分からないグラフ" width="30" height="80"></td>
+					<td>${rea3}</td><td>${rea2}</td><td>${rea1}</td><td>${rea0}</td>
 				</tr>
 				<tr>
 					<td><input type ="submit" value="説明可"><img src="/newReacQ/images/" alt="河童_説明可"></td>
@@ -36,7 +33,8 @@
 					<td><input type ="submit" value="分からない"><img src="/newReacQ/images/" alt="河童_分からない"></td>
 				</tr>
 			</table>
-			<input type="submit" value = "リセット">
+			<input type="submit" name = "RESET"value = "リセット">
+			<input type="submit" name="UPDATE" value="更新">
 		</form>
 	</div>
 
@@ -49,14 +47,14 @@
 			<!-- 最新の投稿テーブル -->
 		    <div id ="table">
 		    <table>
- 			<c:forEach var="e" items="${newList}" >
+ 			<c:forEach var="b" items="${newlist}" >
 		        <tr>
 		        	<th>回答日時</th>
-		        	<td>${e.reply_date}</td>
+		        	<td>${b.reply_date}</td>
 		        </tr>
 		        <tr>
 		        	<th>質問内容</th>
-		        	<td>${e.question}</td>
+		        	<td>${b.question}</td>
 		        </tr>
 			</c:forEach>
 		    </table>

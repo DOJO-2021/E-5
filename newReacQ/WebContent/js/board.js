@@ -12,14 +12,6 @@
 	};
 
 //投稿された質問の折りたたみメニュー
-   const question = document.querySelectorAll(".q-title");
-
-      function toggle() {
-        const content = this.nextElementSibling;
-        this.classList.toggle("is-active");
-        content.classList.toggle("is-open");
-      }
-
-      for (let i = 0; i < question.length; i++) {
-        question[i].addEventListener("click", toggle);
-      }
+	$(".q-title").on("click", function () {
+        	$(this).next().slideToggle();
+        	});

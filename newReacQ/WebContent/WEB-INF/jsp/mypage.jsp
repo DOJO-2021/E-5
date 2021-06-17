@@ -25,7 +25,7 @@
 	<!-- リアクショングラフ-->
 	<table class="table">
 		<tr>
-		<td>${myrea0}</td><td>${myrea1}</td><td>${myrea2}</td><td>${myrea3}</td>
+		<td>${myrea3}</td><td>${myrea2}</td><td>${myrea1}</td><td>${myrea0}</td>
 		</tr>
 		<tr>
 		<td><img src="/newReacQ/images/" alt="河童_説明可"></td><td><img src="/newReacQ/images/" alt="河童_分かる"></td><td><img src="/newReacQ/images/" alt="河童_分かるかも"></td><td><img src="/newReacQ/images/" alt="河童_分からない"></td>
@@ -49,10 +49,6 @@
 	<c:forEach var="b" items="${myboardList}" >
 		<table class="table">
 			<tr>
-			<input type="hidden" name="POSITION" value="${b.id}">
-			<input type="hidden" name="POSITION" value="${b.email}">
-			<input type="hidden" name="POSITION" value="${b.reply_status}">
-			<input type="hidden" name="POSITION" value="${b.question_code}">
 			<td>質問内容</td><td>${b.question}</td>
 			<input type="hidden" name="POSITION" value="${b.reply_date}">
 			</tr>
@@ -62,26 +58,37 @@
 
 	<!-- アカウント管理-->
 	<div class="contentsA">
-	<h2>アカウント管理</h2>
-	<c:forEach var="u" items="${userList}">
-	<form method="POST" action="/newReacQ/MyUserDataServlet">
-		<!-- ポジション以外のアカウント管理テーブルの表示 -->
-		<table class="table">
-			<tr>
-			<input type="hidden" name="ID" value="${u.id}">
-			<th>メールアドレス</th><td><input type="text" name="EMAIL" value="${u.email}"></td>
-			</tr>
-			<tr>
-			<th>パスワード</th><td><input type="password" name="PASSWORD" value="${u.password}"></td>
-			</tr>
-			<tr>
-			<th>氏名</th><td><input type="text" name="NAME" value="${u.name}"></td>
-			<input type="hidden" name="POSITION" value="${u.position}">
-			</tr>
-		</table>
-		<input type="submit" name="SUBMIT" value="更新"><br>
-	</form>
-	</c:forEach>
+		<div class="conA">
+		<h2>アカウント管理</h2>
+		<c:forEach var="u" items="${userList}">
+		<form method="POST" action="/newReacQ/MyUserDataServlet">
+			<!-- ポジション以外のアカウント管理テーブルの表示 -->
+			<table class="table_a">
+				<tr>
+				<input type="hidden" name="ID" value="${u.id}">
+				<th>メールアドレス</th>
+				</tr>
+				<tr>
+				<td><input type="text" name="EMAIL" value="${u.email}"></td>
+				</tr>
+				<tr>
+				<th>パスワード</th>
+				</tr>
+				<tr>
+				<td><input type="password" name="PASSWORD" value="${u.password}"></td>
+				</tr>
+				<tr>
+				<th>氏名</th>
+				</tr>
+				<tr>
+				<td><input type="text" name="NAME" value="${u.name}"></td>
+				<input type="hidden" name="POSITION" value="${u.position}">
+				</tr>
+			</table>
+			<input type="submit" name="SUBMIT" value="更新"><br>
+		</form>
+		</c:forEach>
+		</div>
 	</div>
 
 <jsp:include page="footer.jsp" flush="true" />

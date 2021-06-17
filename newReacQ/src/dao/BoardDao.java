@@ -86,25 +86,19 @@ public class BoardDao {
 
 
 	//最新を出す
-	public List<Board> selectlatest() {
+	public List<Board> selectlatest(Board board) {
 		Connection conn = null;
 		List<Board> newlist = new ArrayList<Board>();
-
 		try {
-
 			// JDBCドライバを読み込む
 			Class.forName("org.h2.Driver");
-
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
-
 			// SQL文を準備する
 			String sql = "select id, email, reply_status, question_code, question, reply_date  from board order by id desc limit 5";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
-
 			// 結果表をコレクションにコピーする
 			while (rs.next()) {
 				Board b = new Board(
@@ -141,37 +135,28 @@ public class BoardDao {
 			// 結果を返す
 		return newlist;
 	}
-
-
 	//自分の最新を出す
-	public List<Board> selectmynew(String email) {
+	public List<Board> selectmynewlist(Board board) {
 		Connection conn = null;
 		List<Board> mynewlist = new ArrayList<Board>();
-
 		try {
-
 			// JDBCドライバを読み込む
 			Class.forName("org.h2.Driver");
-
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
-
 			// SQL文を準備する
-			String sql = "select id, email, reply_status, question_code, question, reply_date  from board where email = ? order by id desc limit 1";
+			String sql = "select id, email, reply_status, question_code, question, reply_date  from board where email = ? order by id desc limit 2";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-
-			pStmt.setString(1, email);
-
+			pStmt.setString(1,board.getEmail());
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
-
 			// 結果表をコレクションにコピーする
 			while (rs.next()) {
 				Board b = new Board(
 						0,
 						rs.getString("email"),
 						rs.getInt("reply_status"),
-						rs.getInt("qustion_code"),
+						rs.getInt("question_code"),
 						rs.getString("question"),
 						rs.getString("reply_date")
 			);

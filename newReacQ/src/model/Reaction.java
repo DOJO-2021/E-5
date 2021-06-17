@@ -5,11 +5,11 @@ import java.io.Serializable;
 public class Reaction implements Serializable {
 	private int id;
 	private String email;
-	private String reaction;
+	private int reaction;
 	private String reply_date;
 
 	//引数があるコンストラクタ
-	public Reaction(int id, String email, String reaction, String reply_date) {
+	public Reaction(int id, String email, int reaction, String reply_date) {
 		super();
 		this.id = id;
 		this.email = email;
@@ -21,7 +21,7 @@ public class Reaction implements Serializable {
 		super();
 		this.id = 0;
 		this.email = "";
-		this.reaction = "";
+		this.reaction = 0;
 		this.reply_date = "";
 	}
 
@@ -41,11 +41,11 @@ public class Reaction implements Serializable {
 		this.email = email;
 	}
 
-	public String getReaction() {
+	public int getReaction() {
 		return reaction;
 	}
 
-	public void setReaction(String reaction) {
+	public void setReaction(int reaction) {
 		this.reaction = reaction;
 	}
 

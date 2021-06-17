@@ -10,22 +10,23 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/jsp/header.jsp" />
+	<!-- リアクション -->
 	<div class="contentsR">
 		<p>リアクション</p>
 		<form method="POST" action="/newReacQ/MenuReactionServlet">
 			<!-- リアクショングラフ -->
 			<table class="table">
 				<tr>
-					<td><img src="/newReacQ/images/" alt="河童_説明可グラフ" width="30" height="80"></td>
-					<td><img src="/newReacQ/images/" alt="河童_分かるグラフ" width="30" height="50"></td>
-					<td><img src="/newReacQ/images/" alt="河童_分かるかもグラフ" width="30" height="100"></td>
-					<td><img src="/newReacQ/images/" alt="河童_分からないグラフ" width="30" height="80"></td>
+					<td>${rea3}</td>
+					<td>${rea2}</td>
+					<td>${rea1}</td>
+					<td>${rea0}</td>
 				</tr>
 				<tr>
-					<td><input type ="submit" value="説明可"><img src="/newReacQ/images/" alt="河童_説明可"></td>
-					<td><input type ="submit" value="分かる"><img src="/newReacQ/images/" alt="河童_分かる"></td>
-					<td><input type ="submit" value="分かるかも"><img src="/newReacQ/images/" alt="河童_分かるかも"></td>
-					<td><input type ="submit" value="分からない"><img src="/newReacQ/images/" alt="河童_分からない"></td>
+					<td><input type ="submit" name="mrea3" value="説明可"><img src="/newReacQ/images/" alt="河童_説明可"></td>
+					<td><input type ="submit" name="mrea2" value="分かる"><img src="/newReacQ/images/" alt="河童_分かる"></td>
+					<td><input type ="submit" name="mrea1" value="分かるかも"><img src="/newReacQ/images/" alt="河童_分かるかも"></td>
+					<td><input type ="submit" name="mrea0" value="分からない"><img src="/newReacQ/images/" alt="河童_分からない"></td>
 				</tr>
 			</table>
 		</form>
@@ -33,42 +34,43 @@
 
 			<!-- 掲示板 -->
 	<div class="contentsB">
-		<p>掲示板</p>
-		<p><a href="/newReacQ/BoardServlet">全部見る</a></p>
+		<p>掲示板</p><a href="/newReacQ/BoardServlet">全部見る</a><br>
 		<p>最新の投稿</p>
-		<form method="GET" action="/newReacQ/BoardServlet">
+
+		<form method="GET" action="/newReacQ/MenuBoardServlet">
 			<!-- 最新の投稿テーブル -->
-		    <table>
-		    	<c:forEach var="e" items="${Qlist}" >
+		     <table class = scrollable>
+ 			<c:forEach var="b" items="${newlist}" >
 		        <tr>
-		            <th>回答日時</th>
-		            <td>${e.reply_date}</td>
+		        	<th>回答日時</th>
+		        	<td>${b.reply_date}</td>
 		        </tr>
 		        <tr>
 		        	<th>質問内容</th>
-		        	<td>${e.question}</td>
+		        	<td>${b.question}</td>
 		        </tr>
-		        </c:forEach>
+			</c:forEach>
 		    </table>
 		</form>
 
 		<p>自分の投稿</p>
-		<form method="GET" action="/newReacQ/MyBoardServlet">
+		<form method="GET" action="/newReacQ/MenuBoardServlet">
 		    <!-- 自分の投稿テーブル -->
 		    <table>
-		    	<c:forEach var="e" items="${Qlist}" >
+		    	<c:forEach var="b" items="${mynewlist}" >
 		        <tr>
 		            <th>email</th>
-		            <td>${e.email}</td>
+		            <td>${b.email}</td>
 		        </tr>
 		        <tr>
 		        	<th>質問内容</th>
-		        	<td>${e.question}</td>
+		        	<td>${b.question}</td>
 		        </tr>
 		        </c:forEach>
 		    </table>
 		</form>
 		scrollBy(100, 200);
-	</div>
+		</div>
+<jsp:include page="/WEB-INF/jsp/footer.jsp" />
 </body>
 </html>

@@ -5,24 +5,27 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>検索結果</title>
+  <link rel="stylesheet" href="css/board.css">
 </head>
 <body>
-  <input type="radio" name="" value="すべて">すべて <input type="radio" name="" value="回答受付中">回答受付中 <input type="radio" name="" value="解決済み">解決済み <input type="radio" name="example" value="気になる"> 「気になる」した質問 <form action="/newReacQ/BoardServlet" method="POST"><input type ="text" name="" placeholder="検索"><input type ="submit" name="" value="検索"></form>
-  <p>検索結果</p>
+<jsp:include page="/WEB-INF/jsp/header.jsp" />
+  <input type="radio" name="qsort" value="すべて" checked>すべて <input type="radio" name="qsort" value="回答受付中">回答受付中 <input type="radio" name="qsort" value="解決済み">解決済み <input type="radio" name="qsort" value="気になる"> 「気になる」した質問 <form action="/newReacQ/BoardServlet" method="POST"><input type ="text" name="" placeholder="検索"><input type ="submit" name="" value="検索"></form>
   <!-- 投稿された質問の折りたたみメニュー -->
-  <c:forEach var="e" items="${resultlist}" >
-    <div class="wrap">
-      <label for="">▼質問 <input type ="button" value="気になる" id=""></label>
-      <input type="checkbox" id="label1" class="switch" />
+  <h2>検索結果</h2>
+  <section class="">
+  <c:forEach var="c" items="${resultlist}">
+  <div class="accordion">
+      <p class="question q-title">▼質問 <input type ="button" value="気になる ${Likelist.size }" id=""></p>
       <div class="content">
-        <p>質問内容</p>
-        <p>質問詳細</p>
+  		  <p>${c.question}</p>
           <input type = "text" placeholder="回答"><input type ="submit" value="送信">
       </div>
-    </div>
+  </div>
   </c:forEach>
+  </section>
   <!-- 折りたたみメニューここまで -->
+
 
   <form id="f1" action="#">
   <!-- 投稿フォームのボタン -->
@@ -38,6 +41,9 @@
   </form>
   <!-- 投稿フォームここまで -->
   </form>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="js/board.js"></script>
 
 </body>
 </html>

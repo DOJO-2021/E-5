@@ -26,7 +26,7 @@
 	<!-- リアクショングラフ -->
 	<table class="table">
 		<tr>
-		<td>${myrea0}</td><td>${myrea1}</td><td>${myrea2}</td><td>${myrea3}</td>
+		<td>${myrea3}</td><td>${myrea2}</td><td>${myrea1}</td><td>${myrea0}</td>
 		</tr>
 		<tr>
 		<td><img src="/newReacQ/images/" alt="河童_説明可"></td><td><img src="/newReacQ/images/" alt="河童_分かる"></td><td><img src="/newReacQ/images/" alt="河童_分かるかも"></td><td><img src="/newReacQ/images/" alt="河童_分からない"></td>
@@ -43,13 +43,22 @@
 		<table class="table">
 			<tr>
 			<input type="hidden" name="ID" value="${u.id}">
-			<th>メールアドレス</th><td><input type="text" name="EMAIL" value="${u.email}"></td>
+			<th>メールアドレス</th>
 			</tr>
 			<tr>
-			<th>パスワード</th><td><input type="password" name="PASSWORD" value="${u.password}"></td>
+			<td><input type="text" name="EMAIL" value="${u.email}"></td>
 			</tr>
 			<tr>
-			<th>氏名</th><td><input type="text" name="NAME" value="${u.name}"></td>
+			<th>パスワード</th>
+			</tr>
+			<tr>
+			<td><input type="password" name="PASSWORD" value="${u.password}"></td>
+			</tr>
+			<tr>
+			<th>氏名</th>
+			</tr>
+			<tr>
+			<td><input type="text" name="NAME" value="${u.name}"></td>
 			<input type="hidden" name="POSITION" value="${u.position}">
 			</tr>
 		</table>

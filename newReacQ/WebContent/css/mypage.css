@@ -5,47 +5,46 @@ body{
 	align-content: stretch;
 }
 
-.header-logo{
-	padding:30px 50px;
-	color:#FBFDFC;
-	float:center;
-}
-
-li{
-	list-style:none;
-	float:left;
-	color:#FBFDFC;
-	border-bottom:2px solid #FBFDFC;
-}
-
-.wrapper{
-	display: flex;
-	justify-content: flex-start;
-	flex-direction: column;
-}
 .contentsR{
 	color:#296337;
 	width:500px;
 	margin:5em;
 	border:solid 2px;
 	background-color:#FBFDFC;
-	flex-basis: 70%;
+	position: fixed; /* 要素の位置を固定する */
+	top: 10px; /* 基準の位置を画面の上に指定する */
+	left: 10px; /* 基準の位置を画面の左に指定する */
 
 }
 
 .contentsB{
+	overflow-y: scroll;
 	color:#296337;
 	width:500px;
 	margin:5em;
 	border:solid 2px;
 	background-color:#FBFDFC;
-	flex-basis: 70%;
+	position: fixed; /* 要素の位置を固定する */
+	bottom: 10px; /* 基準の位置を画面の下に指定する */
+	left: 10px; /* 基準の位置を画面の左に指定する */
 }
 
 .contentsA{
+	background: #FBFDFC url(/newReacQ/images/Q.png) no-repeat center;
 	color:#296337;
 	margin:5em;
 	border:solid 2px;
-	background-color:#FBFDFC;
-	width: 150px;
+	position: fixed;
+	top: 10px; /* 基準の位置を画面の上に指定する */
+	right: 10px; /* 基準の位置を画面の右に指定する */
+	bottom: 10px;
+	width: 30%; /* 幅を指定する */
+}
+
+.conA{
+	height: 100%;
+	background: rgba(255,255,255,0.8);
+	display: flex;
+    justify-content: center;
+    align-items: center;
 }

@@ -1,9 +1,7 @@
 package test;
 
-import java.util.List;
-
-import dao.BoardDao;
-import model.Board;
+import dao.ReactionDao;
+import model.Reaction;
 
 public class UserDataTest {
 	public static void main(String[] args) {
@@ -42,6 +40,7 @@ public class UserDataTest {
 		System.out.println("3:" + reaction3);
 		*/
 
+		/*
 		// ()のテスト
 		System.out.println("---------- Board()のテスト ----------");
 		BoardDao bDao = new BoardDao();
@@ -54,6 +53,13 @@ public class UserDataTest {
 			System.out.println("question：" + board.getQuestion());
 			System.out.println("reply_date：" + board.getReply_date());
 		}
+		*/
+
+		// ()のテスト
+		System.out.println("---------- Reaction()のテスト ----------");
+		ReactionDao rDao = new ReactionDao();
+		String date = rDao.reset(new Reaction(0, "Teacher1@email.jp", 0, ""));
+		System.out.println("日時:" + date);
 
 	}
 }

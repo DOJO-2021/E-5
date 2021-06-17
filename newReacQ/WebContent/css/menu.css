@@ -2,17 +2,9 @@
 
 body{
 	background:#B8DA92;
-	display:flex;
-
+	display: flex;
+	justify-content: space-between;
 }
-
-
-.header-logo{
-	padding:30px 50px;
-	color:#FBFDFC;
-	float:center;
-}
-
 
 li{
 	list-style:none;
@@ -24,22 +16,39 @@ li{
 
 .contentsR{
 	color:#296337;
-	width:500px;
-	margin:5em;
-	border:solid 2px;
-	background-color:#FBFDFC;
-	border-radius:25px;
-
+	width:250%;					/*横幅*/
+	height:450px;				/*高さ*/
+	margin:0 auto;				/*要素の外側の余白*/
+	margin-right:3em;			/*要素の外側の余白(左)*/
+	border:solid 2px;			/*枠線の太さ*/
+	background-color:#FBFDFC;	/*枠線の色*/
+	border-radius:25px; 		/*枠線の角の丸み*/
+	position:relative;			/*今のポジションを基本として*/
+	top:150px;					/*headerとの距離*/
+	right:10%;					/*右から*/
 }
 
 .contentsB{
 	color:#296337;
-	width:500px;
-	margin:5em;
+	width:250%;
+	height:450px;
+	margin:0 auto;
 	border:solid 2px;
 	background-color:#FBFDFC;
+	position:relative;
+	top:150px;
+	right:10%;
+	overflow: scroll;
 }
 
-footer{
-	float:none;
+.footer{
+	clear:both;
+	position: fixed;
+	bottom: 0; 						/* 上部から配置の基準位置を決める */
+	left: 0; 						/* 左から配置の基準位置を決める */
+	width: 100%; 					/* フッターの横幅を指定する */
+	height: 35px;					/* フッターの高さを指定する */
+	padding:10px;					/* フッター内側の余白を指定する(上下左右) */
+	background-color: #B8DA92; 		/* フッターの背景色を指定する */
+	color: #FBFDFC; 				/* フッターのフォントの色を指定する */
 }
