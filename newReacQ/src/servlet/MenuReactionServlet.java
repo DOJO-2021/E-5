@@ -27,7 +27,6 @@ public class MenuReactionServlet extends HttpServlet {
     		return;
     	}
 
-
     	//講師か受講者かを判別するpositionを取得
     	String pos = (String)session.getAttribute("position");
     	if (pos.equals("1")) {
@@ -36,7 +35,7 @@ public class MenuReactionServlet extends HttpServlet {
     		 * リアクションの表示
     		 */
     		ReactionDao rDao = new ReactionDao();
-    		String date=rDao.reset(new Reaction (0,"",4,""));
+    		String date=rDao.reset(new Reaction (0,"",4,"", ""));
     		int reaction0 = rDao.countmenu(0, date);
 			int reaction1 = rDao.countmenu(1, date);
 			int reaction2 = rDao.countmenu(2, date);
@@ -58,7 +57,7 @@ public class MenuReactionServlet extends HttpServlet {
 			 * リアクションの表示
 			 */
 			ReactionDao rDao = new ReactionDao();
-			String date=rDao.reset(new Reaction (0,"",4,""));
+			String date=rDao.reset(new Reaction (0,"",4,"", ""));
 
 			int reaction0 = rDao.countmyT(0, date);
 			int reaction1 = rDao.countmyT(1, date);
@@ -90,24 +89,31 @@ public class MenuReactionServlet extends HttpServlet {
 
 			// 登録処理を行う
 			request.setCharacterEncoding("UTF-8");
+			String react_title = request.getParameter("react_title");
 			ReactionDao rDao = new ReactionDao();
-			if (request.getParameter("mrea3").equals("説明可")) {
-				rDao.insert(new Reaction(0, email, 3, ""));
+			if (request.getParameter("mrea").equals("説明可")) {
+				boolean result = rDao.insert(new Reaction(0, email, 3, "", react_title));
+				System.out.println(result);
 			}
-			else if (request.getParameter("mrea2").equals("分かる")) {
-				rDao.insert(new Reaction(0, email, 2, ""));
+			else if (request.getParameter("mrea").equals("分かる")) {
+				boolean result = rDao.insert(new Reaction(0, email, 2, "", react_title));
+				System.out.println(result);
 			}
-			else if (request.getParameter("mrea1").equals("分かるかも")) {
-				rDao.insert(new Reaction(0, email, 1, ""));
+			else if (request.getParameter("mrea").equals("分かるかも")) {
+				rDao.insert(new Reaction(0, email, 1, "", react_title));
 			}
-			else if (request.getParameter("mrea0").equals("分からない")) {
-				rDao.insert(new Reaction(0, email, 0, ""));
+			else if (request.getParameter("mrea").equals("分からない")) {
+				rDao.insert(new Reaction(0, email, 0, "", react_title));
+			}
+			else if (request.getParameter("mrea").equals("更新")) {
+				String react_t = (String)session.getAttribute("react_t");
+				request.setAttribute("react_t", react_t);
 			}
 
     		/*
     		 * リアクションの表示
     		 */
-    		String date=rDao.reset(new Reaction(0,"",4,""));
+    		String date=rDao.reset(new Reaction(0,"",4,"", ""));
     		int reaction0 = rDao.resetcount(0, date);
     		int reaction1 = rDao.resetcount(1, date);
     		int reaction2 = rDao.resetcount(2, date);
@@ -122,32 +128,41 @@ public class MenuReactionServlet extends HttpServlet {
 			// フォワードする
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/menu.jsp");
 			dispatcher.forward(request, response);
-
     	}
   		else if (pos.equals("0")) {
-   			/*
-    		// 処理を行う
-    		//セッションアトリビュートでemailを取得
-    		String email = (String)session.getAttribute("email");
+			String email = (String)session.getAttribute("email");
 
-    		//リアクションを取得
-    		request.setCharacterEncoding("UTF-8");
-			int reaction = getInt("");
-			String date = request.getParameter("date");
+			// 登録処理を行う
+			request.setCharacterEncoding("UTF-8");
+			String react_title = request.getParameter("react_title");
+
+			session.setAttribute("react_t", react_title);
 
 			ReactionDao rDao = new ReactionDao();
-			int reaction0 = rDao.countmenu(0, date);
-			int reaction1 = rDao.countmenu(1, date);
-			int reaction2 = rDao.countmenu(2, date);
-			int reaction3 = rDao.countmenu(3, date);
+			if (request.getParameter("mrea").equals("更新")) {
+				request.setAttribute("react_t", react_title);
+			}
+			else if (request.getParameter("mrea").equals("リセット")) {
+				boolean result = rDao.insert(new Reaction(0, email, 4, "", react_title));
+				System.out.println(result);
+				request.setAttribute("react_t", react_title);
+			}
 
+			/*
+			 * リアクションの表示
+			 */
+			String date=rDao.reset(new Reaction (0,"",4,"", ""));
+
+			int reaction0 = rDao.countmyT(0, date);
+			int reaction1 = rDao.countmyT(1, date);
+			int reaction2 = rDao.countmyT(2, date);
+			int reaction3 = rDao.countmyT(3, date);
 
 			//リクエストスコープに格納する
-			request.setAttribute("myrea0", reaction0);
-			request.setAttribute("myrea1", reaction1);
-			request.setAttribute("myrea2", reaction2);
-			request.setAttribute("myrea3", reaction3);
-			*/
+			request.setAttribute("rea0", reaction0);
+			request.setAttribute("rea1", reaction1);
+			request.setAttribute("rea2", reaction2);
+			request.setAttribute("rea3", reaction3);
 
     		// フォワードする
     		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/menuT.jsp");

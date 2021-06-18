@@ -52,6 +52,7 @@ public class BoardServlet extends HttpServlet {
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
 		String question =request.getParameter("QUESTION");
+
 		//検索処理を行う
 		BoardDao bDao = new BoardDao();
 		List<Board> resultlist = bDao.select(new Board(0, "", 0, 0, question, ""));

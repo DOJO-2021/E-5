@@ -66,8 +66,13 @@ public class UserDataTest {
 		// ()のテスト
 		System.out.println("---------- Reaction()のテスト ----------");
 		ReactionDao rDao = new ReactionDao();
-		String date=rDao.reset(new Reaction (0,"",4,""));
+		String date=rDao.reset(new Reaction (0,"",4,"",""));
 		System.out.println("日時:" + date);
+
+
+		/*
+		boolean result = rDao.insert(new Reaction(0, "Student1@email.jp", 0, "", "github"));
+		System.out.println(result);
 
 		int reaction0 = rDao.resetcount(0, date);
 		int reaction1 = rDao.resetcount(1, date);
@@ -77,6 +82,7 @@ public class UserDataTest {
 		System.out.println("1:" + reaction1);
 		System.out.println("2:" + reaction2);
 		System.out.println("3:" + reaction3);
+		*/
 
 	}
 }

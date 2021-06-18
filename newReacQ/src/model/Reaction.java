@@ -7,14 +7,16 @@ public class Reaction implements Serializable {
 	private String email;
 	private int reaction;
 	private String reply_date;
+	private String react_title;
 
 	//引数があるコンストラクタ
-	public Reaction(int id, String email, int reaction, String reply_date) {
+	public Reaction(int id, String email, int reaction, String reply_date, String react_title) {
 		super();
 		this.id = id;
 		this.email = email;
 		this.reaction = reaction;
 		this.reply_date = reply_date;
+		this.react_title = react_title;
 	}
 
 	public Reaction() {
@@ -55,5 +57,13 @@ public class Reaction implements Serializable {
 
 	public void setReply_date(String reply_date) {
 		this.reply_date = reply_date;
+	}
+
+	public String getReact_title() {
+		return react_title;
+	}
+
+	public void setReact_title(String react_title) {
+		this.react_title = react_title;
 	}
 }

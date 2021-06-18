@@ -20,8 +20,9 @@
 			<table class="table">
 				<tr>
 				<td>項目</td>
-				<td><input type= "text"></td>
-				<td><input type="submit" name="POST" value="送信"></td>
+				<td><input type ="text" name="react_title" value="${react_t}"></td>
+				<td><input type ="submit" name="mrea" value="更新"></td>
+				<td><input type ="submit" name="mrea" value="リセット"></td>
 				</tr>
 				<tr>
 					<td>${rea3}</td><td>${rea2}</td><td>${rea1}</td><td>${rea0}</td>
@@ -33,8 +34,6 @@
 					<td><input type ="submit" value="分からない"><img src="/newReacQ/images/" alt="河童_分からない"></td>
 				</tr>
 			</table>
-			<input type="submit" name = "RESET"value = "リセット">
-			<input type="submit" name="UPDATE" value="更新">
 		</form>
 	</div>
 

@@ -127,7 +127,7 @@ public class ReactionDao {
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
 			// SQL文を準備する
-			String sql = "select reply_date from reaction where reaction = ? order by id asc limit 1";
+			String sql = "select reply_date from reaction where reaction = ? order by reply_date desc limit 1";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			// SQL文を完成させる
 			pStmt.setInt(1, rea.getReaction());
@@ -178,7 +178,7 @@ public class ReactionDao {
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
 			// SQL文を準備する
-			String sql = "select reply_date, count(*) as cnt from reaction where email = ? and reaction = ? and reply_date like ?";
+			String sql = "select count(*) as cnt from reaction where email = ? and reaction = ? and reply_date like ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			// SQL文を完成させる
 			pStmt.setString(1, email);
@@ -231,7 +231,7 @@ public class ReactionDao {
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
 			// SQL文を準備する
-			String sql = "select reply_date, count(*) as cnt from reaction where reaction = ? and reply_date = ?";
+			String sql = "select count(*) as cnt from reaction where reaction = ? and reply_date = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			// SQL文を完成させる
 			pStmt.setInt(1, reaction);
@@ -274,6 +274,7 @@ public class ReactionDao {
 	public boolean insert(Reaction reaction) {
 		Connection conn = null;
 		boolean result = false;
+		//Timestamp ts = Timestamp.valueOf(reaction.getReply_date());
 
 		try {
 			// JDBCドライバを読み込む
@@ -281,7 +282,7 @@ public class ReactionDao {
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
 			// SQL文を準備する
-			String sql = "insert into Reaction values (null, ?, ?, ?)";
+			String sql = "insert into Reaction values (null, ?, ?, CURRENT_TIMESTAMP(), ?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			// SQL文を完成させる
 			if (reaction.getEmail() != null) {
@@ -296,12 +297,19 @@ public class ReactionDao {
 			else {
 				pStmt.setInt(2, 0);
 			}
-			if (reaction.getReply_date() != null) {
-				pStmt.setString(3, reaction.getReply_date());
+			//if (ts != null) {
+				//pStmt.setTimestamp(3, ts);
+			//}
+			//else {
+			//	pStmt.setTimestamp(3, );
+			//}
+			if (reaction.getReact_title() != null) {
+				pStmt.setString(3, reaction.getReact_title());
 			}
 			else {
 				pStmt.setString(3, "null");
 			}
+
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
 				result = true;
