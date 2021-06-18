@@ -37,7 +37,7 @@ public class MenuReactionServlet extends HttpServlet {
     		 */
     		ReactionDao rDao = new ReactionDao();
     		String date=rDao.reset(new Reaction (0,"",4,""));
-			int reaction0 = rDao.countmenu(0, date);
+    		int reaction0 = rDao.countmenu(0, date);
 			int reaction1 = rDao.countmenu(1, date);
 			int reaction2 = rDao.countmenu(2, date);
 			int reaction3 = rDao.countmenu(3, date);
@@ -89,6 +89,7 @@ public class MenuReactionServlet extends HttpServlet {
 			//int reaction = Integer.parseInt(request.getParameter("Reaction"));
 
 			// 登録処理を行う
+			request.setCharacterEncoding("UTF-8");
 			ReactionDao rDao = new ReactionDao();
 			if (request.getParameter("mrea3").equals("説明可")) {
 				rDao.insert(new Reaction(0, email, 3, ""));
@@ -106,11 +107,11 @@ public class MenuReactionServlet extends HttpServlet {
     		/*
     		 * リアクションの表示
     		 */
-    		String date=rDao.reset(new Reaction (0,"",4,""));
-			int reaction0 = rDao.countmenu(0, date);
-			int reaction1 = rDao.countmenu(1, date);
-			int reaction2 = rDao.countmenu(2, date);
-			int reaction3 = rDao.countmenu(3, date);
+    		String date=rDao.reset(new Reaction(0,"",4,""));
+    		int reaction0 = rDao.resetcount(0, date);
+    		int reaction1 = rDao.resetcount(1, date);
+    		int reaction2 = rDao.resetcount(2, date);
+    		int reaction3 = rDao.resetcount(3, date);
 
 			//リクエストスコープに格納する
 			request.setAttribute("rea0", reaction0);

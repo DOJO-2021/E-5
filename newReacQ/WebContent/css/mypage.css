@@ -8,6 +8,7 @@ body{
 .contentsR{
 	color:#296337;
 	width:500px;
+	height:300px;
 	margin:5em;
 	border:solid 2px;
 	background-color:#FBFDFC;
@@ -21,6 +22,7 @@ body{
 	overflow-y: scroll;
 	color:#296337;
 	width:500px;
+	height:300px;
 	margin:5em;
 	border:solid 2px;
 	background-color:#FBFDFC;

@@ -36,35 +36,37 @@
 
 	<!-- アカウント管理 -->
 	<div class="contentsA">
-	<h2>アカウント管理</h2>
-	<c:forEach var="u" items="${userList}">
-	<form method="POST" action="/newReacQ/MyUserDataServlet">
-		<!-- ポジション以外のアカウント管理テーブルの表示 -->
-		<table class="table">
-			<tr>
-			<input type="hidden" name="ID" value="${u.id}">
-			<th>メールアドレス</th>
-			</tr>
-			<tr>
-			<td><input type="text" name="EMAIL" value="${u.email}"></td>
-			</tr>
-			<tr>
-			<th>パスワード</th>
-			</tr>
-			<tr>
-			<td><input type="password" name="PASSWORD" value="${u.password}"></td>
-			</tr>
-			<tr>
-			<th>氏名</th>
-			</tr>
-			<tr>
-			<td><input type="text" name="NAME" value="${u.name}"></td>
-			<input type="hidden" name="POSITION" value="${u.position}">
-			</tr>
-		</table>
-		<input type="submit" name="SUBMIT" value="更新"><br>
-	</form>
-	</c:forEach>
+		<div class="conA">
+		<h2>アカウント管理</h2>
+		<c:forEach var="u" items="${userList}">
+		<form method="POST" action="/newReacQ/MyUserDataServlet">
+			<!-- ポジション以外のアカウント管理テーブルの表示 -->
+			<table class="table">
+				<tr>
+				<input type="hidden" name="ID" value="${u.id}">
+				<th>メールアドレス</th>
+				</tr>
+				<tr>
+				<td><input type="text" name="EMAIL" value="${u.email}"></td>
+				</tr>
+				<tr>
+				<th>パスワード</th>
+				</tr>
+				<tr>
+				<td><input type="password" name="PASSWORD" id="input_pass" value="${u.password}"><button id="btn_passview">表示</button></td>
+				</tr>
+				<tr>
+				<th>氏名</th>
+				</tr>
+				<tr>
+				<td><input type="text" name="NAME" value="${u.name}"></td>
+				<input type="hidden" name="POSITION" value="${u.position}">
+				</tr>
+			</table>
+			<input type="submit" name="SUBMIT" value="更新"><br>
+		</form>
+		</c:forEach>
+		</div>
 	</div>
 <jsp:include page="footer.jsp" flush="true" />
 </body>

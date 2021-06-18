@@ -160,8 +160,6 @@ public class MyUserDataServlet extends HttpServlet {
 			// 更新または削除を行う
 			UserDataDao uDao = new UserDataDao();
 			if (request.getParameter("SUBMIT").equals("更新")) {
-
-
 				// 更新成功/mypageに戻る
 				if (uDao.update(new UserData(id, email, password, name, position))) {
 					// 処理を行う
@@ -178,10 +176,6 @@ public class MyUserDataServlet extends HttpServlet {
 							new Result("更新失敗！", "/newReacQ/MyUserDataServlet"));
 				}
 			}
-
-		// 結果ページにフォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");
-		dispatcher.forward(request, response);
 		}
 
 		else if (pos.equals("0")) {

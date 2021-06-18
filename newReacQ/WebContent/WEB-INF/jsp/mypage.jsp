@@ -49,8 +49,10 @@
 	<c:forEach var="b" items="${myboardList}" >
 		<table class="table">
 			<tr>
-			<td>質問内容</td><td>${b.question}</td>
-			<input type="hidden" name="POSITION" value="${b.reply_date}">
+			<th>質問内容</th><td>${b.question}</td>
+			</tr>
+			<tr>
+			<td>${b.reply_date}</td>
 			</tr>
 		</table>
 	</c:forEach>
@@ -61,7 +63,7 @@
 		<div class="conA">
 		<h2>アカウント管理</h2>
 		<c:forEach var="u" items="${userList}">
-		<form method="POST" action="/newReacQ/MyUserDataServlet">
+		<form method="POST" action="/newReacQ/MyUserDataServlet" id="form">
 			<!-- ポジション以外のアカウント管理テーブルの表示 -->
 			<table class="table_a">
 				<tr>
@@ -75,7 +77,13 @@
 				<th>パスワード</th>
 				</tr>
 				<tr>
-				<td><input type="password" name="PASSWORD" value="${u.password}"></td>
+				<td><input type="password" name="PASSWORD" id="password" value="${u.password}"></td>
+				</tr>
+				<tr>
+				<th>パスワード再入力*更新時必須</th>
+				</tr>
+				<tr>
+				<td><input type="password" name="passwordConfirm" id="passwordConfirm" required><button id="btn_passview">表示</button></td>
 				</tr>
 				<tr>
 				<th>氏名</th>

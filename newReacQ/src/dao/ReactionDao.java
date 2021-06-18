@@ -23,7 +23,7 @@ public class ReactionDao {
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
 			// SQL文を準備する
-			String sql = "select reply_date, count(*) as cnt from reaction where reaction = ? and reply_date > ?";
+			String sql = "select count(*) as cnt from reaction where reaction = ? and reply_date > ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			// SQL文を完成させる
 			pStmt.setInt(1, reaction);
@@ -61,7 +61,59 @@ public class ReactionDao {
 	}
 
 	/*
-	 * メニュー講師のリセットボタン
+	 * リセットボタンを押してからのカウント
+	 */
+	// 引数paramで検索項目を指定し、検索結果のリストを返す
+	public int resetcount(int reaction, String date) {
+		Connection conn = null;
+		//リアクションの数を入れるコレクションを用意
+		int count;
+		try {
+			// h2に接続するためのJDBCドライバを読み込む
+			// クラスっていう名前のクラス
+			Class.forName("org.h2.Driver");
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
+			// SQL文を準備する
+			String sql = "select count(*) as cnt from reaction where reaction = ? and reply_date > ?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			// SQL文を完成させる
+			pStmt.setInt(1, reaction);
+			pStmt.setString(2, date);
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+			rs.next();
+			count = rs.getInt("cnt");
+		}
+		//JDBS関連の
+		catch (SQLException e) {
+			e.printStackTrace();
+			//検索結果は空っぽでしたって返す
+			count = 0;
+		}
+		//ドライバがない時の処理
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			count = 0;
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+					count = 0;
+				}
+			}
+		}
+		// 結果を返す
+		return count;
+	}
+
+	/*
+	 * メニュー講師のリセットボタンを押した時間を取得
 	 */
 	// 引数paramで検索項目を指定し、検索結果のリストを返す
 	public String reset(Reaction rea) {
@@ -75,7 +127,7 @@ public class ReactionDao {
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
 			// SQL文を準備する
-			String sql = "select reply_date from reaction where reaction = ? order by id desc limit 1";
+			String sql = "select reply_date from reaction where reaction = ? order by id asc limit 1";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			// SQL文を完成させる
 			pStmt.setInt(1, rea.getReaction());
