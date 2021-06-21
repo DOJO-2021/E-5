@@ -3,11 +3,10 @@ import java.io.Serializable;
 
 public class Result implements Serializable {
 	private String title; 	// タイトル
-	/*private String message;*/		// メッセージ
 	private String backTo;		// 戻り先
 
 	public Result() {
-		this(null, /*null,*/ null);
+		this(null, null);
 	}
 
 	public Result(String title,/* String message,*/ String backTo) {

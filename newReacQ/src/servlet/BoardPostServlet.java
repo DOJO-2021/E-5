@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,21 +32,22 @@ public class BoardPostServlet extends HttpServlet {
 			return;
 		}
 
+		String email = (String)session.getAttribute("email");
 
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
 		//int id = Integer.parseInt(request.getParameter("ID"));
-		String email =request.getParameter("EMAIL");
+		//String email =request.getParameter("EMAIL");
 		//int reply_status =Integer.parseInt(request.getParameter("REPLY_STATUS"));
 		//int question_code =Integer.parseInt(request.getParameter("QUESTION_CODE"));
 		String question =request.getParameter("QUESTION");
 		//String reply_date =request.getParameter("REPLY_DATE");
 
-
 		//投稿内容をデータベースに反映する
 		BoardDao bDao = new BoardDao();
+		int q_sum = bDao.count() + 1;
 		if (request.getParameter("SUBMIT").equals("投稿")) {
-			if (bDao.insert(new Board(0, email, 0, 0, question, "" ))) {
+			if (bDao.insert(new Board(0, email, 0, q_sum, question, "" ))) {
 				request.setAttribute("result",
 				new Result("投稿を送信しました！", "/newReacQ/BoardServlet"));
 			}
@@ -54,5 +56,8 @@ public class BoardPostServlet extends HttpServlet {
 				new Result("投稿を送信できませんでした", "/newReacQ/BoardServlet"));
 			}
 		}
+		// 結果ページにフォワードする
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Result.jsp");
+		dispatcher.forward(request, response);
 	}
 }

@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,7 +13,9 @@ import javax.servlet.http.HttpSession;
 
 import dao.BoardDao;
 import dao.BoardReplyDao;
+import model.BoardAll;
 import model.BoardReply;
+import model.Like;
 import model.Result;
 
 /**
@@ -49,22 +52,36 @@ public class BoardReplyServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String question = request.getParameter("QUESTION");
 		String question_reply =request.getParameter("QUESTION_REPLY");
+
 		BoardDao bDao = new BoardDao();
 		int q_code = bDao.q_code(question);
 
-		BoardReplyDao brDao = new BoardReplyDao();
-		if (brDao.insert(new BoardReply(0, email, q_code, question_reply, ""))) {
-			request.setAttribute("result",
-			new Result("回答を送信しました！", "/newReacQ/BoardServlet"));
-		}
-		else {
-			request.setAttribute("result",
-			new Result("回答を送信できませんでした", "/newReacQ/BoardServlet"));
-		}
+		if (request.getParameter("QUESTION_REPLY").equals("回答")) {
+			BoardReplyDao brDao = new BoardReplyDao();
+			if (brDao.insert(new BoardReply(0, email, q_code, question_reply, ""))) {
+				request.setAttribute("result",
+				new Result("回答を送信しました！", "/newReacQ/BoardServlet"));
+			}
+			else {
+				request.setAttribute("result",
+				new Result("回答を送信できませんでした", "/newReacQ/BoardServlet"));
+			}
 
-		// 結果ページにフォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Result.jsp");
-		dispatcher.forward(request, response);
+			// 結果ページにフォワードする
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Result.jsp");
+			dispatcher.forward(request, response);
+		}
+		else if(request.getParameter("LIKE").equals("気になる")) {
+			bDao.insertlike(new Like(0, email, q_code, ""));
+
+			List<BoardAll> Alllist = bDao.boardJoin(new BoardAll(0, "", 0, 0, "", "", "", "", 0));
+
+			// 検索結果をリクエストスコープに格納する
+			request.setAttribute("Alllist", Alllist);
+			// 掲示板ページにフォワードする
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/board.jsp");
+			dispatcher.forward(request, response);
+		}
 
 		/*
 		// リクエストパラメータを取得する

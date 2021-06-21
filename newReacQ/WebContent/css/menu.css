@@ -1,34 +1,44 @@
 @charset "UTF-8";
-
+​
 body{
 	background:#B8DA92;
 	display: flex;
 	justify-content: space-between;
 }
-
+​
 .contentsR{
 	color:#296337;
 	width:250%;					/*横幅*/
-	height:450px;				/*高さ*/
+	height:500px;				/*高さ*/
 	margin:0 auto;				/*要素の外側の余白*/
 	margin-right:3em;			/*要素の外側の余白(左)*/
 	border:solid 2px;			/*枠線の太さ*/
 	background-color:#FBFDFC;	/*枠線の色*/
 	border-radius:25px; 		/*枠線の角の丸み*/
 	position:relative;			/*今のポジションを基本として*/
-	top:150px;					/*headerとの距離*/
+	top:200px;					/*headerとの距離*/
 	right:10%;					/*右から*/
 }
-
+​
 .contentsB{
 	color:#296337;
 	width:250%;
-	height:450px;
+	height:500px;
 	margin:0 auto;
 	border:solid 2px;
 	background-color:#FBFDFC;
 	position:relative;
-	top:150px;
+	top:200px;
 	right:10%;
-	overflow: scroll;
+
+	/*スクロール*/
+	overflow-y: scroll;
+}
+	​
+.contentsB table{
+ 	border-color:#296337;
+	margin:0 auto;
+	border:solid 2px;
+	width:95%;
+	height:140px;
 }

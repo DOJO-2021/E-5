@@ -17,19 +17,16 @@
 			<!-- リアクショングラフ -->
 			<table class="table">
 				<tr>
-					<td>${react_t}<input type ="hidden" name="react_title" value="${react_t}"></td><td><input type ="submit" name="mrea" value="更新"></td>
-				</tr>
-				<tr>
 					<td>${rea3}</td>
 					<td>${rea2}</td>
 					<td>${rea1}</td>
 					<td>${rea0}</td>
 				</tr>
 				<tr>
-					<td><input type ="submit" name="mrea" value="説明可"><img src="/newReacQ/images/" alt="河童_説明可"></td>
-					<td><input type ="submit" name="mrea" value="分かる"><img src="/newReacQ/images/" alt="河童_分かる"></td>
-					<td><input type ="submit" name="mrea" value="分かるかも"><img src="/newReacQ/images/" alt="河童_分かるかも"></td>
-					<td><input type ="submit" name="mrea" value="分からない"><img src="/newReacQ/images/" alt="河童_分からない"></td>
+					<td><input type ="submit" name="mrea3" value="説明可"><img src="/newReacQ/images/" alt="河童_説明可"></td>
+					<td><input type ="submit" name="mrea2" value="分かる"><img src="/newReacQ/images/" alt="河童_分かる"></td>
+					<td><input type ="submit" name="mrea1" value="分かるかも"><img src="/newReacQ/images/" alt="河童_分かるかも"></td>
+					<td><input type ="submit" name="mrea0" value="分からない"><img src="/newReacQ/images/" alt="河童_分からない"></td>
 				</tr>
 			</table>
 		</form>
@@ -42,7 +39,8 @@
 
 		<form method="GET" action="/newReacQ/MenuBoardServlet">
 			<!-- 最新の投稿テーブル -->
-		     <table class = scrollable>
+			<!-- 固定コンテンツ -->
+		    <table>
  			<c:forEach var="b" items="${newlist}" >
 		        <tr>
 		        	<th>回答日時</th>
@@ -72,7 +70,7 @@
 		        </c:forEach>
 		    </table>
 		</form>
-		</div>
+	</div>
 <jsp:include page="/WEB-INF/jsp/footer.jsp" />
 </body>
 </html>

@@ -8,8 +8,6 @@
 </head>
 <body>
 	<h1><c:out value="${result.title}" /></h1>
-
-	<!--<p><c:out value="${result.message}" /></p>-->
 	<a href="${result.backTo}">戻る</a>
 </body>
 </html>

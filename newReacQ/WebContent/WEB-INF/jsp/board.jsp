@@ -12,22 +12,23 @@
   <!-- memo 質問の状態ソート reply_status -->
   <input type="radio" name="qsort" value="すべて" checked>すべて <input type="radio" name="qsort" value="回答受付中">回答受付中 <input type="radio" name="qsort" value="解決済み">解決済み <input type="radio" name="qsort" value="気になる"> 「気になる」した質問 <form action="/newReacQ/BoardServlet" method="POST"><input type ="text" name="QUESTION" placeholder="検索"><input type ="submit" name="" value="検索"></form>
   <!-- 投稿された質問の折りたたみメニュー -->
-  <section class="">
+  <!--  <section class=""> -->
   <c:forEach var="b" items="${Alllist}">
-  <div class="accordion">
-      <p class="question q-title">▼質問 <input type ="button" value="気になる ${Likelist.size }" id=""></p>
-      <div class="content">
+  <!--  <div class="accordion"> -->
+      <p class="question q-title">▼質問 <form action="/newReacQ/BoardReplyServlet" method="POST"><input type ="button" name="LIKE" value="気になる" id="">${b.count}</p>
+      <!--  <div class="content"> -->
   		  <p>${b.question}</p>
-  		  <input type = "hidden" name="QUESTION">
+  		  <input type="hidden" name="QUESTION" value="${b.question}">
   		  <p>${b.question_reply}</p>
-          <form action="/newReacQ/BoardReplyServlet" method="POST"><input type = "text" name="QUESTION_REPLY" placeholder="回答"><input type ="submit" value="送信"></form>
-      </div>
-  </div>
+          <input type = "text" name="QUESTION_REPLY" placeholder="回答"><input type ="submit" value="送信">
+          </form>
+      <!-- </div> -->
+  <!-- </div> -->
   </c:forEach>
-  </section>
+  <!-- </section> -->
   <!-- 折りたたみメニューここまで -->
 
-  <form id="f1" action="#">
+
   <!-- 投稿フォームのボタン -->
   		<input type ="button" value="投稿フォーム" onclick = "showpost()">
   <!-- 投稿フォームのボタン ここまで -->
@@ -35,13 +36,12 @@
    <!-- 投稿フォーム -->
   <form action="/newReacQ/BoardPostServlet" method="POST">
   	<div id = "post">
-  		<input type ="text" name="EMAIL" placeholder="email">
-  		<input type = "text" name="QUESTION" placeholder="質問内容"><input type = "submit" value="投稿">
-  		<input type ="button" value ="閉じる" onclick = "hidepost()">
+  		<input type="text" name="QUESTION" placeholder="質問内容"><input type="submit" name="SUBMIT" value="投稿">
+  		<input type="button" value ="閉じる" onclick = "hidepost()">
   	</div>
   </form>
   <!-- 投稿フォームここまで -->
-  </form>
+
 
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

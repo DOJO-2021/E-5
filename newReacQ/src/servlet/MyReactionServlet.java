@@ -73,7 +73,7 @@ public class MyReactionServlet extends HttpServlet {
 
 			//リクエストパラメータ(日付)を取得する
 			request.setCharacterEncoding("UTF-8");
-			String date = request.getParameter("REPLY_DATE_R");
+			String date = request.getParameter("REPLY_DATE");
 
 			ReactionDao rDao = new ReactionDao();
 			int reaction0 = rDao.countmyT(0, date);
@@ -89,7 +89,7 @@ public class MyReactionServlet extends HttpServlet {
 			request.setAttribute("myrea3", reaction3);
 
 			// フォワードする
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypageT.jsp");
 			dispatcher.forward(request, response);
 		}
 	}

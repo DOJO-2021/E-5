@@ -1,12 +1,5 @@
 package test;
 
-import java.util.List;
-
-import dao.BoardDao;
-import dao.BoardReplyDao;
-import model.BoardAll;
-import model.BoardReply;
-
 public class UserDataTest {
 	public static void main(String[] args) {
 		//UserDataDao uDao = new UserDataDao();
@@ -42,9 +35,29 @@ public class UserDataTest {
 		System.out.println("1:" + reaction1);
 		System.out.println("2:" + reaction2);
 		System.out.println("3:" + reaction3);
-		*/
 
-		/*
+
+		//request.setCharacterEncoding("UTF-8");
+		//String date = request.getParameter("REPLY_DATE_R");
+
+		System.out.println("---------- Reaction()のテスト ----------");
+		ReactionDao rDao = new ReactionDao();
+		int reaction0 = rDao.countmyT(0, "2021-06-15");
+		int reaction1 = rDao.countmyT(1, "2021-06-15");
+		int reaction2 = rDao.countmyT(2, "2021-06-15");
+		int reaction3 = rDao.countmyT(3, "2021-06-15");
+
+		System.out.println("0:" + reaction0);
+		System.out.println("1:" + reaction1);
+		System.out.println("2:" + reaction2);
+		System.out.println("3:" + reaction3);
+
+
+		BoardDao bDao = new BoardDao();
+		int q_sum = bDao.count() +1;
+		System.out.println("最新のquestion_code:" + q_sum);
+
+
 		// ()のテスト
 		System.out.println("---------- Board()のテスト ----------");
 		BoardDao bDao = new BoardDao();
@@ -86,13 +99,14 @@ public class UserDataTest {
 		System.out.println("1:" + reaction1);
 		System.out.println("2:" + reaction2);
 		System.out.println("3:" + reaction3);
-		*/
+
 
 		// ()のテスト
 
 		BoardDao bDao = new BoardDao();
-		int q_code = bDao.q_code("さしすせそ");
+		int q_code = bDao.q_code("たちつてと");
 		System.out.println("q_code:" + q_code);
+
 
 		BoardReplyDao brDao = new BoardReplyDao();
 		boolean result = brDao.insert(new BoardReply(0, "Student2@email.com", q_code, "さしす", ""));
@@ -110,6 +124,7 @@ public class UserDataTest {
 			System.out.println("question：" + board.getQuestion_reply());
 			System.out.println("reply_date：" + board.getBr_reply_date());
 		}
+		*/
 
 	}
 }

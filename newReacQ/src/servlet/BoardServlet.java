@@ -34,7 +34,7 @@ public class BoardServlet extends HttpServlet {
 		//List<Board> Alllist = bDao.select(new Board(0, "", 0, 0, "", ""));
 
 		BoardDao bDao = new BoardDao();
-		List<BoardAll> Alllist = bDao.boardJoin(new BoardAll(0, "", 0, 0, "", "", "", ""));
+		List<BoardAll> Alllist = bDao.boardJoin(new BoardAll(0, "", 0, 0, "", "", "", "", 0));
 
 		// 検索結果をリクエストスコープに格納する
 		request.setAttribute("Alllist", Alllist);
@@ -61,9 +61,9 @@ public class BoardServlet extends HttpServlet {
 		BoardDao bDao = new BoardDao();
 		List<Board> resultlist = bDao.select(new Board(0, "", 0, 0, question, ""));
 		// 検索結果をリクエストスコープに格納する
-		  request.setAttribute("resultlist", resultlist);
+		 request.setAttribute("resultlist", resultlist);
 		// 結果ページにフォワードする
-		  RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/searchresult.jsp");
-		  dispatcher.forward(request, response);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/searchresult.jsp");
+		dispatcher.forward(request, response);
 	}
 }

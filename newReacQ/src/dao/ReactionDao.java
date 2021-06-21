@@ -231,7 +231,7 @@ public class ReactionDao {
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
 			// SQL文を準備する
-			String sql = "select count(*) as cnt from reaction where reaction = ? and reply_date = ?";
+			String sql = "select count(*) as cnt from reaction where reaction = ? and reply_date like ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			// SQL文を完成させる
 			pStmt.setInt(1, reaction);
