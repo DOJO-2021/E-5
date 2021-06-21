@@ -18,7 +18,9 @@
       <p class="question q-title">▼質問 <input type ="button" value="気になる ${Likelist.size }" id=""></p>
       <div class="content">
   		  <p>${b.question}</p>
-          <form action="/newReacQ/BoardReplyServlet" method="POST"><input type = "text" placeholder="回答"><input type ="submit" value="送信"></form>
+  		  <input type = "hidden" name="QUESTION">
+  		  <p>${b.question_reply}</p>
+          <form action="/newReacQ/BoardReplyServlet" method="POST"><input type = "text" name="QUESTION_REPLY" placeholder="回答"><input type ="submit" value="送信"></form>
       </div>
   </div>
   </c:forEach>

@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.BoardDao;
 import dao.BoardReplyDao;
 import model.BoardReply;
 import model.Result;
@@ -43,7 +45,28 @@ public class BoardReplyServlet extends HttpServlet {
 			return;
 		}
 
+		String email = (String)session.getAttribute("email");
+		request.setCharacterEncoding("UTF-8");
+		String question = request.getParameter("QUESTION");
+		String question_reply =request.getParameter("QUESTION_REPLY");
+		BoardDao bDao = new BoardDao();
+		int q_code = bDao.q_code(question);
 
+		BoardReplyDao brDao = new BoardReplyDao();
+		if (brDao.insert(new BoardReply(0, email, q_code, question_reply, ""))) {
+			request.setAttribute("result",
+			new Result("回答を送信しました！", "/newReacQ/BoardServlet"));
+		}
+		else {
+			request.setAttribute("result",
+			new Result("回答を送信できませんでした", "/newReacQ/BoardServlet"));
+		}
+
+		// 結果ページにフォワードする
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Result.jsp");
+		dispatcher.forward(request, response);
+
+		/*
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
 		int id = Integer.parseInt(request.getParameter("ID"));
@@ -65,6 +88,7 @@ public class BoardReplyServlet extends HttpServlet {
 				new Result("回答を送信できませんでした", "/newReacQ/BoardServlet"));
 			}
 		}
+		*/
 
 	}
 }

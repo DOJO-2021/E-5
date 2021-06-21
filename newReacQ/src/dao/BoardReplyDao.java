@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,24 +74,23 @@ public class BoardReplyDao {
 	public boolean insert(BoardReply b) {
 		Connection conn = null;
 		boolean result = false;
-		Timestamp ts = Timestamp.valueOf(b.getReply_date());
+		//Timestamp ts = Timestamp.valueOf(b.getReply_date());
 
 		try {
 			// JDBCドライバを読み込む
 			Class.forName("org.h2.Driver");
 
 			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/ReacQ", "sa", "");
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
 
 			// SQL文を準備する
-			String sql = "insert into Board_reply values (null, ?, ?, ?, ?)";
+			String sql = "insert into Board_reply values (null, ?, ?, ?, CURRENT_TIMESTAMP())";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
 			pStmt.setString(1, b.getEmail());
 			pStmt.setInt(2, b.getQ_reply_code());
 			pStmt.setString(3, b.getQuestion_reply());
-			pStmt.setTimestamp(4, ts);
 
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {

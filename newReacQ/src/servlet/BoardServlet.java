@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.BoardDao;
 import model.Board;
+import model.BoardAll;
 /**
  * Servlet implementation class BoardServlet
  */
@@ -29,8 +30,11 @@ public class BoardServlet extends HttpServlet {
 			return;
 		}
 		//検索処理を行う
+		//BoardDao bDao = new BoardDao();
+		//List<Board> Alllist = bDao.select(new Board(0, "", 0, 0, "", ""));
+
 		BoardDao bDao = new BoardDao();
-		List<Board> Alllist = bDao.select(new Board(0, "", 0, 0, "", ""));
+		List<BoardAll> Alllist = bDao.boardJoin(new BoardAll(0, "", 0, 0, "", "", "", ""));
 
 		// 検索結果をリクエストスコープに格納する
 		request.setAttribute("Alllist", Alllist);

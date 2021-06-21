@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Board;
+import model.BoardAll;
 
 public class BoardDao {
 	// 引数paramで検索項目を指定し、検索結果のリストを返す
@@ -56,6 +57,119 @@ public class BoardDao {
 						rs.getInt("question_code"),
 						rs.getString("question"),
 						rs.getString("reply_date")
+			);
+			resultlist.add(b);
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			resultlist = null;
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			resultlist = null;
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+					resultlist = null;
+				}
+			}
+		}
+			// 結果を返す
+		return resultlist;
+	}
+
+	/*
+	 * クエッションコード
+	 */
+	public int q_code(String question) {
+		Connection conn = null;
+		int q_code;
+
+		try {
+
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
+
+			// SQL文を準備する
+			String sql = "select question_code from board WHERE question = ?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			pStmt.setString(1, question);
+
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+			// 結果表をコレクションにコピーする
+			rs.next();
+			q_code = rs.getInt("question_code");
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			q_code = 0;
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			q_code = 0;
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+					q_code = 0;
+				}
+			}
+		}
+			// 結果を返す
+		return q_code;
+	}
+
+	/*
+	 * boardとboard_replyの表示
+	 */
+	public List<BoardAll> boardJoin(BoardAll param) {
+		Connection conn = null;
+		List<BoardAll> resultlist = new ArrayList<BoardAll>();
+
+		try {
+
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
+
+			// SQL文を準備する
+			String sql = "select b.id as bid, b.email as bemail, b.reply_status as brep, b.question_code as bqc, b.question as bq, b.reply_date as brd, br.question_reply as brq, br.reply_date as brrd from board as b left join board_reply as br on b.question_code = br.q_reply_code";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+			// 結果表をコレクションにコピーする
+			while (rs.next()) {
+				BoardAll b = new BoardAll(
+						0,
+						rs.getString("bemail"),
+						rs.getInt("brep"),
+						rs.getInt("bqc"),
+						rs.getString("bq"),
+						rs.getString("brd"),
+						rs.getString("brq"),
+						rs.getString("brrd")
 			);
 			resultlist.add(b);
 			}
