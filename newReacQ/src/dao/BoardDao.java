@@ -616,7 +616,7 @@ public class BoardDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
 
 			// SQL文を準備する
-			String sql = "insert into Board values (null, ?, ?, CURRENT_TIMESTAMP())";
+			String sql = "insert into Likes values (null, ?, ?, CURRENT_TIMESTAMP())";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる

@@ -24,15 +24,7 @@
 				<td><input type ="submit" name="mrea" value="更新"></td>
 				<td><input type ="submit" name="mrea" value="リセット"></td>
 				</tr>
-				<tr>
-					<td>${rea3}</td><td>${rea2}</td><td>${rea1}</td><td>${rea0}</td>
-				</tr>
-				<tr>
-					<td><input type ="submit" value="説明可"><img src="/newReacQ/images/" alt="河童_説明可"></td>
-					<td><input type ="submit" value="分かる"><img src="/newReacQ/images/" alt="河童_分かる"></td>
-					<td><input type ="submit" value="分かるかも"><img src="/newReacQ/images/" alt="河童_分かるかも"></td>
-					<td><input type ="submit" value="分からない"><img src="/newReacQ/images/" alt="河童_分からない"></td>
-				</tr>
+				<jsp:include page="/WEB-INF/jsp/graph.jsp" />
 			</table>
 		</form>
 	</div>

@@ -12,20 +12,21 @@
   <!-- memo 質問の状態ソート reply_status -->
   <input type="radio" name="qsort" value="すべて" checked>すべて <input type="radio" name="qsort" value="回答受付中">回答受付中 <input type="radio" name="qsort" value="解決済み">解決済み <input type="radio" name="qsort" value="気になる"> 「気になる」した質問 <form action="/newReacQ/BoardServlet" method="POST"><input type ="text" name="QUESTION" placeholder="検索"><input type ="submit" name="" value="検索"></form>
   <!-- 投稿された質問の折りたたみメニュー -->
-  <!--  <section class=""> -->
+  <section class="">
   <c:forEach var="b" items="${Alllist}">
-  <!--  <div class="accordion"> -->
-      <p class="question q-title">▼質問 <form action="/newReacQ/BoardReplyServlet" method="POST"><input type ="button" name="LIKE" value="気になる" id="">${b.count}</p>
-      <!--  <div class="content"> -->
+  <form action="/newReacQ/BoardReplyServlet" method="POST">
+  <div class="accordion">
+      <p class="question q-title">▼質問 <input type ="submit" name="LIKE" value="気になる" id="">${b.count}</p>
+      <div class="content">
   		  <p>${b.question}</p>
   		  <input type="hidden" name="QUESTION" value="${b.question}">
   		  <p>${b.question_reply}</p>
           <input type = "text" name="QUESTION_REPLY" placeholder="回答"><input type ="submit" value="送信">
-          </form>
-      <!-- </div> -->
-  <!-- </div> -->
+      </div>
+  </div>
+  </form>
   </c:forEach>
-  <!-- </section> -->
+  </section>
   <!-- 折りたたみメニューここまで -->
 
 

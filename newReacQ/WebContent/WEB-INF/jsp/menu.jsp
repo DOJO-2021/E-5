@@ -17,10 +17,12 @@
 			<!-- リアクショングラフ -->
 			<table class="table">
 				<tr>
-					<td>${rea3}</td>
-					<td>${rea2}</td>
-					<td>${rea1}</td>
-					<td>${rea0}</td>
+				<td>項目</td>
+				<td>${react_t}<input type ="hidden" name="react_title" value="${react_t}"></td>
+				<td><input type ="submit" name="mrea" value="更新"></td>
+				</tr>
+				<tr>
+					<jsp:include page="/WEB-INF/jsp/graph.jsp" />
 				</tr>
 				<tr>
 					<td><input type ="submit" name="mrea3" value="説明可"><img src="/newReacQ/images/" alt="河童_説明可"></td>

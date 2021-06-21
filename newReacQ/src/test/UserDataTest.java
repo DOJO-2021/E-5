@@ -1,5 +1,8 @@
 package test;
 
+import dao.BoardDao;
+import model.Like;
+
 public class UserDataTest {
 	public static void main(String[] args) {
 		//UserDataDao uDao = new UserDataDao();
@@ -125,6 +128,11 @@ public class UserDataTest {
 			System.out.println("reply_date：" + board.getBr_reply_date());
 		}
 		*/
+
+		System.out.println("---------- Board()のテスト ----------");
+		BoardDao bDao = new BoardDao();
+		boolean result = bDao.insertlike(new Like(0, "Student2@email.jp", 1, ""));
+		System.out.println(result);
 
 	}
 }

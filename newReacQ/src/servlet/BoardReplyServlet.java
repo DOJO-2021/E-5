@@ -72,7 +72,8 @@ public class BoardReplyServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 		else if(request.getParameter("LIKE").equals("気になる")) {
-			bDao.insertlike(new Like(0, email, q_code, ""));
+			boolean result = bDao.insertlike(new Like(0, email, q_code, ""));
+			System.out.println(result);
 
 			List<BoardAll> Alllist = bDao.boardJoin(new BoardAll(0, "", 0, 0, "", "", "", "", 0));
 
