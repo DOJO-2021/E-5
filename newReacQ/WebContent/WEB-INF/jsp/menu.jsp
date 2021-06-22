@@ -39,7 +39,8 @@
 
 		<form method="GET" action="/newReacQ/MenuBoardServlet">
 			<!-- 最新の投稿テーブル -->
-		     <table class = scrollable>
+			<!-- 固定コンテンツ -->
+		    <table>
  			<c:forEach var="b" items="${newlist}" >
 		        <tr>
 		        	<th>回答日時</th>
@@ -69,8 +70,7 @@
 		        </c:forEach>
 		    </table>
 		</form>
-		scrollBy(100, 200);
-		</div>
+	</div>
 <jsp:include page="/WEB-INF/jsp/footer.jsp" />
 </body>
 </html>
