@@ -1,5 +1,40 @@
 @charset "UTF-8";
 
+body{
+	background:#B8DA92;
+	align-content: stretch;
+}
+
+.wrapper{
+	z-index: 0;
+	overflow-y: scroll;
+	color:#296337;
+	margin:5em;
+	border:solid 2px;
+	background-color:#FBFDFC;
+	position: fixed; /* 要素の位置を固定する */
+	top: 50px;
+	right:10px;
+	bottom: 2px; /* 基準の位置を画面の下に指定する */
+	left: 10px; /* 基準の位置を画面の左に指定する */
+}
+
 .content{
 	display: none;
+}
+
+.post1 {
+	z-index: 1;
+    color:#296337;
+	margin:5em;
+	border:solid 2px;
+	background-color:#FBFDFC;
+	position: fixed; /* 要素の位置を固定する */
+	right: 50%;
+	bottom: 20%;
+}
+.button {
+	position: fixed;
+	right:50%;
+	bottom: 7%;
 }

@@ -1,5 +1,6 @@
 package servlet;
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.BoardDao;
 import dao.ReactionDao;
+import model.Board;
 import model.Reaction;
 
 @WebServlet("/MenuReactionServlet")
@@ -47,6 +50,16 @@ public class MenuReactionServlet extends HttpServlet {
 			request.setAttribute("rea2", reaction2);
 			request.setAttribute("rea3", reaction3);
 
+			// 処理を行う
+			String email =(String)session.getAttribute("email");
+			BoardDao bDao = new BoardDao();
+			 List<Board> newlist = bDao.selectlatest(new Board(0,"",0,0,"",""));
+			 List<Board> mynewlist = bDao.selectmynewlist(new Board(0,email,0,0,"",""));
+
+			//リクエストスコープに格納する
+			request.setAttribute("newlist", newlist);
+			request.setAttribute("mynewlist", mynewlist);
+
 			// フォワードする
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/menu.jsp");
 			dispatcher.forward(request, response);
@@ -69,6 +82,13 @@ public class MenuReactionServlet extends HttpServlet {
 			request.setAttribute("rea1", reaction1);
 			request.setAttribute("rea2", reaction2);
 			request.setAttribute("rea3", reaction3);
+
+			// 処理を行う
+			BoardDao bDao = new BoardDao();
+			List<Board> newlist = bDao.selectlatest(new Board(0,"",0,0,"",""));
+
+			//リクエストスコープに格納する
+			request.setAttribute("newlist", newlist);
 
 			// フォワードする
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/menuT.jsp");
@@ -110,6 +130,7 @@ public class MenuReactionServlet extends HttpServlet {
 				request.setAttribute("react_t", react_t);
 			}
 
+
     		/*
     		 * リアクションの表示
     		 */
@@ -124,6 +145,15 @@ public class MenuReactionServlet extends HttpServlet {
 			request.setAttribute("rea1", reaction1);
 			request.setAttribute("rea2", reaction2);
 			request.setAttribute("rea3", reaction3);
+
+			// 処理を行う （掲示板）
+			BoardDao bDao = new BoardDao();
+			 List<Board> newlist = bDao.selectlatest(new Board(0,"",0,0,"",""));
+			 List<Board> mynewlist = bDao.selectmynewlist(new Board(0,email,0,0,"",""));
+
+			//リクエストスコープに格納する
+			request.setAttribute("newlist", newlist);
+			request.setAttribute("mynewlist", mynewlist);
 
 			// フォワードする
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/menu.jsp");
@@ -163,6 +193,13 @@ public class MenuReactionServlet extends HttpServlet {
 			request.setAttribute("rea1", reaction1);
 			request.setAttribute("rea2", reaction2);
 			request.setAttribute("rea3", reaction3);
+
+			// 処理を行う （掲示板）
+			BoardDao bDao = new BoardDao();
+			List<Board> newlist = bDao.selectlatest(new Board(0,"",0,0,"",""));
+
+			//リクエストスコープに格納する
+			request.setAttribute("newlist", newlist);
 
     		// フォワードする
     		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/menuT.jsp");
