@@ -127,12 +127,49 @@ public class UserDataTest {
 			System.out.println("question：" + board.getQuestion_reply());
 			System.out.println("reply_date：" + board.getBr_reply_date());
 		}
-		*/
+
 
 		System.out.println("---------- Board()のテスト ----------");
 		BoardDao bDao = new BoardDao();
 		boolean result = bDao.insertlike(new Like(0, "Student2@email.jp", 1, ""));
 		System.out.println(result);
 
+
+		System.out.println("---------- Board()のテスト ----------");
+		BoardDao bDao = new BoardDao();
+		List<BoardAll> Alllist = bDao.Allselect(new BoardAll(0, "", 1, 0, "", "", "", "", 0));
+		for (BoardAll board : Alllist) {
+			System.out.println("id：" + board.getId());
+			System.out.println("email:" + board.getEmail());
+			System.out.println("reply_status：" + board.getReply_status());
+			System.out.println("qustion_code:" + board.getQuestion_code());
+			System.out.println("question：" + board.getQuestion());
+			System.out.println("reply_date：" + board.getReply_date());
+			System.out.println("question：" + board.getQuestion_reply());
+			System.out.println("reply_date：" + board.getBr_reply_date());
+		}
+
+
+		System.out.println("---------- Board()のテスト ----------");
+		BoardDao bDao = new BoardDao();
+		boolean result = bDao.insertlike(new Like(0, "Student1@email.jp", 67, ""));
+		System.out.println(result);
+		List<BoardAll> Alllist = bDao.boardJoin();
+		for (BoardAll board : Alllist) {
+			System.out.println("id：" + board.getId());
+			System.out.println("email:" + board.getEmail());
+			System.out.println("reply_status：" + board.getReply_status());
+			System.out.println("qustion_code:" + board.getQuestion_code());
+			System.out.println("question：" + board.getQuestion());
+			System.out.println("reply_date：" + board.getReply_date());
+			System.out.println("questio_replyn：" + board.getQuestion_reply());
+			System.out.println("reply_date：" + board.getBr_reply_date());
+			System.out.println("count：" + board.getCount());
+		}
+
+		*/
+		BoardDao bDao = new BoardDao();
+		boolean result = bDao.insertlike(new Like(0, "Student1@email.jp", 67, ""));
+		System.out.println(result);
 	}
 }

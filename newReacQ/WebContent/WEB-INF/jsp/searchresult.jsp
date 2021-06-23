@@ -10,37 +10,53 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/jsp/header.jsp" />
-  <input type="radio" name="qsort" value="すべて" checked>すべて <input type="radio" name="qsort" value="回答受付中">回答受付中 <input type="radio" name="qsort" value="解決済み">解決済み <input type="radio" name="qsort" value="気になる"> 「気になる」した質問 <form action="/newReacQ/BoardServlet" method="POST"><input type ="text" name="QUESTION" placeholder="検索"><input type ="submit" name="" value="検索"></form>
+  <!-- memo 質問の状態ソート reply_status -->
+  <form action="/newReacQ/BoardServlet" method="POST">
+  <input type="radio" name="qsort" value="すべて" checked>すべて
+  <input type="radio" name="qsort" value="回答受付中">回答受付中
+  <input type="radio" name="qsort" value="解決済み">解決済み
+  <input type="radio" name="qsort" value="気になる">「気になる」した質問
+  <input type ="text" name="QUESTION" placeholder="検索"><input type ="submit" name="" value="検索">
+  </form>
+  <div class="wrapper">
   <!-- 投稿された質問の折りたたみメニュー -->
-  <h2>検索結果</h2>
   <section class="">
-  <c:forEach var="c" items="${resultlist}">
+  <c:forEach var="b" items="${Alllist}">
+  <form action="/newReacQ/BoardReplyServlet" method="POST">
   <div class="accordion">
-      <p class="question q-title">▼質問 <input type ="button" value="気になる ${Likelist.size }" id=""></p>
+      <p class="question q-title">▼質問 <input type ="submit" name="LIKE" value="気になる" id="">${b.count}</p>
       <div class="content">
-  		  <p>${c.question}</p>
-          <form action="/newReacQ/BoardReplyServlet" method="POST"><input type = "text" placeholder="回答"><input type ="submit" value="送信"></form>
+  		  <p>${b.question}</p>
+  		  <input type="hidden" name="QUESTION" value="${b.question}">
+  		  <p>${b.question_reply}</p>
+          <input type = "text" name="QUESTION_REPLY" placeholder="回答"><input type ="submit" value="送信">
       </div>
   </div>
+  </form>
   </c:forEach>
   </section>
   <!-- 折りたたみメニューここまで -->
+</div>
 
-
-  <form id="f1" action="#">
+<div class="postform">
+<div class="button">
   <!-- 投稿フォームのボタン -->
-  <input type ="button" value="投稿フォーム" onclick = "showpost()">
+  		<input type ="button" value="投稿フォーム" onclick = "showpost()">
   <!-- 投稿フォームのボタン ここまで -->
+  </div>
 
    <!-- 投稿フォーム -->
   <form action="/newReacQ/BoardPostServlet" method="POST">
-  <div id = "post">
-  <input type = "text"  name="QUESTION"><input type = "submit" value="投稿">
-  <input type ="button" value ="閉じる" onclick = "hidepost()">
+  	<div id = "post">
+  		<div class="post1">
+  		<input type="text" name="QUESTION" placeholder="質問内容" style="width:430px;">
+  		<input type="submit" name="SUBMIT" value="投稿"><br>
+  		<input type="button" value ="閉じる" onclick = "hidepost()">
+  		</div>
+  	</div>
+  </form>
   </div>
-  </form>
   <!-- 投稿フォームここまで -->
-  </form>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="js/board.js"></script>

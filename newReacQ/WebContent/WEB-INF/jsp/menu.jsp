@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<!--<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +9,11 @@
 <link rel="stylesheet" href="/newReacQ/css/menu.css">
 </head>
 <body>
+<!-- ヘッダー -->
+<header>
 <jsp:include page="/WEB-INF/jsp/header.jsp" />
+</header>
+	<main>
 	<!-- リアクション -->
 	<div class="contentsR">
 		<p>リアクション</p>
@@ -25,10 +29,10 @@
 					<jsp:include page="/WEB-INF/jsp/graph.jsp" />
 				</tr>
 				<tr>
-					<td><input type ="submit" name="mrea3" value="説明可"><img src="/newReacQ/images/" alt="河童_説明可"></td>
-					<td><input type ="submit" name="mrea2" value="分かる"><img src="/newReacQ/images/" alt="河童_分かる"></td>
-					<td><input type ="submit" name="mrea1" value="分かるかも"><img src="/newReacQ/images/" alt="河童_分かるかも"></td>
-					<td><input type ="submit" name="mrea0" value="分からない"><img src="/newReacQ/images/" alt="河童_分からない"></td>
+					<td><input type ="submit" name="mrea" value="説明可"><img src="/newReacQ/images/河童説明可_ホバー前.png" onmouseover="this.src='/newReacQ/images/河童説明可_ホバー後.png'" onmouseout="this.src='/newReacQ/images/河童説明可_ホバー前.png'" width="150px" alt="河童_説明可"></td>
+					<td><input type ="submit" name="mrea" value="分かる"><img src="/newReacQ/images/河童分かる_ホバー前.png" onmouseover="this.src='/newReacQ/images/河童分かる_ホバー後.png'" onmouseout="this.src='/newReacQ/images/河童分かる_ホバー前.png'" width="150px" alt="河童_分かる"></td>
+					<td><input type ="submit" name="mrea" value="分かるかも"><img src="/newReacQ/images/河童分かるかも_ホバー前.png" onmouseover="this.src='/newReacQ/images/河童分かるかも_ホバー後.png'" onmouseout="this.src='/newReacQ/images/河童分かるかも_ホバー前.png'" width="150px" alt="河童_分かるかも"></td>
+					<td><input type ="submit" name="mrea" value="分からない"><img src="/newReacQ/images/河童分からない_ホバー前.png" onmouseover="this.src='/newReacQ/images/河童分からない_ホバー後.png'" onmouseout="this.src='/newReacQ/images/河童分からない_ホバー前.png'" width="150px" alt="河童_分からない"></td>
 				</tr>
 			</table>
 		</form>
@@ -73,6 +77,9 @@
 		    </table>
 		</form>
 	</div>
+	</main>
+<footer>
 <jsp:include page="/WEB-INF/jsp/footer.jsp" />
+</footer>
 </body>
 </html>

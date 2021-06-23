@@ -1,6 +1,6 @@
 @charset "UTF-8";
-.header{
-  width: 800px;
+#head{
+  width: 100%;
   margin: 0 auto;
 }
 nav ul {
@@ -28,7 +28,7 @@ a {
 }
 
 
-.footer{
+#foot{
 	clear:both;
 	position: fixed;
 	bottom: 0; 						/* 上部から配置の基準位置を決める */
