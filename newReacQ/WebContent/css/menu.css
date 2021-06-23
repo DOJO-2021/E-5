@@ -1,44 +1,26 @@
 @charset "UTF-8";
-​
 body{
 	background:#B8DA92;
-	display: flex;
-	justify-content: space-between;
+	display:flex;
 }
-​
+
 .contentsR{
 	color:#296337;
-	width:250%;					/*横幅*/
-	height:500px;				/*高さ*/
-	margin:0 auto;				/*要素の外側の余白*/
-	margin-right:3em;			/*要素の外側の余白(左)*/
-	border:solid 2px;			/*枠線の太さ*/
-	background-color:#FBFDFC;	/*枠線の色*/
-	border-radius:25px; 		/*枠線の角の丸み*/
-	position:relative;			/*今のポジションを基本として*/
-	top:200px;					/*headerとの距離*/
-	right:10%;					/*右から*/
-}
-​
-.contentsB{
-	color:#296337;
-	width:250%;
-	height:500px;
-	margin:0 auto;
+	width:750px;
+	height:210px;
+	margin:5em;
 	border:solid 2px;
 	background-color:#FBFDFC;
-	position:relative;
-	top:200px;
-	right:10%;
-
-	/*スクロール*/
-	overflow-y: scroll;
+	top:50px;
 }
-	​
-.contentsB table{
- 	border-color:#296337;
-	margin:0 auto;
+
+.contentsB{
+	overflow-y: scroll;
+	color:#296337;
+	width:750px;
+	height:210px;
+	margin:5em;
 	border:solid 2px;
-	width:95%;
-	height:140px;
+	background-color:#FBFDFC;
+	top:50px;
 }

@@ -16,9 +16,9 @@ import model.Like;
 public class BoardDao {
 	// 引数paramで検索項目を指定し、検索結果のリストを返す
 	//検索結果
-	public List<Board> select(Board param) {
+	public List<BoardAll> select(BoardAll param) {
 		Connection conn = null;
-		List<Board> resultlist = new ArrayList<Board>();
+		List<BoardAll> Alllist = new ArrayList<BoardAll>();
 
 		try {
 
@@ -29,7 +29,7 @@ public class BoardDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
 
 			// SQL文を準備する
-			String sql = "select id, email, reply_status, question_code, question, reply_date  from board WHERE question LIKE? ORDER BY id";
+			String sql = "select b.id as bid, b.email as bemail, b.reply_status as brep, b.question_code as bqc, b.question as bq, b.reply_date as brd, br.question_reply as brq, br.reply_date as brrd, count(l.id) as count from (board as b left join board_reply as br on b.question_code = br.q_reply_code) left join likes as l on br.q_reply_code = l.question_code where b.question like ? group by bid, l.question_code order by count desc";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -51,24 +51,27 @@ public class BoardDao {
 
 			// 結果表をコレクションにコピーする
 			while (rs.next()) {
-				Board b = new Board(
+				BoardAll b = new BoardAll(
 						0,
-						rs.getString("email"),
-						rs.getInt("reply_status"),
-						rs.getInt("question_code"),
-						rs.getString("question"),
-						rs.getString("reply_date")
+						rs.getString("bemail"),
+						rs.getInt("brep"),
+						rs.getInt("bqc"),
+						rs.getString("bq"),
+						rs.getString("brd"),
+						rs.getString("brq"),
+						rs.getString("brrd"),
+						rs.getInt("count")
 			);
-			resultlist.add(b);
+			Alllist.add(b);
 			}
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
-			resultlist = null;
+			Alllist = null;
 		}
 		catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			resultlist = null;
+			Alllist = null;
 		}
 		finally {
 			// データベースを切断
@@ -78,12 +81,12 @@ public class BoardDao {
 				}
 				catch (SQLException e) {
 					e.printStackTrace();
-					resultlist = null;
+					Alllist = null;
 				}
 			}
 		}
 			// 結果を返す
-		return resultlist;
+		return Alllist;
 	}
 
 	/*
@@ -157,6 +160,126 @@ public class BoardDao {
 			String sql = "select b.id as bid, b.email as bemail, b.reply_status as brep, b.question_code as bqc, b.question as bq, b.reply_date as brd, br.question_reply as brq, br.reply_date as brrd, count(l.id) as count from (board as b left join board_reply as br on b.question_code = br.q_reply_code) left join likes as l on br.q_reply_code = l.question_code group by bid, l.question_code order by count desc";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+			// 結果表をコレクションにコピーする
+			while (rs.next()) {
+				BoardAll b = new BoardAll(
+						0,
+						rs.getString("bemail"),
+						rs.getInt("brep"),
+						rs.getInt("bqc"),
+						rs.getString("bq"),
+						rs.getString("brd"),
+						rs.getString("brq"),
+						rs.getString("brrd"),
+						rs.getInt("count")
+			);
+			resultlist.add(b);
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			resultlist = null;
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			resultlist = null;
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+					resultlist = null;
+				}
+			}
+		}
+			// 結果を返す
+		return resultlist;
+	}
+
+	public List<BoardAll> Allselect(BoardAll param) {
+		Connection conn = null;
+		List<BoardAll> resultlist = new ArrayList<BoardAll>();
+
+		try {
+
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
+
+			// SQL文を準備する
+			String sql = "select b.id as bid, b.email as bemail, b.reply_status as brep, b.question_code as bqc, b.question as bq, b.reply_date as brd, br.question_reply as brq, br.reply_date as brrd, count(l.id) as count from (board as b left join board_reply as br on b.question_code = br.q_reply_code) left join likes as l on br.q_reply_code = l.question_code where b.reply_status = ? group by bid, l.question_code order by count desc";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			pStmt.setInt(1, param.getReply_status());
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+			// 結果表をコレクションにコピーする
+			while (rs.next()) {
+				BoardAll b = new BoardAll(
+						0,
+						rs.getString("bemail"),
+						rs.getInt("brep"),
+						rs.getInt("bqc"),
+						rs.getString("bq"),
+						rs.getString("brd"),
+						rs.getString("brq"),
+						rs.getString("brrd"),
+						rs.getInt("count")
+			);
+			resultlist.add(b);
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			resultlist = null;
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			resultlist = null;
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+					resultlist = null;
+				}
+			}
+		}
+			// 結果を返す
+		return resultlist;
+	}
+
+	public List<BoardAll> LikeAllselect(String email) {
+		Connection conn = null;
+		List<BoardAll> resultlist = new ArrayList<BoardAll>();
+
+		try {
+
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
+
+			// SQL文を準備する
+			String sql = "select b.id as bid, b.email as bemail, b.reply_status as brep, b.question_code as bqc, b.question as bq, b.reply_date as brd, br.question_reply as brq, br.reply_date as brrd, count(l.id) as count from (board as b left join board_reply as br on b.question_code = br.q_reply_code) left join likes as l on br.q_reply_code = l.question_code where l.email = ? group by bid, l.question_code order by count desc";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			pStmt.setString(1, email);
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
 
