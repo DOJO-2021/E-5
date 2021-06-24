@@ -1,17 +1,39 @@
 @charset "UTF-8";
 #head{
   width: 100%;
-  margin: 0 auto;
+  text-align:center;
+  border: solid 1px #ddff00;
+    background-color:#B8DA92;
+    margin:0 auto;
 }
+
+#main {
+  display:flex;
+  justify-content:center;
+  flex-wrap: wrap;
+  margin:20px 0px;
+  border: solid 1px #ddff00;
+}
+
+
+#foot{
+  width: 100%;
+  text-align:center;
+  margin:10px 0px 0px;
+  border: solid 1px #ddff00;
+  background-color: #B8DA92;
+  color: #FBFDFC;
+}
+
 nav ul {
   display: flex;
   align-items: center;
 }
 nav ul li{
-  padding: 0 20px;
-  color:#FBFDFC;
-	border-bottom:2px solid #FBFDFC;
+  padding: 5px 70px;
 }
+
+
 ul {
   padding: 0;
   margin: 0;
@@ -20,22 +42,26 @@ ul {
 a {
   color: #000;
   text-decoration: none;
+  font-size:20px;
 }
+
+a:hover {
+  color: orange;
+}
+
+p{
+	font-size: 20px;
+}
+
 .logo {
   margin: 0 auto;
   padding: 10px 20px;
   display: inline-block;
 }
 
-
-#foot{
-	clear:both;
-	position: fixed;
-	bottom: 0; 						/* 上部から配置の基準位置を決める */
-	left: 0; 						/* 左から配置の基準位置を決める */
-	width: 100%; 					/* フッターの横幅を指定する */
-	height: 35px;					/* フッターの高さを指定する */
-	padding:10px;					/* フッター内側の余白を指定する(上下左右) */
-	background-color: #B8DA92; 		/* フッターの背景色を指定する */
-	color: #FBFDFC; 				/* フッターのフォントの色を指定する */
+nav {
+	display: inline-block;
+	width:80%;
+	height:120px;
 }
+

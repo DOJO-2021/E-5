@@ -1,36 +1,45 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js" type="text/javascript"></script>
 <link rel="stylesheet" href="/newReacQ/css/menu.css">
+<link rel="stylesheet" href="/newReacQ/css/common.css">
 <title>ReacQ</title>
 </head>
 <body>
+<header>
 <jsp:include page="/WEB-INF/jsp/header.jsp" />
-
+</header>
+<section>
+    <div id="main">
 	<!-- リアクション -->
-	<div class="contentsR">
+
+	<div class="box01">
 		<p>リアクション</p>
 		<form method="POST" action="/newReacQ/MenuReactionServlet">
 			<!-- リアクショングラフ -->
 			<table class="table">
 				<tr>
-				<td>項目</td>
+				<td class= "content">項目</td>
 				<td><input type ="text" name="react_title" value="${react_t}"></td>
-				<td><input type ="submit" name="mrea" value="更新"></td>
-				<td><input type ="submit" name="mrea" value="リセット"></td>
+				<td><button type ="submit" name="mrea" value="更新" class = "update_button">更新</button></td>
+				<td><button type ="submit" name="mrea" value="リセット" class = "update_button">リセット</button></td>
 				</tr>
 				<jsp:include page="/WEB-INF/jsp/graph.jsp" />
 			</table>
 		</form>
 	</div>
 
+
 			<!-- 掲示板 -->
-	<div class="contentsB">
+
+	<div class="box02">
 		<p>掲示板</p><a href="/newReacQ/BoardServlet">全部見る</a><br>
 		<p>最新の投稿</p>
 
@@ -52,7 +61,13 @@
 			</div>
 		</form>
 	</div>
+  </div><!--  id="main" end -->
+</section>
 
-<jsp:include page="/WEB-INF/jsp/footer.jsp" />
+<footer>
+	<div id="foot">
+		<jsp:include page="/WEB-INF/jsp/footer.jsp" />
+	</div>
+</footer>
 </body>
 </html>
