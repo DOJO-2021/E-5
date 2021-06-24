@@ -1,4 +1,4 @@
- @charset "UTF-8";
+@charset "UTF-8";
 body{
 	background:#B8DA92;
 }
@@ -11,7 +11,6 @@ body{
   border: solid 1px #ddff00;
   background:#FBFDFC
 }
-
 .box02{
   /*width: 550px;*/
   width: 40%;
@@ -22,7 +21,6 @@ body{
   background:#FBFDFC;
   overflow-y: scroll;
 }
-
 .box03{
   /*width: 550px;*/
   width: 40%;
@@ -31,29 +29,19 @@ body{
   padding: 15px;
   border: solid 1px #ddff00;
   background:#FBFDFC;
-  display:flex;
-  position:fixed;
-    position: fixed;
-  top: 500px;
-  left:1020px;
-  right: 0;
+  position:absolute;
+  left:840px;
   bottom: 0;
-}
-
-
-
-button {
+}button {
   padding: 0;
   border: none;
   background: transparent;
 }
-
 button img {
   display: block;
   margin:30px 3px;
   cursor: pointer;
 }
-
 .update_button {
   display: inline-block;
   padding: 0.5em 1em;
@@ -68,24 +56,20 @@ button img {
   height:40px;
   margin:15px;
 }
-
 .update_button:hover {
    -webkit-transform: translateY(4px);
   transform: translateY(4px);
   box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
   border-bottom: none;
 }
-
 input[type="text"] {
   margin:10px;
   height:25px;
   width:20em;
 }
-
 .content{
 	font-size: 20px;
 }
-
 .canvas-container {
     position: relative;
     width:  calc(100% - 40px);
