@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -11,8 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.BoardDao;
 import dao.ReactionDao;
 import dao.UserDataDao;
+import model.Board;
 import model.UserData;
 
 /**
@@ -29,7 +33,6 @@ public class MyReactionServlet extends HttpServlet {
 			response.sendRedirect("/nerReacQ/LoginServlet");
 			return;
 		}
-
 		/*
 		 * ユーザデータの表示
 		 */
@@ -45,24 +48,36 @@ public class MyReactionServlet extends HttpServlet {
 		//講師か受講者かを判別するpositionを取得
 		String pos =(String)session.getAttribute("position");
 		if (pos.equals("1")) {
-
 			// 処理を行う(select、emailが受講者、日付も選択可)
 			//リクエストパラメータ(日付)を取得する
 			request.setCharacterEncoding("UTF-8");
-			String date = request.getParameter("REPLY_DATE_R");
+			String selectdate = request.getParameter("REPLY_DATE_R");
 
 			ReactionDao rDao = new ReactionDao();
-			int reaction0 = rDao.countmypage(email, 0, date);
-			int reaction1 = rDao.countmypage(email, 1, date);
-			int reaction2 = rDao.countmypage(email, 2, date);
-			int reaction3 = rDao.countmypage(email, 3, date);
+			int reaction0 = rDao.countmypage(email, 0, selectdate);
+			int reaction1 = rDao.countmypage(email, 1, selectdate);
+			int reaction2 = rDao.countmypage(email, 2, selectdate);
+			int reaction3 = rDao.countmypage(email, 3, selectdate);
 
 			//リクエストスコープに格納する
-			request.setAttribute("date_r", date);
+			request.setAttribute("date_r", selectdate);
 			request.setAttribute("myrea0", reaction0);
 			request.setAttribute("myrea1", reaction1);
 			request.setAttribute("myrea2", reaction2);
 			request.setAttribute("myrea3", reaction3);
+
+			/*
+			 * 今日の日付の掲示板の表示
+			 */
+			Date d = new Date();
+			SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+	        String date = dt.format(d);
+
+			BoardDao bDao = new BoardDao();
+			List<Board> myboardList = bDao.selectmypage(new Board(0, email, 0, 0, "", date));
+
+			//リクエストスコープに格納する
+			request.setAttribute("myboardList", myboardList);
 
 			// フォワードする
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");

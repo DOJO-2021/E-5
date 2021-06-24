@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.BoardDao;
+import dao.BoardReplyDao;
 import dao.ReactionDao;
 import dao.UserDataDao;
 import model.Board;
@@ -22,8 +23,8 @@ import model.UserData;
 /**
  * Servlet implementation class MyBoardServlet
  */
-@WebServlet("/MyBoardServlet")
-public class MyBoardServlet extends HttpServlet {
+@WebServlet("/DeleteServlet")
+public class DeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -37,16 +38,25 @@ public class MyBoardServlet extends HttpServlet {
 		String email = (String)session.getAttribute("email");
 
 		BoardDao bDao = new BoardDao();
+		BoardReplyDao brDao = new BoardReplyDao();
 
-   		//リクエストパラメータ(日付)を取得する
-  		request.setCharacterEncoding("UTF-8");
-  		String selectdate = request.getParameter("REPLY_DATE_B");
+		//リクエストパラメータを取得する
+		request.setCharacterEncoding("UTF-8");
+		int code  = Integer.parseInt(request.getParameter("CODE"));
 
-  		// 処理を行う(select、emailが受講者、日付も選択可)
-		List<Board> myboardList = bDao.selectmypage(new Board(0, email, 0, 0, "", selectdate));
+		bDao.delete(code);
+		bDao.deletelike(code);
+		brDao.delete(code);
+
+		/*
+		 * 今日の日付の掲示板の表示
+		 */
+		Date d = new Date();
+		SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+        String date = dt.format(d);
+		List<Board> myboardList = bDao.selectmypage(new Board(0, email, 0, 0, "", date));
 
 		//リクエストスコープに格納する
-		request.setAttribute("date_b", selectdate);
 		request.setAttribute("myboardList", myboardList);
 
 		/*
@@ -61,9 +71,6 @@ public class MyBoardServlet extends HttpServlet {
 		/*
 		 * 今日の日付のリアクションの表示
 		 */
-		Date d = new Date();
-		SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
-        String date = dt.format(d);
 		ReactionDao rDao = new ReactionDao();
 		int reaction0 = rDao.countmypage(email, 0, date);
 		int reaction1 = rDao.countmypage(email, 1, date);
