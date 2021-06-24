@@ -27,29 +27,9 @@ public class  LoginServlet extends HttpServlet {
     	//ログインページにフォワード
       RequestDispatcher dispatcher=request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
       dispatcher.forward(request, response);
-
-
-      /*
-        // セッションからログイン情報を取得
-        HttpSession session = request.getSession();
-        UserData Ud = (UserData) session.getAttribute("account");
-
-        // ロールでフォワード先を振り分ける
-        if(Ud.getPosition() == 0) {
-            RequestDispatcher rd = request.getRequestDispatcher("menu.jsp");
-            rd.forward(request, response);
-        } else if(Ud.getPosition() == 1) {
-            RequestDispatcher rd = request.getRequestDispatcher("menuT.jsp");
-            rd.forward(request, response);
-        }
-        */
-
-
     }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
 		String email = request.getParameter("EMAIL");
@@ -59,7 +39,6 @@ public class  LoginServlet extends HttpServlet {
 
 		// ログイン成功
 		if (uDao.isLoginOK(email, password)) {
-
 			String position = Integer.toString(uDao.selectP(email));
 			//String position = "0";
 
@@ -70,7 +49,6 @@ public class  LoginServlet extends HttpServlet {
 			// メニューサーブレットにリダイレクトする
 			response.sendRedirect("/newReacQ/MenuReactionServlet");
 		}
-
 		// ログイン失敗
 		else {
 			// 結果ページにフォワードする

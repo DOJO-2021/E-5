@@ -50,29 +50,36 @@ public class BoardReplyServlet extends HttpServlet {
 
 		String email = (String)session.getAttribute("email");
 		request.setCharacterEncoding("UTF-8");
-		String question = request.getParameter("QUESTION");
+		int question_code = Integer.parseInt(request.getParameter("QUESTION_CODE"));
 		String question_reply =request.getParameter("QUESTION_REPLY");
 
 		BoardDao bDao = new BoardDao();
-		int q_code = bDao.q_code(question);
-
-		if (request.getParameter("QUESTION_REPLY").equals("回答")) {
+		if (request.getParameter("SUBMIT").equals("送信")) {
 			BoardReplyDao brDao = new BoardReplyDao();
-			if (brDao.insert(new BoardReply(0, email, q_code, question_reply, ""))) {
-				request.setAttribute("result",
-				new Result("回答を送信しました！", "/newReacQ/BoardServlet"));
+			boolean result = brDao.confirm(question_code);
+			if(result == true) {
+				if (brDao.insert(new BoardReply(0, email, question_code, question_reply, ""))) {
+					bDao.update(question_code);
+
+					request.setAttribute("result",
+					new Result("回答を送信しました！", "/newReacQ/BoardServlet"));
+				}
+				else {
+					request.setAttribute("result",
+					new Result("回答を送信できませんでした。", "/newReacQ/BoardServlet"));
+				}
 			}
 			else {
 				request.setAttribute("result",
-				new Result("回答を送信できませんでした", "/newReacQ/BoardServlet"));
+				new Result("すでに回答されている質問です。", "/newReacQ/BoardServlet"));
 			}
 
 			// 結果ページにフォワードする
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Result.jsp");
 			dispatcher.forward(request, response);
 		}
-		else if(request.getParameter("LIKE").equals("気になる")) {
-			boolean result = bDao.insertlike(new Like(0, email, q_code, ""));
+		else if(request.getParameter("SUBMIT").equals("気になる")) {
+			boolean result = bDao.insertlike(new Like(0, email, question_code, ""));
 			System.out.println(result);
 
 			List<BoardAll> Alllist = bDao.boardJoin(new BoardAll(0, "", 0, 0, "", "", "", "", 0));
@@ -83,30 +90,5 @@ public class BoardReplyServlet extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/board.jsp");
 			dispatcher.forward(request, response);
 		}
-
-		/*
-		// リクエストパラメータを取得する
-		request.setCharacterEncoding("UTF-8");
-		int id = Integer.parseInt(request.getParameter("ID"));
-		String email =request.getParameter("EMAIL");
-		int q_reply_code =Integer.parseInt(request.getParameter("Q_REPLY_CODE"));
-		String question_reply =request.getParameter("QUESTION_REPLY");
-		String reply_date =request.getParameter("REPLY_DATE");
-
-
-		//回答内容をデータベースに反映する
-		BoardReplyDao brDao = new BoardReplyDao();{
-		if (request.getParameter("SUBMIT").equals("回答"))
-			if (brDao.insert(new BoardReply(id, email, q_reply_code, question_reply, reply_date ))) {
-				request.setAttribute("result",
-				new Result("回答を送信しました！", "/newReacQ/BoardServlet"));
-			}
-			else {
-				request.setAttribute("result",
-				new Result("回答を送信できませんでした", "/newReacQ/BoardServlet"));
-			}
-		}
-		*/
-
 	}
 }

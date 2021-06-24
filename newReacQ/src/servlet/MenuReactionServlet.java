@@ -33,16 +33,15 @@ public class MenuReactionServlet extends HttpServlet {
     	//講師か受講者かを判別するpositionを取得
     	String pos = (String)session.getAttribute("position");
     	if (pos.equals("1")) {
-
     		/*
     		 * リアクションの表示
     		 */
     		ReactionDao rDao = new ReactionDao();
     		String date=rDao.reset(new Reaction (0,"",4,"", ""));
-    		int reaction0 = rDao.countmenu(0, date);
-			int reaction1 = rDao.countmenu(1, date);
-			int reaction2 = rDao.countmenu(2, date);
-			int reaction3 = rDao.countmenu(3, date);
+    		int reaction0 = rDao.resetcount(0, date);
+    		int reaction1 = rDao.resetcount(1, date);
+    		int reaction2 = rDao.resetcount(2, date);
+    		int reaction3 = rDao.resetcount(3, date);
 
 			//リクエストスコープに格納する
 			request.setAttribute("rea0", reaction0);
@@ -50,11 +49,13 @@ public class MenuReactionServlet extends HttpServlet {
 			request.setAttribute("rea2", reaction2);
 			request.setAttribute("rea3", reaction3);
 
-			// 処理を行う
+			/*
+    		 * 掲示板の表示
+    		 */
 			String email =(String)session.getAttribute("email");
 			BoardDao bDao = new BoardDao();
-			 List<Board> newlist = bDao.selectlatest(new Board(0,"",0,0,"",""));
-			 List<Board> mynewlist = bDao.selectmynewlist(new Board(0,email,0,0,"",""));
+			List<Board> newlist = bDao.selectlatest(new Board(0,"",0,0,"",""));
+			List<Board> mynewlist = bDao.selectmynewlist(new Board(0,email,0,0,"",""));
 
 			//リクエストスコープに格納する
 			request.setAttribute("newlist", newlist);
@@ -83,7 +84,9 @@ public class MenuReactionServlet extends HttpServlet {
 			request.setAttribute("rea2", reaction2);
 			request.setAttribute("rea3", reaction3);
 
-			// 処理を行う
+			/*
+    		 * 掲示板の表示
+    		 */
 			BoardDao bDao = new BoardDao();
 			List<Board> newlist = bDao.selectlatest(new Board(0,"",0,0,"",""));
 
@@ -103,21 +106,17 @@ public class MenuReactionServlet extends HttpServlet {
 		if (pos.equals("1")) {
 
 			String email = (String)session.getAttribute("email");
-			// リクエストパラメータを取得する
-			//request.setCharacterEncoding("UTF-8");
-			//int reaction = Integer.parseInt(request.getParameter("Reaction"));
+			String react_title = (String)session.getAttribute("react_t");
 
 			// 登録処理を行う
 			request.setCharacterEncoding("UTF-8");
-			String react_title = request.getParameter("react_title");
+			//String react_title = request.getParameter("react_title");
 			ReactionDao rDao = new ReactionDao();
 			if (request.getParameter("mrea").equals("説明可")) {
-				boolean result = rDao.insert(new Reaction(0, email, 3, "", react_title));
-				System.out.println(result);
+				rDao.insert(new Reaction(0, email, 3, "", react_title));
 			}
 			else if (request.getParameter("mrea").equals("分かる")) {
-				boolean result = rDao.insert(new Reaction(0, email, 2, "", react_title));
-				System.out.println(result);
+				rDao.insert(new Reaction(0, email, 2, "", react_title));
 			}
 			else if (request.getParameter("mrea").equals("分かるかも")) {
 				rDao.insert(new Reaction(0, email, 1, "", react_title));
@@ -141,6 +140,7 @@ public class MenuReactionServlet extends HttpServlet {
     		int reaction3 = rDao.resetcount(3, date);
 
 			//リクエストスコープに格納する
+    		request.setAttribute("react_t", react_title);
 			request.setAttribute("rea0", reaction0);
 			request.setAttribute("rea1", reaction1);
 			request.setAttribute("rea2", reaction2);
@@ -148,8 +148,8 @@ public class MenuReactionServlet extends HttpServlet {
 
 			// 処理を行う （掲示板）
 			BoardDao bDao = new BoardDao();
-			 List<Board> newlist = bDao.selectlatest(new Board(0,"",0,0,"",""));
-			 List<Board> mynewlist = bDao.selectmynewlist(new Board(0,email,0,0,"",""));
+			List<Board> newlist = bDao.selectlatest(new Board(0,"",0,0,"",""));
+			List<Board> mynewlist = bDao.selectmynewlist(new Board(0,email,0,0,"",""));
 
 			//リクエストスコープに格納する
 			request.setAttribute("newlist", newlist);
