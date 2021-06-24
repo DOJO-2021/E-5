@@ -6,7 +6,6 @@ body{
 }
 
 .wrapper{
-	width: 80%;
 	z-index: 0;
 	overflow-y: scroll;
 	color:#296337;
@@ -30,62 +29,12 @@ body{
 	margin:5em;
 	border:solid 2px;
 	background-color:#FBFDFC;
-	position: fixed; /* 要素の位置を固定する*/
-	right: 10%;
-	bottom: 0%;
+	position: fixed; /* 要素の位置を固定する */
+	right: 50%;
+	bottom: 20%;
 }
-/*.button {
+.button {
 	position: fixed;
 	right:50%;
 	bottom: 7%;
-}*/
-
-/* 閉じたアコーディオンメニューのクリックする部分 */
-.question {
-	font-weight: bold;
-	background-color: #FFD700;
-	cursor: pointer;
-	height: 50px;
-}
-
-.q_title_like {
-	background-color: #FF0000;
-	margin-left: 50px;
-}
-
-/* 気になるボタン */
-.like_btn {
-  color: #000;
-  background-color: #fff100;
-  border-bottom: 5px solid #ccc100;
-  border-radius: 100vh;
-}
-
-.like_btn:hover {
-  margin-top: 3px;
-  color: #000;
-  background: #fff20a;
-  border-bottom: 2px solid #ccc100;
-}
-
-/* 回答の欄 */
-.reply_form {
-	width: 450px;
-	height: 100px;
-}
-.send_btn{
-	margin-top: -10px;
-}
-
-/* -----------投稿フォーム-------------- */
-/* 開くボタン */
-.p_form_btn {
-	width: 12%;
-	float: right;
-}
-
-/* 質問内容の欄 */
-.p_form_q {
-	width: 750px;
-	height: 400px;
 }

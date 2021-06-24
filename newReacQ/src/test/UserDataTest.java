@@ -1,6 +1,7 @@
 package test;
 
-import dao.BoardReplyDao;
+import dao.BoardDao;
+import model.Like;
 
 public class UserDataTest {
 	public static void main(String[] args) {
@@ -167,8 +168,8 @@ public class UserDataTest {
 		}
 
 		*/
-		BoardReplyDao bDao = new BoardReplyDao();
-		boolean result = bDao.confirm(5);
+		BoardDao bDao = new BoardDao();
+		boolean result = bDao.insertlike(new Like(0, "Student1@email.jp", 67, ""));
 		System.out.println(result);
 	}
 }

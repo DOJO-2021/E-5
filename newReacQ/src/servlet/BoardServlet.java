@@ -28,6 +28,9 @@ public class BoardServlet extends HttpServlet {
 			response.sendRedirect("/newReacQ/LoginServlet");
 			return;
 		}
+		//検索処理を行う
+		//BoardDao bDao = new BoardDao();
+		//List<Board> Alllist = bDao.select(new Board(0, "", 0, 0, "", ""));
 
 		BoardDao bDao = new BoardDao();
 		List<BoardAll> Alllist = bDao.boardJoin(new BoardAll(0, "", 0, 0, "", "", "", "", 0));
@@ -52,6 +55,7 @@ public class BoardServlet extends HttpServlet {
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
 		String question =request.getParameter("QUESTION");
+
 		String email = (String)session.getAttribute("email");
 
 		BoardDao bDao = new BoardDao();
@@ -94,6 +98,7 @@ public class BoardServlet extends HttpServlet {
 				dispatcher.forward(request, response);
 			}
 		}
+
 		else {
 			//検索処理を行う
 			List<BoardAll> Alllist = bDao.select(new BoardAll(0, "", 0, 0, question, "", "", "", 0));
