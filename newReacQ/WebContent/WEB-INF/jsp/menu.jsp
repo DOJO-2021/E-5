@@ -1,11 +1,13 @@
-<!--<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>-->
+    <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>ReacQ</title>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js" type="text/javascript"></script>
 <link rel="stylesheet" href="/newReacQ/css/menu.css">
 <link rel="stylesheet" href="/newReacQ/css/common.css">
 </head>
@@ -15,7 +17,8 @@
 <jsp:include page="/WEB-INF/jsp/header.jsp" />
 </header>
 <section>
-	<div id = "main">
+    <div id="main">
+
 
 		<!-- リアクション -->
 		<div class="box01">
@@ -63,9 +66,7 @@
 			</c:forEach>
 		    </table>
 		</form>
-		</div>
 
-		<div class="box03">
 		<p>自分の投稿</p>
 		<form method="GET" action="/newReacQ/MenuBoardServlet">
 		    <!-- 自分の投稿テーブル -->

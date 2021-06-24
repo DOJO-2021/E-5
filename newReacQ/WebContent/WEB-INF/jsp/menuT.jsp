@@ -6,6 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js" type="text/javascript"></script>
 <link rel="stylesheet" href="/newReacQ/css/menu.css">
 <link rel="stylesheet" href="/newReacQ/css/common.css">
 <title>ReacQ</title>

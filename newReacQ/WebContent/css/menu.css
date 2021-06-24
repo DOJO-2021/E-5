@@ -4,48 +4,37 @@ body{
 }
 .box01{
   /*width: 650px;*/
-  width: 45%;
+  width: 40%;
   height: 600px;
   margin: 20px;
   padding: 15px;
   border: solid 1px #ddff00;
-  background:#FBFDFC
+  background:#B8DA92;
 }
 
 .box02{
   /*width: 550px;*/
-  width: 40%;
-  height: 300px;
+  width: 35%;
+  height: 600px;
   margin: 20px;
   padding: 15px;
   border: solid 1px #ddff00;
-  background:#FBFDFC;
-  overflow-y:scroll;
+  background: #B8DA92;
+  overflow-y: scroll;
 }
 
-.box03{
-  /*width: 550px;*/
-  width: 40%;
-  height: 250px;
-  margin: 20px;
-  padding: 15px;
-  border: solid 1px #ddff00;
-  background:#FBFDFC;
-  display:flex;
-  position:absolute;
-  bottom:0px;
-  left:880px;
-}
 button {
   padding: 0;
   border: none;
   background: transparent;
 }
+
 button img {
   display: block;
   margin:30px 3px;
   cursor: pointer;
 }
+
 .update_button {
   display: inline-block;
   padding: 0.5em 1em;
@@ -60,20 +49,24 @@ button img {
   height:40px;
   margin:15px;
 }
+
 .update_button:hover {
    -webkit-transform: translateY(4px);
   transform: translateY(4px);
   box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
   border-bottom: none;
 }
+
 input[type="text"] {
   margin:10px;
   height:25px;
   width:20em;
 }
+
 .content{
 	font-size: 20px;
 }
+
 .canvas-container {
     position: relative;
     width:  calc(100% - 40px);
