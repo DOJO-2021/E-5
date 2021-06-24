@@ -1,34 +1,45 @@
 @charset "UTF-8";
 
 body{
-	background:#B8DA92;
+     /*background:#90ee90;*/
 	align-content: stretch;
 }
 
 .contentsR{
 	color:#296337;
-	width: 550px;
-	height: 250px;
+	width: 700px;
+	height: 305px;
 	margin:5em;
 	border:solid 2px;
 	background-color:#FBFDFC;
 	position: fixed; /* 要素の位置を固定する */
-	top: 20px; /* 基準の位置を画面の上に指定する */
-	left: 0; /* 基準の位置を画面の左に指定する */
+	top: 80px; /* 基準の位置を画面の上に指定する */
+	left: 80px; /* 基準の位置を画面の左に指定する */
+}
 
+.contentsRt{
+	color:#296337;
+	width: 700px;
+	height: 400px;
+	margin:5em;
+	border:solid 2px;
+	background-color:#FBFDFC;
+	position: fixed; /* 要素の位置を固定する */
+	top: 80px; /* 基準の位置を画面の上に指定する */
+	left: 80px; /* 基準の位置を画面の左に指定する */
 }
 
 .contentsB{
 	overflow-y: scroll;
 	color:#296337;
-	width: 550px;
-	height: 250px;
+	width: 700px;
+	height: 180px;
 	margin:5em;
 	border:solid 2px;
 	background-color:#FBFDFC;
 	position: fixed; /* 要素の位置を固定する */
 	bottom: 0; /* 基準の位置を画面の下に指定する */
-	left: 0; /* 基準の位置を画面の左に指定する */
+	left: 80px; /* 基準の位置を画面の左に指定する */
 }
 
 .contentsA{
@@ -37,10 +48,10 @@ body{
 	margin:5em;
 	border:solid 2px;
 	position: fixed;
-	top: 20px; /* 基準の位置を画面の上に指定する */
+	top: 80px; /* 基準の位置を画面の上に指定する */
 	right: 0; /* 基準の位置を画面の右に指定する */
 	bottom: 0;
-	width: 30%; /* 幅を指定する */
+	width: 35%; /* 幅を指定する */
 }
 
 .conA{
@@ -50,4 +61,68 @@ body{
 	flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+/*更新ボタンデザイン*/
+.button:hover {
+  opacity       : 1;           /* カーソル時透明度 */
+}
+
+/*リアクション文字デザイン*/
+.ria{
+	font-size:15px;
+	text-align:center;
+	line-height:0.95em;
+	font-weight:bold;
+	color: #FF6F00;
+	text-shadow:
+		0 0.01em 0 #999,
+		0 0.02em 0 #888,
+		0 0.03em 0 #777,
+		0 0.04em 0 #666,
+		0 0.05em 0 #555,
+		0 0.06em 0 #444,
+		0 0.08em 0 #000;
+}
+
+/*リアクション数字デザイン*/
+.size{
+	font-size:20pt;
+	text-align:center;
+	line-height:0.95em;
+	font-weight:bold;
+	color: #FFAB91;
+	text-shadow: 0.02em 0.02em 0.02em rgba(0,0,0,1);
+}
+
+/*アカウント管理 左寄せ*/
+.name{
+	text-align:left;
+}
+
+h2 {
+	position: relative;
+	padding: 0 .5em .5em 2em;
+}
+
+h2::before,
+h2::after {
+	position: absolute;
+	content: '';
+	border-radius: 100%
+}
+h2::before {
+	top: .2em;
+	left: .2em;
+	width: 18px;
+	height: 18px;
+	background-color: rgba(255,90,95,.5);
+	z-index: 2;
+}
+h2::after {
+	top: .7em;
+	left: .7em;
+	width: 13px;
+	height: 13px;
+	background-color: rgba(255,90,95,.2);
 }
