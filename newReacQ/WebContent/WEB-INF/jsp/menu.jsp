@@ -13,12 +13,9 @@
 </head>
 <body>
 <!-- ヘッダー -->
-<header>
 <jsp:include page="/WEB-INF/jsp/header.jsp" />
-</header>
 <section>
     <div id="main">
-
 
 		<!-- リアクション -->
 		<div class="box01">
@@ -47,13 +44,13 @@
 			<!-- 掲示板 -->
 
 		<div class="box02">
-		<p>掲示板</p><a href="/newReacQ/BoardServlet">全部見る</a><br>
+		<p>掲示板<a href="/newReacQ/BoardServlet">全部見る</a></p>
 		<p>最新の投稿</p>
 
 		<form method="GET" action="/newReacQ/MenuBoardServlet">
 			<!-- 最新の投稿テーブル -->
 			<!-- 固定コンテンツ -->
-		    <table>
+		    <table >
  			<c:forEach var="b" items="${newlist}" >
 		        <tr>
 		        	<th>回答日時</th>
@@ -66,7 +63,8 @@
 			</c:forEach>
 		    </table>
 		</form>
-
+		</div>
+		<div class ="box03">
 		<p>自分の投稿</p>
 		<form method="GET" action="/newReacQ/MenuBoardServlet">
 		    <!-- 自分の投稿テーブル -->
@@ -84,13 +82,11 @@
 		    </table>
 		</form>
 		</div>
+
 	</div> <!-- id="main" end -->
 </section>
 
-<footer>
-	<div id="foot">
-		<jsp:include page="/WEB-INF/jsp/footer.jsp" />
-	</div>
-</footer>
+	<jsp:include page="/WEB-INF/jsp/footer.jsp" />
+
 </body>
 </html>

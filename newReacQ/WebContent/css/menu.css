@@ -9,19 +9,38 @@ body{
   margin: 20px;
   padding: 15px;
   border: solid 1px #ddff00;
-  background:#B8DA92;
+  background:#FBFDFC
 }
 
 .box02{
   /*width: 550px;*/
-  width: 35%;
-  height: 600px;
+  width: 40%;
+  height: 300px;
   margin: 20px;
   padding: 15px;
   border: solid 1px #ddff00;
-  background: #B8DA92;
+  background:#FBFDFC;
   overflow-y: scroll;
 }
+
+.box03{
+  /*width: 550px;*/
+  width: 40%;
+  height: 250px;
+  margin: 20px;
+  padding: 15px;
+  border: solid 1px #ddff00;
+  background:#FBFDFC;
+  display:flex;
+  position:fixed;
+    position: fixed;
+  top: 500px;
+  left:1020px;
+  right: 0;
+  bottom: 0;
+}
+
+
 
 button {
   padding: 0;
