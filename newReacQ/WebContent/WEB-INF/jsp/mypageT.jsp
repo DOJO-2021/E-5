@@ -6,15 +6,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ReacQ | マイページ</title>
-<link rel="shortcut icon" href="images/favicon.ico">
+<title>ReacQ|mypage</title>
 <link rel="stylesheet" href="/newReacQ/css/mypage.css">
 <link rel="stylesheet" href="/newReacQ/css/common.css">
 </head>
 <body>
+<header>
 <jsp:include page="header.jsp" flush="true" />
+</header>
+<section>
+<div id="main">
 	<!-- リアクション集計の表示 -->
-	<div class="contentsR">
+	<div class="box06">
 	<h2>リアクション履歴</h2>
 	<!-- デートピッカー -->
 	<form method="POST" action="/newReacQ/MyReactionServlet">
@@ -26,7 +29,7 @@
 		</table>
 	</form>
 	<!-- リアクショングラフ -->
-	<table class="table">
+	<table class="size">
 		<tr>
 		<td>${myrea3}</td><td>${myrea2}</td><td>${myrea1}</td><td>${myrea0}</td>
 		</tr>
@@ -46,7 +49,7 @@
 	</div>
 
 	<!-- アカウント管理 -->
-	<div class="contentsA">
+	<div class="box07">
 		<div class="conA">
 		<h2>アカウント管理</h2>
 		<c:forEach var="u" items="${userList}">
@@ -85,8 +88,13 @@
 		</c:forEach>
 		</div>
 	</div>
-<jsp:include page="footer.jsp" flush="true" />
 
+</div>
+</section>
+
+<footer>
+<jsp:include page="footer.jsp" flush="true" />
+</footer>
 <script type='text/javascript' src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src='js/today.js' type='text/javascript'></script>
 </body>

@@ -238,7 +238,7 @@ public class UserDataDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
 
 			// SQL文を準備する
-			String sql = "update user_data set email=?, password=?, name=? where email=? and password=?";
+			String sql = "update user_data set email=?, password=?, name=? where id=?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -260,8 +260,7 @@ public class UserDataDao {
 			else {
 				pStmt.setString(3, "null");
 			}
-			pStmt.setString(4, user.getEmail());
-			pStmt.setString(5, user.getPassword());
+			pStmt.setInt(4, user.getId());
 
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {

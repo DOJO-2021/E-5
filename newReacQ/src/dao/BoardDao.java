@@ -42,12 +42,12 @@ public class BoardDao {
 				BoardAll b = new BoardAll(
 						0,
 						rs.getString("bemail"),
-						rs.getInt("brep"),
-						rs.getInt("bqc"),
+						rs.getInt("bstatus"),
+						rs.getInt("bcode"),
 						rs.getString("bq"),
-						rs.getString("brd"),
+						rs.getString("bdate"),
 						rs.getString("brq"),
-						rs.getString("brrd"),
+						rs.getString("brdate"),
 						rs.getInt("count"),
 						rs.getString("name")
 			);
@@ -156,12 +156,12 @@ public class BoardDao {
 				BoardAll b = new BoardAll(
 						0,
 						rs.getString("bemail"),
-						rs.getInt("brep"),
-						rs.getInt("bqc"),
+						rs.getInt("bstatus"),
+						rs.getInt("bcode"),
 						rs.getString("bq"),
-						rs.getString("brd"),
+						rs.getString("bdate"),
 						rs.getString("brq"),
-						rs.getString("brrd"),
+						rs.getString("brdate"),
 						rs.getInt("count"),
 						rs.getString("name")
 			);
@@ -214,12 +214,12 @@ public class BoardDao {
 				BoardAll b = new BoardAll(
 						0,
 						rs.getString("bemail"),
-						rs.getInt("brep"),
-						rs.getInt("bqc"),
+						rs.getInt("bstatus"),
+						rs.getInt("bcode"),
 						rs.getString("bq"),
-						rs.getString("brd"),
+						rs.getString("bdate"),
 						rs.getString("brq"),
-						rs.getString("brrd"),
+						rs.getString("brdate"),
 						rs.getInt("count"),
 						rs.getString("name")
 			);
