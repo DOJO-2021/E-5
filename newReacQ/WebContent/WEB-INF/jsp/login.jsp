@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>reacQ|ログイン</title>
+<title>ReacQ | ログイン</title>
+<link rel="shortcut icon" href="images/favicon.ico">
 <link rel="stylesheet" href="/newReacQ/css/login.css">
 </head>
 <body>

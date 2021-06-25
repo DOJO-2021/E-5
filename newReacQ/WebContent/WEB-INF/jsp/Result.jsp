@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>送信結果</title>
+<title>ReacQ | 送信結果</title>
+<link rel="shortcut icon" href="images/favicon.ico">
 <link rel="stylesheet" href="/newReacQ/css/common.css">
 </head>
 <body>

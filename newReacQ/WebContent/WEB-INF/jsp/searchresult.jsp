@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>検索結果</title>
+<link rel="shortcut icon" href="images/favicon.ico">
   <link rel="stylesheet" href="css/board.css">
 </head>
 <body>
