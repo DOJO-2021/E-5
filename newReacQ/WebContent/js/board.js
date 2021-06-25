@@ -14,4 +14,6 @@
 //投稿された質問の折りたたみメニュー
 	$(".q-title").on("click", function () {
         	$(this).next().slideToggle();
+        	$(".q-title").not($(this)).next().slideUp();
         	});
+        	

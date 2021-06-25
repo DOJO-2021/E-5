@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import "https://use.fontawesome.com/releases/v5.13.0/css/all.css";
 
 body{
 	background:#B8DA92;
@@ -6,6 +7,7 @@ body{
 }
 
 .wrapper{
+	width: 75%;
 	z-index: 0;
 	overflow-y: scroll;
 	color:#296337;
@@ -13,9 +15,9 @@ body{
 	border:solid 2px;
 	background-color:#FBFDFC;
 	position: fixed; /* 要素の位置を固定する */
-	top: 50px;
+	top: 80px;
 	right:10px;
-	bottom: 2px; /* 基準の位置を画面の下に指定する */
+	bottom: -70px; /* 基準の位置を画面の下に指定する */
 	left: 10px; /* 基準の位置を画面の左に指定する */
 }
 
@@ -29,12 +31,110 @@ body{
 	margin:5em;
 	border:solid 2px;
 	background-color:#FBFDFC;
-	position: fixed; /* 要素の位置を固定する */
-	right: 50%;
-	bottom: 20%;
+	position: fixed; /* 要素の位置を固定する*/
+	right: 10%;
+	bottom: -10%;
 }
-.button {
-	position: fixed;
-	right:50%;
-	bottom: 7%;
+
+/* 閉じたアコーディオンメニューのクリックする部分 */
+.q-title {
+	font-weight: bold;
+	background-color: #e9f26a;
+	cursor: pointer;
+	height: 50px;
+}
+
+.q_title_like {
+	/*background-color: #FF0000;*/
+	margin-left: 50px;
+}
+
+.reply_date {
+	font-size: 15px;
+}
+
+/* 気になるボタン */
+.like_btn {
+  color: #000;
+  background-color: #fff100;
+  border-bottom: 5px solid #ccc100;
+}
+
+.like_btn:hover {
+  margin-top: 3px;
+  color: #000;
+  background: #fff20a;
+  border-bottom: 2px solid #ccc100;
+}
+
+/* 回答の欄 */
+.reply_form {
+	width: 450px;
+	height: 100px;
+}
+.send_btn{
+	margin-top: -10px;
+}
+
+/* -----------投稿フォーム-------------- */
+/* 開くボタン */
+.p_form_btn {
+	width: 17%;
+	float: right;
+}
+
+.p_btn {
+  color: #000;
+  background-color: #ffa500;
+  border-bottom: 5px solid #8b4513;
+}
+
+.p_btn:hover {
+  margin-top: 3px;
+  color: #000;
+  background: #ffd700;
+  border-bottom: 2px solid #8b4513;
+}
+
+.send_btn {
+  color: #000;
+  background-color: #ffa500;
+  border-bottom: 5px solid #8b4513;
+  margin-top: 10px;
+  margin-left: 350px;
+}
+
+.send_btn:hover {
+  margin-top: 3px;
+  color: #000;
+  background: #ffd700;
+  border-bottom: 2px solid #8b4513;
+}
+
+
+.p_close_btn {
+  color: #000;
+  background-color: #0000ff;
+  border-bottom: 5px solid #00008b;
+}
+
+.p_close_btn:hover {
+  margin-top: 3px;
+  color: #000;
+  background: #1e90ff;
+  border-bottom: 2px solid #00008b;
+}
+
+.p_btn ,
+.p_close_btn ,
+.send_btn {
+	font-weight: bold;
+	width: 100px;
+	height: 50px;
+}
+
+/* 質問内容の欄 */
+.p_form_q {
+	width: 750px;
+	height: 400px;
 }
