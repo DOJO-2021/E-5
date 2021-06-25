@@ -63,7 +63,7 @@
 		        <td>${b.question}</td>
 		        </tr>
 		        <tr>
-				<td class="reply">${b.reply_date}</td>
+
 				</tr>
 			</c:forEach>
 		    </table>

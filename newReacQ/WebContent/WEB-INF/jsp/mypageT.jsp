@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>ReacQ|mypage</title>
+<link rel="shortcut icon" href="images/favicon.ico">
 <link rel="stylesheet" href="/newReacQ/css/mypage.css">
 <link rel="stylesheet" href="/newReacQ/css/common.css">
 </head>
