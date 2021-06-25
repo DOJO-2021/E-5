@@ -19,7 +19,7 @@
 	<!-- リアクション -->
 
 	<div class="box01">
-		<p>リアクション</p>
+		<h2>リアクション</h2>
 		<form method="POST" action="/newReacQ/MenuReactionServlet">
 			<!-- リアクショングラフ -->
 			<table class="table">
@@ -39,9 +39,9 @@
 
 			<!-- 掲示板 -->
 
-	<div class="box02">
-		<p>掲示板<a href="/newReacQ/BoardServlet">全部見る</a></p>
-		<p>最新の投稿</p>
+		<div class="box02">
+		<h2>最新の投稿</h2>
+		<p><a href="/newReacQ/BoardServlet">　　　　　　　　　　　　全部の投稿を見る</a><p>
 
 		<form method="GET" action="/newReacQ/MenuBoardServlet">
 			<!-- 最新の投稿テーブル -->

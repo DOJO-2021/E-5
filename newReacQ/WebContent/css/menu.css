@@ -32,16 +32,22 @@ body{
   position:absolute;
   left:840px;
   bottom: 0;
-}button {
+}
+
+button {
   padding: 0;
   border: none;
   background: transparent;
 }
+
 button img {
-  display: block;
+  display: inline-block;
   margin:30px 3px;
   cursor: pointer;
+   max-width:100%;
+	height:auto;
 }
+
 .update_button {
   display: inline-block;
   padding: 0.5em 1em;
@@ -76,4 +82,32 @@ input[type="text"] {
     height: 250px;
     overflow: hidden;
     margin:20px;
+}
+
+h2 {
+	position: relative;
+	padding: 0 .5em .5em 2em;
+	color:#296337
+}
+
+h2::before,
+h2::after {
+	position: absolute;
+	content: '';
+	border-radius: 100%
+}
+h2::before {
+	top: .2em;
+	left: .2em;
+	width: 18px;
+	height: 18px;
+	background-color: rgba(255,90,95,.5);
+	z-index: 2;
+}
+h2::after {
+	top: .7em;
+	left: .7em;
+	width: 13px;
+	height: 13px;
+	background-color: rgba(255,90,95,.2);
 }
