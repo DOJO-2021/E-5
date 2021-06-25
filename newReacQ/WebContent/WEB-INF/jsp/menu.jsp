@@ -44,18 +44,12 @@
 			<!-- 掲示板 -->
 
 		<div class="box02">
-<<<<<<< HEAD
 		<h2>最新の投稿<a href="/newReacQ/BoardServlet"><span class="mgl-130">全部の投稿を見る</span></a></h2>
-=======
-		<h2>最新の投稿</h2>
-		<p><a href="/newReacQ/BoardServlet">全部の投稿を見る</a><br>
->>>>>>> 01bd15fbe959540979aa17e1ca8d6e010d61edc5
 		<form method="GET" action="/newReacQ/MenuBoardServlet">
 			<!-- 最新の投稿テーブル -->
 			<!-- 固定コンテンツ -->
 		    <table >
  			<c:forEach var="b" items="${newlist}" >
-<<<<<<< HEAD
 		        <tr>
 		        	<th>質問内容</th>
 		        	<td>${b.question}</td>
@@ -63,16 +57,13 @@
 		        <tr>
 		        	<td class = "reply_date">${b.reply_date}</td>
 		        </tr>
-=======
  				<tr>
  				<th>質問内容</th>
 		        <td>${b.question}</td>
 		        </tr>
 		        <tr>
 				<td class="reply">${b.reply_date}</td>
-				<td><button type ="submit" name="SUBMIT" value="削除"><img src="/newReacQ/images/gomi.png"width="20px" height="20px"></button></td>
 				</tr>
->>>>>>> 01bd15fbe959540979aa17e1ca8d6e010d61edc5
 			</c:forEach>
 		    </table>
 		</form>
@@ -82,7 +73,6 @@
 		<form method="GET" action="/newReacQ/MenuBoardServlet">
 		    <!-- 自分の投稿テーブル -->
 		    <table>
-<<<<<<< HEAD
 		    	<c:forEach var="b" items="${mynewlist}" >
 		        <tr>
 		        	<th>質問内容</th>
@@ -91,17 +81,6 @@
 		        <tr>
 		        	<td class = "reply_date">${b.reply_date}</td>
 		        </tr>
-=======
-		    <c:forEach var="b" items="${mynewlist}" >
-		    	<tr>
- 				<th>質問内容</th>
-		        <td>${b.question}</td>
-		        </tr>
-		        <tr>
-				<td class="reply">${b.reply_date}</td>
-				<td><button type ="submit" name="SUBMIT" value="削除"><img src="/newReacQ/images/gomi.png"width="20px" height="20px"></button></td>
-				</tr>
->>>>>>> 01bd15fbe959540979aa17e1ca8d6e010d61edc5
 		        </c:forEach>
 		    </table>
 		</form>

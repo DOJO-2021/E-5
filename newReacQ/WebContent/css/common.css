@@ -57,14 +57,6 @@ a:hover {
   color: orange;
 }
 
-<<<<<<< HEAD
-
-p{
-=======
-/*p{
->>>>>>> 01bd15fbe959540979aa17e1ca8d6e010d61edc5
-	font-size: 20px;
-}*/
 
 .logo {
   margin-left: 20px;
@@ -106,7 +98,7 @@ ul li.current a{
 background-color: #FFF2CC;
 }
 
-.herf{
+.href{
 	font-size:20px;
 
 }

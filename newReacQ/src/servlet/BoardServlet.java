@@ -60,7 +60,7 @@ public class BoardServlet extends HttpServlet {
 			response.sendRedirect("/newReacQ/LoginServlet");
 			return;
 		}
-		String pos = (String)session.getAttribute("posotion");
+		String pos = (String)session.getAttribute("position");
 		if (pos.equals("1")) {
 			// 検索ワードを取得する
 			// リクエストパラメータを取得する

@@ -35,40 +35,31 @@ body{
 
 .box03{
   /*width: 550px;*/
-  width: 465px;
+  width: 35%;
   height: 250px;
   margin: 20px;
   padding: 15px;
   border: solid 1px #ddff00;
   background:#FBFDFC;
-<<<<<<< HEAD
   position:relative;
   left:372px;
   bottom: 322px;
 }
 
 button {
-=======
-  left:303px;
-  position:relative;
-  bottom:322px;
-}button {
->>>>>>> 01bd15fbe959540979aa17e1ca8d6e010d61edc5
   padding: 0;
   border: none;
   background: transparent;
 }
+
 button img {
-  display: block;
+  display: inline-block;
   margin:30px 3px;
   cursor: pointer;
-<<<<<<< HEAD
   max-width:140px;
   min-width:77px;
   width: 100%;
   height:auto;
-=======
->>>>>>> 01bd15fbe959540979aa17e1ca8d6e010d61edc5
 }
 .update_button {
   display: inline-block;
@@ -114,7 +105,6 @@ input[type="text"] {
   height:220px;
   width:95%;
 }
-<<<<<<< HEAD
 
 h2 {
 	position: relative;
@@ -155,23 +145,10 @@ th{
 }
 
 .mgl-130{
-	margin-left : 300px;
+	margin-left : 220px;
 	font-size:15px;
 	position: relative;
 	padding: 0.3em;
-}
-
-.mgl-130:after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 7px;
-  background: repeating-linear-gradient(-45deg, orange, orange 2px, white 2px, white 4px);
-=======
-.reply{
-	font-size:11px;
-	color:#808080;
->>>>>>> 01bd15fbe959540979aa17e1ca8d6e010d61edc5
+	color:#296337;
+	text-decoration: none;
 }
