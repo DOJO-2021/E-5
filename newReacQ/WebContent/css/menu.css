@@ -21,6 +21,18 @@ body{
   background:#FBFDFC;
   overflow-y: scroll;
 }
+
+.box02T{
+	  /*width: 650px;*/
+  width: 40%;
+  height: 600px;
+  margin: 20px;
+  padding: 15px;
+  border: solid 1px #ddff00;
+  background:#FBFDFC;
+  overflow-y: scroll;
+}
+
 .box03{
   /*width: 550px;*/
   width: 40%;
@@ -29,9 +41,9 @@ body{
   padding: 15px;
   border: solid 1px #ddff00;
   background:#FBFDFC;
-  position:absolute;
-  left:840px;
-  bottom: 0;
+  position:relative;
+  left:372px;
+  bottom: 322px;
 }
 
 button {
@@ -44,8 +56,10 @@ button img {
   display: inline-block;
   margin:30px 3px;
   cursor: pointer;
-   width:40%;
-	height:auto;
+  max-width:140px;
+  min-width:77px;
+  width: 100%;
+  height:auto;
 }
 
 .update_button {
@@ -82,6 +96,15 @@ input[type="text"] {
     height: 250px;
     overflow: hidden;
     margin:20px;
+    max-width:680px;
+    min-width:360px;
+}
+
+#graph-area{
+  max-width:650px;
+  min-width:330px;
+  height:220px;
+  width:95%;
 }
 
 h2 {
@@ -110,4 +133,31 @@ h2::after {
 	width: 13px;
 	height: 13px;
 	background-color: rgba(255,90,95,.2);
+}
+
+.reply_date{
+	font-size:11px;
+	color:#296337
+
+}
+
+th{
+	color:#296337
+}
+
+.mgl-130{
+	margin-left : 300px;
+	font-size:15px;
+	position: relative;
+	padding: 0.3em;
+}
+
+.mgl-130:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 7px;
+  background: repeating-linear-gradient(-45deg, orange, orange 2px, white 2px, white 4px);
 }

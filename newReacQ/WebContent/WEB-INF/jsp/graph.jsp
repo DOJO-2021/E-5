@@ -1,7 +1,7 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 	<div class="canvas-container">
-		<canvas id="graph-area" height="250" width="500" ></canvas>
+		<canvas id="graph-area"></canvas>
 			<script type="text/javascript">
 				   // ▼グラフの中身
 				   var barChartData = {
@@ -21,11 +21,5 @@
 				      var ctx = document.getElementById("graph-area").getContext("2d");
 				      window.myBar = new Chart(ctx).Bar(barChartData);
 				   }
-				$(function () {
-				    var container = $('.canvas-container');
-				    var ctx= $('#graph-area');
-				    ctx.attr('width', container.width());
-				    ctx.attr('height', 300);
-				});
 			</script>
 	</div>

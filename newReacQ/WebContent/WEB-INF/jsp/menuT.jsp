@@ -36,25 +36,21 @@
 		</form>
 	</div>
 
-
 			<!-- 掲示板 -->
 
-		<div class="box02">
-		<h2>最新の投稿</h2>
-		<p><a href="/newReacQ/BoardServlet">　　　　　　　　　　　　全部の投稿を見る</a><p>
-
+		<div class="box02T">
+		<h2>最新の投稿<a href="/newReacQ/BoardServlet"><span class="mgl-130">全部の投稿を見る</span></a></h2>
 		<form method="GET" action="/newReacQ/MenuBoardServlet">
 			<!-- 最新の投稿テーブル -->
 		    <div id ="table">
 		    <table>
  			<c:forEach var="b" items="${newlist}" >
 		        <tr>
-		        	<th>回答日時</th>
-		        	<td>${b.reply_date}</td>
-		        </tr>
-		        <tr>
 		        	<th>質問内容</th>
 		        	<td>${b.question}</td>
+		        </tr>
+		        <tr>
+		        	<td class = "reply_date">${b.reply_date}</td>
 		        </tr>
 			</c:forEach>
 		    </table>

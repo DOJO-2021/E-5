@@ -2,7 +2,8 @@
 #head{
   width: 100%;
   text-align:center;
-    margin:0 auto;
+  margin:0 auto;
+  height:100px
 }
 
 #main {
@@ -10,6 +11,7 @@
   justify-content:center;
   flex-wrap: wrap;
   margin:20px 0px;
+  height:680px;
 }
 
 #foot{
@@ -43,6 +45,7 @@ a {
 a:hover {
   color: orange;
 }
+
 
 p{
 	font-size: 20px;
