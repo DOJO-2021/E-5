@@ -13,7 +13,7 @@ body{
 }
 .box02{
   /*width: 550px;*/
-  width: 40%;
+  width: 35%;
   height: 300px;
   margin: 20px;
   padding: 15px;
@@ -23,15 +23,15 @@ body{
 }
 .box03{
   /*width: 550px;*/
-  width: 40%;
+  width: 465px;
   height: 250px;
   margin: 20px;
   padding: 15px;
   border: solid 1px #ddff00;
   background:#FBFDFC;
-  position:absolute;
-  left:840px;
-  bottom: 0;
+  left:303px;
+  position:relative;
+  bottom:322px;
 }button {
   padding: 0;
   border: none;
