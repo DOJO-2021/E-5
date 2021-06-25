@@ -10,9 +10,13 @@
 <link rel="stylesheet" href="/newReacQ/css/common.css">
 </head>
 <body>
+<header>
 <jsp:include page="header.jsp" flush="true" />
+</header>
+<section>
+<div id="main">
 	<!-- リアクション集計の表示 -->
-	<div class="contentsR">
+	<div class="box04">
 	<h2>リアクション履歴</h2>
 	<!-- デートピッカー-->
 	<form method="POST" action="/newReacQ/MyReactionServlet">
@@ -23,7 +27,7 @@
 			</tr>
 		</table>
 	</form>
-	<!-- リアクショングラフ-->
+	<!-- リアクション数-->
 	<table class="size">
 		<tr>
 		<td>${myrea3}</td><td>${myrea2}</td><td>${myrea1}</td><td>${myrea0}</td>
@@ -41,10 +45,10 @@
 		<td><p>　分からない</p></td>
 		</tr>
 	</table>
-	</div>
+
 
 	<!-- 掲示板履歴の表示-->
-	<div class="contentsB">
+    <div class="contentView">
 	<h2>掲示板履歴</h2>
 	<!-- デートピッカー-->
 	<form method="POST" action="/newReacQ/MyBoardServlet">
@@ -52,6 +56,7 @@
 			<tr>
 			<td>日付</td><td><input type="date" name="REPLY_DATE_B" id="date_b" value="${date_b}">
 			<input type="submit" name="SUBMIT" value="履歴更新" onclick="send_b()" class="button"><br></td>
+
 			</tr>
 		</table>
 	</form>
@@ -62,18 +67,22 @@
 		<table class="table">
 			<tr>
 			<input type="hidden" name="CODE" value="${b.question_code}">
-			<th>質問内容</th><td>${b.question}</td>
+			<th>質問内容</th>
+			<td>${b.question}</td>
 			</tr>
+			<hr>
 			<tr>
-			<td>${b.reply_date}<input type ="submit" name="SUBMIT" value="削除"></td>
+			<td class="reply">${b.reply_date}</td>
+			<td><button type ="submit" name="SUBMIT" value="削除"><img src="/newReacQ/images/gomi.png"width="20px" height="20px"></button></td>
 			</tr>
 		</table>
 	</form>
 	</c:forEach>
 	</div>
+	</div>
 
 	<!-- アカウント管理-->
-	<div class="contentsA">
+	<div class="box05">
 		<div class="conA">
 		<h2>アカウント管理</h2>
 		<c:forEach var="u" items="${userList}">
@@ -112,8 +121,13 @@
 		</c:forEach>
 		</div>
 	</div>
+  </div><!--  main div -->
+  </section>
 
-<jsp:include page="footer.jsp" flush="true" />
+  <footer>
+  <jsp:include page="footer.jsp" flush="true" />
+  </footer>
+
 
 <script type='text/javascript' src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src='js/today.js' type='text/javascript'></script>
