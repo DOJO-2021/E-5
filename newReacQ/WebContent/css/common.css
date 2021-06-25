@@ -20,51 +20,66 @@
   color: #FBFDFC;
 }
 
-nav ul {
+
+.empty:hover {
+	background-color:#B8DA92
+}
+
+
+/*nav ul {
   display: flex;
   align-items: center;
 }
 nav ul li{
-  padding: 5px 70px;
-}
+  display: block;
+  padding: 5px 50px;
+}*/
 
 
-ul {
+/*ul {
+  display: flex;
   padding: 0;
   margin: 0;
   list-style: none;
 }
-a {
+/*a {
+  display: block;
+  width: 100%;
+  height: 100%;
   color: #000;
   text-decoration: none;
   font-size:20px;
-}
+}*/
 
 a:hover {
   color: orange;
 }
 
-p{
+/*p{
 	font-size: 20px;
-}
+}*/
 
 .logo {
-  margin: 0 auto;
+  margin-left: 20px;
   padding: 10px 20px;
   display: inline-block;
+  text-decoration: none;
+  font-weight: bold;
+  color: #555;
 }
 
 ul{
 display: table;
 margin: 0 auto;
-padding: 0;
-width: 80%;
+width: 40%;
 text-align: center;
 }
 ul li{
+width: 100px;
 display: table-cell;
-min-width: 50px;
+min-width: 150px;
 }
+
 ul li a{
 display: block;
 width: 100%;
@@ -72,14 +87,15 @@ padding: 10px 0;
 text-decoration: none;
 color: #555;
 font-weight: bold;
+font-size: 20px;
 }
 ul li.current{
 background-color: #DEEBF7;
 }
 ul li.current a{
-color: #555;
+  color: #555;
 }
-ul li:hover{
+ ul li:hover{
 background-color: #FFF2CC;
 }
 
@@ -88,3 +104,6 @@ background-color: #FFF2CC;
 
 }
 
+.nav1 {
+	margin-top: -50px;
+}
