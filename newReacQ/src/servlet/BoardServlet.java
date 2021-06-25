@@ -28,14 +28,27 @@ public class BoardServlet extends HttpServlet {
 			response.sendRedirect("/newReacQ/LoginServlet");
 			return;
 		}
-		BoardDao bDao = new BoardDao();
-		List<BoardAll> Alllist = bDao.boardJoin(new BoardAll(0, "", 0, 0, "", "", "", "", 0));
+		String pos = (String)session.getAttribute("position");
+		if (pos.equals("1")) {
+			BoardDao bDao = new BoardDao();
+			List<BoardAll> Alllist = bDao.boardJoin(new BoardAll(0, "", 0, 0, "", "", "", "", 0, ""));
 
-		// 検索結果をリクエストスコープに格納する
-		request.setAttribute("Alllist", Alllist);
-		// 掲示板ページにフォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/board.jsp");
-		dispatcher.forward(request, response);
+			// 検索結果をリクエストスコープに格納する
+			request.setAttribute("Alllist", Alllist);
+			// 掲示板ページにフォワードする
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/board.jsp");
+			dispatcher.forward(request, response);
+		}
+		else if (pos.equals("0")) {
+			BoardDao bDao = new BoardDao();
+			List<BoardAll> Alllist = bDao.boardJoin(new BoardAll(0, "", 0, 0, "", "", "", "", 0, ""));
+
+			// 検索結果をリクエストスコープに格納する
+			request.setAttribute("Alllist", Alllist);
+			// 掲示板ページにフォワードする
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/boardT.jsp");
+			dispatcher.forward(request, response);
+		}
 	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -47,60 +60,120 @@ public class BoardServlet extends HttpServlet {
 			response.sendRedirect("/newReacQ/LoginServlet");
 			return;
 		}
-		// 検索ワードを取得する
-		// リクエストパラメータを取得する
-		request.setCharacterEncoding("UTF-8");
-		String question =request.getParameter("QUESTION");
-		String email = (String)session.getAttribute("email");
+		String pos = (String)session.getAttribute("posotion");
+		if (pos.equals("1")) {
+			// 検索ワードを取得する
+			// リクエストパラメータを取得する
+			request.setCharacterEncoding("UTF-8");
+			String question =request.getParameter("QUESTION");
+			String email = (String)session.getAttribute("email");
 
-		BoardDao bDao = new BoardDao();
-		if (question == "") {
-			if (request.getParameter("qsort").equals("すべて")) {
-				List<BoardAll> Alllist = bDao.boardJoin(new BoardAll(0, "", 0, 0, "", "", "", "", 0));
+			BoardDao bDao = new BoardDao();
+			if (question == "") {
+				if (request.getParameter("qsort").equals("すべて")) {
+					List<BoardAll> Alllist = bDao.boardJoin(new BoardAll(0, "", 0, 0, "", "", "", "", 0, ""));
 
-				// 検索結果をリクエストスコープに格納する
-				request.setAttribute("Alllist", Alllist);
-				// 掲示板ページにフォワードする
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/board.jsp");
-				dispatcher.forward(request, response);
+					// 検索結果をリクエストスコープに格納する
+					request.setAttribute("Alllist", Alllist);
+					// 掲示板ページにフォワードする
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/board.jsp");
+					dispatcher.forward(request, response);
+				}
+				else if (request.getParameter("qsort").equals("回答受付中")) {
+					List<BoardAll> Alllist = bDao.Allselect(new BoardAll(0, "", 0, 0, "", "", "", "", 0, ""));
+
+					// 検索結果をリクエストスコープに格納する
+					request.setAttribute("Alllist", Alllist);
+					// 掲示板ページにフォワードする
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/board.jsp");
+					dispatcher.forward(request, response);
+				}
+				else if (request.getParameter("qsort").equals("解決済み")) {
+					List<BoardAll> Alllist = bDao.Allselect(new BoardAll(0, "", 1, 0, "", "", "", "", 0, ""));
+
+					// 検索結果をリクエストスコープに格納する
+					request.setAttribute("Alllist", Alllist);
+					// 掲示板ページにフォワードする
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/board.jsp");
+					dispatcher.forward(request, response);
+				}
+				else if (request.getParameter("qsort").equals("気になる")) {
+					List<BoardAll> Alllist = bDao.LikeAllselect(email);
+
+					// 検索結果をリクエストスコープに格納する
+					request.setAttribute("Alllist", Alllist);
+					// 掲示板ページにフォワードする
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/board.jsp");
+					dispatcher.forward(request, response);
+				}
 			}
-			else if (request.getParameter("qsort").equals("回答受付中")) {
-				List<BoardAll> Alllist = bDao.Allselect(new BoardAll(0, "", 0, 0, "", "", "", "", 0));
+			else {
+				//検索処理を行う
+				List<BoardAll> Alllist = bDao.select(new BoardAll(0, "", 0, 0, question, "", "", "", 0, ""));
 
 				// 検索結果をリクエストスコープに格納する
-				request.setAttribute("Alllist", Alllist);
-				// 掲示板ページにフォワードする
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/board.jsp");
-				dispatcher.forward(request, response);
-			}
-			else if (request.getParameter("qsort").equals("解決済み")) {
-				List<BoardAll> Alllist = bDao.Allselect(new BoardAll(0, "", 1, 0, "", "", "", "", 0));
-
-				// 検索結果をリクエストスコープに格納する
-				request.setAttribute("Alllist", Alllist);
-				// 掲示板ページにフォワードする
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/board.jsp");
-				dispatcher.forward(request, response);
-			}
-			else if (request.getParameter("qsort").equals("気になる")) {
-				List<BoardAll> Alllist = bDao.LikeAllselect(email);
-
-				// 検索結果をリクエストスコープに格納する
-				request.setAttribute("Alllist", Alllist);
-				// 掲示板ページにフォワードする
+				 request.setAttribute("Alllist", Alllist);
+				// 結果ページにフォワードする
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/board.jsp");
 				dispatcher.forward(request, response);
 			}
 		}
-		else {
-			//検索処理を行う
-			List<BoardAll> Alllist = bDao.select(new BoardAll(0, "", 0, 0, question, "", "", "", 0));
+		else if (pos.equals("0")) {
+			// 検索ワードを取得する
+			// リクエストパラメータを取得する
+			request.setCharacterEncoding("UTF-8");
+			String question =request.getParameter("QUESTION");
+			String email = (String)session.getAttribute("email");
 
-			// 検索結果をリクエストスコープに格納する
-			 request.setAttribute("Alllist", Alllist);
-			// 結果ページにフォワードする
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/board.jsp");
-			dispatcher.forward(request, response);
+			BoardDao bDao = new BoardDao();
+			if (question == "") {
+				if (request.getParameter("qsort").equals("すべて")) {
+					List<BoardAll> Alllist = bDao.boardJoin(new BoardAll(0, "", 0, 0, "", "", "", "", 0, ""));
+
+					// 検索結果をリクエストスコープに格納する
+					request.setAttribute("Alllist", Alllist);
+					// 掲示板ページにフォワードする
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/boardT.jsp");
+					dispatcher.forward(request, response);
+				}
+				else if (request.getParameter("qsort").equals("回答受付中")) {
+					List<BoardAll> Alllist = bDao.Allselect(new BoardAll(0, "", 0, 0, "", "", "", "", 0, ""));
+
+					// 検索結果をリクエストスコープに格納する
+					request.setAttribute("Alllist", Alllist);
+					// 掲示板ページにフォワードする
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/boardT.jsp");
+					dispatcher.forward(request, response);
+				}
+				else if (request.getParameter("qsort").equals("解決済み")) {
+					List<BoardAll> Alllist = bDao.Allselect(new BoardAll(0, "", 1, 0, "", "", "", "", 0, ""));
+
+					// 検索結果をリクエストスコープに格納する
+					request.setAttribute("Alllist", Alllist);
+					// 掲示板ページにフォワードする
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/boardT.jsp");
+					dispatcher.forward(request, response);
+				}
+				else if (request.getParameter("qsort").equals("気になる")) {
+					List<BoardAll> Alllist = bDao.LikeAllselect(email);
+
+					// 検索結果をリクエストスコープに格納する
+					request.setAttribute("Alllist", Alllist);
+					// 掲示板ページにフォワードする
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/boardT.jsp");
+					dispatcher.forward(request, response);
+				}
+			}
+			else {
+				//検索処理を行う
+				List<BoardAll> Alllist = bDao.select(new BoardAll(0, "", 0, 0, question, "", "", "", 0, ""));
+
+				// 検索結果をリクエストスコープに格納する
+				 request.setAttribute("Alllist", Alllist);
+				// 結果ページにフォワードする
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/boardT.jsp");
+				dispatcher.forward(request, response);
+			}
 		}
 	}
 }
