@@ -24,7 +24,7 @@ public class BoardDao {
 			Class.forName("org.h2.Driver");
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
 
-			String sql = "select b.id as bid, b.email as bemail, b.reply_status as brep, b.question_code as bqc, b.question as bq, b.reply_date as brd, br.question_reply as brq, br.reply_date as brrd, count(l.id) as count from (board as b left join board_reply as br on b.question_code = br.q_reply_code) left join likes as l on br.q_reply_code = l.question_code where b.question like ? group by bid, l.question_code order by count desc";
+			String sql = "select b.id as bid, b.email as bemail, b.reply_status as brep, b.question_code as bqc, b.question as bq, b.reply_date as brd, br.question_reply as brq, br.reply_date as brrd, count(l.id) as count, u.name as name from ((board as b left join board_reply as br on b.question_code = br.q_reply_code) left join likes as l on br.q_reply_code = l.question_code) LEFT JOIN user_data as u ON b.email = u.email where b.question like ? group by bid, l.question_code order by count desc, brd desc";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			if (param.getQuestion() != null) {
@@ -48,7 +48,8 @@ public class BoardDao {
 						rs.getString("brd"),
 						rs.getString("brq"),
 						rs.getString("brrd"),
-						rs.getInt("count")
+						rs.getInt("count"),
+						rs.getString("name")
 			);
 			Alllist.add(b);
 			}
@@ -88,7 +89,7 @@ public class BoardDao {
 			Class.forName("org.h2.Driver");
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
 
-			String sql = "SELECT b.id as bid, b.email as bemail, b.reply_status as bstatus, b.question_code as bcode, b.question as bq, b.reply_date as bdate, count(l.id) as count, br.question_reply as brq, br.reply_date as brdate FROM (board as b LEFT JOIN likes as l ON b.question_code = l.question_code) LEFT JOIN board_reply as br ON br.q_reply_code = l.question_code GROUP BY b.id, l.question_code ORDER BY count desc";
+			String sql = "SELECT b.id as bid, b.email as bemail, b.reply_status as bstatus, b.question_code as bcode, b.question as bq, b.reply_date as bdate, count(l.id) as count, br.question_reply as brq, br.reply_date as brdate, u.name as name FROM ((board as b LEFT JOIN likes as l ON b.question_code = l.question_code) LEFT JOIN board_reply as br ON br.q_reply_code = l.question_code) LEFT JOIN user_data as u ON b.email = u.email GROUP BY b.id, l.question_code ORDER BY count desc";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を実行し、結果表を取得する
@@ -103,7 +104,8 @@ public class BoardDao {
 						rs.getString("bdate"),
 						rs.getString("brq"),
 						rs.getString("brdate"),
-						rs.getInt("count")
+						rs.getInt("count"),
+						rs.getString("name")
 			);
 			resultlist.add(b);
 			}
@@ -143,7 +145,7 @@ public class BoardDao {
 			Class.forName("org.h2.Driver");
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
 
-			String sql = "SELECT b.id as bid, b.email as bemail, b.reply_status as bstatus, b.question_code as bcode, b.question as bq, b.reply_date as bdate, count(l.id) as count, br.question_reply as brq, br.reply_date as brdate FROM (board as b LEFT JOIN likes as l ON b.question_code = l.question_code) LEFT JOIN board_reply as br ON br.q_reply_code = l.question_code WHERE b.reply_status = ? GROUP BY b.id, l.question_code ORDER BY count desc";
+			String sql = "SELECT b.id as bid, b.email as bemail, b.reply_status as bstatus, b.question_code as bcode, b.question as bq, b.reply_date as bdate, count(l.id) as count, br.question_reply as brq, br.reply_date as brdate, u.name as name FROM ((board as b LEFT JOIN likes as l ON b.question_code = l.question_code) LEFT JOIN board_reply as br ON br.q_reply_code = l.question_code) LEFT JOIN user_data as u ON b.email = u.email WHERE b.reply_status = ? GROUP BY b.id, l.question_code ORDER BY count desc";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			pStmt.setInt(1, param.getReply_status());
@@ -160,7 +162,8 @@ public class BoardDao {
 						rs.getString("brd"),
 						rs.getString("brq"),
 						rs.getString("brrd"),
-						rs.getInt("count")
+						rs.getInt("count"),
+						rs.getString("name")
 			);
 			resultlist.add(b);
 			}
@@ -200,7 +203,7 @@ public class BoardDao {
 			Class.forName("org.h2.Driver");
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
 
-			String sql = "SELECT b.id as bid, b.email as bemail, b.reply_status as bstatus, b.question_code as bcode, b.question as bq, b.reply_date as bdate, count(l.id) as count, br.question_reply as brq, br.reply_date as brdate FROM (board as b LEFT JOIN likes as l ON b.question_code = l.question_code) LEFT JOIN board_reply as br ON br.q_reply_code = l.question_code WHERE l.email = ? GROUP BY b.id, l.question_code ORDER BY count desc";
+			String sql = "SELECT b.id as bid, b.email as bemail, b.reply_status as bstatus, b.question_code as bcode, b.question as bq, b.reply_date as bdate, count(l.id) as count, br.question_reply as brq, br.reply_date as brdate, u.name as name FROM ((board as b LEFT JOIN likes as l ON b.question_code = l.question_code) LEFT JOIN board_reply as br ON br.q_reply_code = l.question_code) LEFT JOIN user_data as u ON b.email = u.email WHERE l.email = ? GROUP BY b.id, l.question_code ORDER BY count desc";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			pStmt.setString(1, email);
@@ -217,7 +220,8 @@ public class BoardDao {
 						rs.getString("brd"),
 						rs.getString("brq"),
 						rs.getString("brrd"),
-						rs.getInt("count")
+						rs.getInt("count"),
+						rs.getString("name")
 			);
 			resultlist.add(b);
 			}

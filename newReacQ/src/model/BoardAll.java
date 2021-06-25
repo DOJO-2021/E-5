@@ -11,9 +11,10 @@ public class BoardAll implements Serializable {
 	private String question_reply;
 	private String br_reply_date;
 	private int count;
+	private String name;
 
 	//引数があるコンストラクタ
-	public BoardAll(int id, String email, int reply_status, int question_code, String question, String reply_date, String question_reply, String br_reply_date, int count) {
+	public BoardAll(int id, String email, int reply_status, int question_code, String question, String reply_date, String question_reply, String br_reply_date, int count, String name) {
 		super();
 		this.id = id;
 		this.email = email;
@@ -24,6 +25,7 @@ public class BoardAll implements Serializable {
 		this.question_reply = question_reply;
 		this.br_reply_date = br_reply_date;
 		this.count = count;
+		this.name = name;
 	}
 
 	//引数があるコンストラクタ
@@ -38,6 +40,7 @@ public class BoardAll implements Serializable {
 		this.question_reply = "";
 		this.br_reply_date = "";
 		this.count = 0;
+		this.name = "";
 	}
 
 	public int getId() {
@@ -110,6 +113,14 @@ public class BoardAll implements Serializable {
 
 	public void setCount(int count) {
 		this.count = count;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }
