@@ -21,7 +21,7 @@
   <input type="radio" name="qsort" value="気になる">「気になる」した質問
   <input type ="text" name="QUESTION" placeholder="フリーワード"><input type ="submit" name="" value="検索">
   </form>
-  
+
   <div class="wrapper">
   <!-- 投稿された質問の折りたたみメニュー -->
   <section class="">
@@ -30,7 +30,7 @@
   <div class="accordion">
       <p class="q-title"><span class="question">▼ ${b.question}</span> <span class="q_title_like">☆気になる:${b.count}</span></p>
       <div class="content">
-     	  <h3>〇質問内容 <input type ="submit" name="SUBMIT" class="like_btn" value="気になる: ${b.count}"></h3>
+     	  <h3>〇質問内容 <input type ="submit" name="SUBMIT" class="like_btn" value="気になる">: ${b.count}</h3>
      	  <input type="hidden" name="QUESTION_CODE" value="${b.question_code}">
   		  <p style="white-space:pre-wrap;">${b.question}</p>
   		  <p class="reply_date">${b.reply_date}</p>
@@ -43,7 +43,7 @@
   </form>
   </c:forEach>
   </section>
-  
+
   <!-- 折りたたみメニューここまで -->
 </div>
 
@@ -53,7 +53,7 @@
   		<input type ="image" src="/newReacQ/images/河童投稿ホバー前.jpg" onmouseover="this.src='/newReacQ/images/河童投稿.jpg'" onmouseout="this.src='/newReacQ/images/河童投稿ホバー前.jpg'" alt="投稿フォーム"  class="p_form_btn" onclick = "showpost()">
   <!-- 投稿フォームのボタン ここまで -->
   </div>
-  
+
 
    <!-- 投稿フォーム -->
   <form action="/newReacQ/BoardPostServlet" method="POST">
@@ -73,13 +73,13 @@
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="js/board.js"></script>
-<script>  
-let data = document.getElementsByClassName("question"); 
-//console.log(data); 
-for(let i=0; i < data.length; i++){  
-	let short_str = data[i].textContent.substr(0,30);  
-	data[i].textContent = short_str + "..."; 
-	}  
+<script>
+let data = document.getElementsByClassName("question");
+//console.log(data);
+for(let i=0; i < data.length; i++){
+	let short_str = data[i].textContent.substr(0,30);
+	data[i].textContent = short_str + "...";
+	}
 </script>
 </body>
 </html>

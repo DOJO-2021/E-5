@@ -47,7 +47,6 @@ public class BoardReplyServlet extends HttpServlet {
 			response.sendRedirect("/newReacQ/LoginServlet");
 			return;
 		}
-
 		String email = (String)session.getAttribute("email");
 		request.setCharacterEncoding("UTF-8");
 		int question_code = Integer.parseInt(request.getParameter("QUESTION_CODE"));

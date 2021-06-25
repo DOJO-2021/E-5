@@ -28,7 +28,6 @@ public class BoardServlet extends HttpServlet {
 			response.sendRedirect("/newReacQ/LoginServlet");
 			return;
 		}
-
 		BoardDao bDao = new BoardDao();
 		List<BoardAll> Alllist = bDao.boardJoin(new BoardAll(0, "", 0, 0, "", "", "", "", 0));
 
@@ -55,7 +54,6 @@ public class BoardServlet extends HttpServlet {
 		String email = (String)session.getAttribute("email");
 
 		BoardDao bDao = new BoardDao();
-
 		if (question == "") {
 			if (request.getParameter("qsort").equals("すべて")) {
 				List<BoardAll> Alllist = bDao.boardJoin(new BoardAll(0, "", 0, 0, "", "", "", "", 0));

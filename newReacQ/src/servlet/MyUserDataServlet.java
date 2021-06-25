@@ -37,7 +37,6 @@ public class MyUserDataServlet extends HttpServlet {
 			response.sendRedirect("/newReacQ/LoginServlet");
 			return;
 		}
-
 		String pos = (String)session.getAttribute("position");
 		//講師か受講者かを判別するpositionを取得
 		if (pos.equals("1")) {

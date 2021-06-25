@@ -83,7 +83,6 @@ public class MyReactionServlet extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");
 			dispatcher.forward(request, response);
 		}
-
 		else if (pos.equals("0")) {
 
 			//リクエストパラメータ(日付)を取得する

@@ -33,9 +33,7 @@ public class MyBoardServlet extends HttpServlet {
 			response.sendRedirect("/nerReacQ/LoginServlet");
 			return;
 		}
-
 		String email = (String)session.getAttribute("email");
-
 		BoardDao bDao = new BoardDao();
 
    		//リクエストパラメータ(日付)を取得する

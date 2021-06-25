@@ -31,7 +31,6 @@ public class BoardPostServlet extends HttpServlet {
 			response.sendRedirect("/newReacQ/LoginServlet");
 			return;
 		}
-
 		String email = (String)session.getAttribute("email");
 
 		// リクエストパラメータを取得する

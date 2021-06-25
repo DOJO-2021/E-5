@@ -34,7 +34,6 @@ public class DeleteServlet extends HttpServlet {
 			response.sendRedirect("/nerReacQ/LoginServlet");
 			return;
 		}
-
 		String email = (String)session.getAttribute("email");
 
 		BoardDao bDao = new BoardDao();
