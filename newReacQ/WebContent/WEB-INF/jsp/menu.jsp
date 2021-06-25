@@ -32,10 +32,10 @@
 						<jsp:include page="/WEB-INF/jsp/graph.jsp" />
 					</tr>
 					<tr>
-						<td><button type="submit" name="mrea" value="説明可"><img src="/newReacQ/images/河童説明可_ホバー前.png" onmouseover="this.src='/newReacQ/images/河童説明可_ホバー後.png'" onmouseout="this.src='/newReacQ/images/河童説明可_ホバー前.png'" width="150px" alt="河童_説明可" ></button></td>
-						<td><button type ="submit" name="mrea" value="分かる"><img src="/newReacQ/images/河童分かる_ホバー前.png" onmouseover="this.src='/newReacQ/images/河童分かる_ホバー後.png'" onmouseout="this.src='/newReacQ/images/河童分かる_ホバー前.png'" width="150px" alt="河童_分かる"></button></td>
-						<td><button type ="submit" name="mrea" value="分かるかも"><img src="/newReacQ/images/河童分かるかも_ホバー前.png" onmouseover="this.src='/newReacQ/images/河童分かるかも_ホバー後.png'" onmouseout="this.src='/newReacQ/images/河童分かるかも_ホバー前.png'" width="150px" alt="河童_分かるかも" ></button></td>
-						<td><button type ="submit" name="mrea" value="分からない"><img src="/newReacQ/images/河童分からない_ホバー前.png" onmouseover="this.src='/newReacQ/images/河童分からない_ホバー後.png'" onmouseout="this.src='/newReacQ/images/河童分からない_ホバー前.png'" width="150px" alt="河童_分からない" ></button></td>
+						<td><button type="submit" name="mrea" value="説明可"><img src="/newReacQ/images/河童説明可_ホバー前.png" onmouseover="this.src='/newReacQ/images/河童説明可_ホバー後.png'" onmouseout="this.src='/newReacQ/images/河童説明可_ホバー前.png'"  alt="河童_説明可" ></button></td>
+						<td><button type ="submit" name="mrea" value="分かる"><img src="/newReacQ/images/河童分かる_ホバー前.png" onmouseover="this.src='/newReacQ/images/河童分かる_ホバー後.png'" onmouseout="this.src='/newReacQ/images/河童分かる_ホバー前.png'"  alt="河童_分かる"></button></td>
+						<td><button type ="submit" name="mrea" value="分かるかも"><img src="/newReacQ/images/河童分かるかも_ホバー前.png" onmouseover="this.src='/newReacQ/images/河童分かるかも_ホバー後.png'" onmouseout="this.src='/newReacQ/images/河童分かるかも_ホバー前.png'"  alt="河童_分かるかも" ></button></td>
+						<td><button type ="submit" name="mrea" value="分からない"><img src="/newReacQ/images/河童分からない_ホバー前.png" onmouseover="this.src='/newReacQ/images/河童分からない_ホバー後.png'" onmouseout="this.src='/newReacQ/images/河童分からない_ホバー前.png'"  alt="河童_分からない" ></button></td>
 					</tr>
 				</table>
 			</form>

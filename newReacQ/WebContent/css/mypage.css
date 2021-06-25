@@ -1,15 +1,57 @@
 @charset "UTF-8";
 
 body{
-     /*background:#90ee90;*/
+     background:#B8DA92;
 	align-content: stretch;
 }
+
+
+.box04{
+  /*width: 650px;*/
+  width: 40%;
+  height: 600px;
+  margin: 20px;
+  padding: 15px;
+  border: solid 1px #ddff00;
+  background:#FBFDFC
+}
+.box05{
+  /*width: 550px;*/
+  width: 40%;
+  height: 600px;
+  margin: 20px;
+  padding: 15px;
+  border: solid 1px #ddff00;
+  background:#FBFDFC;
+  overflow-y: scroll;
+  background: #FBFDFC url(/newReacQ/images/Q.png) no-repeat center;
+}
+
+
+
+
+
+
+
+.contentView {
+	overflow-y: scroll;
+	color:#296337;
+	/*width: 100%;*/
+	height: 300px;
+	/*margin:80px;*/
+	/*border:solid 2px;*/
+	background-color:#FBFDFC;
+	/*position: fixed;*/ /* 要素の位置を固定する */
+	/*bottom: 0;*/ /* 基準の位置を画面の下に指定する */
+	/*left: 80px;*/ /* 基準の位置を画面の左に指定する */
+}
+
 
 .contentsR{
 	color:#296337;
 	width: 700px;
 	height: 305px;
-	margin:5em;
+	margin:80px;
 	border:solid 2px;
 	background-color:#FBFDFC;
 	position: fixed; /* 要素の位置を固定する */
@@ -21,7 +63,7 @@ body{
 	color:#296337;
 	width: 700px;
 	height: 400px;
-	margin:5em;
+	margin:80px;
 	border:solid 2px;
 	background-color:#FBFDFC;
 	position: fixed; /* 要素の位置を固定する */
@@ -34,7 +76,7 @@ body{
 	color:#296337;
 	width: 700px;
 	height: 180px;
-	margin:5em;
+	margin:80px;
 	border:solid 2px;
 	background-color:#FBFDFC;
 	position: fixed; /* 要素の位置を固定する */
@@ -45,17 +87,17 @@ body{
 .contentsA{
 	background: #FBFDFC url(/newReacQ/images/Q.png) no-repeat center;
 	color:#296337;
-	margin:5em;
+	margin:80px;
 	border:solid 2px;
 	position: fixed;
 	top: 80px; /* 基準の位置を画面の上に指定する */
 	right: 0; /* 基準の位置を画面の右に指定する */
 	bottom: 0;
-	width: 35%; /* 幅を指定する */
+	width: 500px; /* 幅を指定する */
 }
 
 .conA{
-	height: 100%;
+	height: 600px;
 	background: rgba(255,255,255,0.8);
 	display: flex;
 	flex-direction: column;
@@ -125,4 +167,23 @@ h2::after {
 	width: 13px;
 	height: 13px;
 	background-color: rgba(255,90,95,.2);
+}
+
+.reply{
+	font-size:11px;
+	color:#808080;
+
+}
+
+button {
+  padding: 0;
+  border: none;
+  background: transparent;
+    border: none;  /* 枠線を消す */
+}
+
+button img {
+  display: block;
+  margin:0px 3px;
+  cursor: pointer;
 }

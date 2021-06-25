@@ -44,7 +44,7 @@ button img {
   display: inline-block;
   margin:30px 3px;
   cursor: pointer;
-   max-width:100%;
+   width:40%;
 	height:auto;
 }
 
