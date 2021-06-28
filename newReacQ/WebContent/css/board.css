@@ -36,6 +36,10 @@ body{
 	bottom: -10%;
 }
 
+.sort {
+	margin-top: 30px;
+}
+
 /* 閉じたアコーディオンメニューのクリックする部分 */
 .q-title {
 	font-weight: bold;

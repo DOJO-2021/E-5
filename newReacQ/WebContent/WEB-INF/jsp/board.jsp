@@ -15,7 +15,7 @@
 <body>
 <jsp:include page="/WEB-INF/jsp/header.jsp" />
   <!-- memo 質問の状態ソート reply_status -->
-  <form action="/newReacQ/BoardServlet" method="POST">
+  <form action="/newReacQ/BoardServlet" method="POST" class="sort">
   <input type="radio" name="qsort" value="すべて" checked>すべて
   <input type="radio" name="qsort" value="回答受付中">回答受付中
   <input type="radio" name="qsort" value="解決済み">解決済み
