@@ -39,6 +39,7 @@ body {
 
 .form-wrapper.is-active {
   animation: showLayer .3s ease-in forwards;
+  margin-top: 10px;
 }
 
 @keyframes showLayer {

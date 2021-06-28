@@ -12,7 +12,7 @@
 
 
 <section class="forms-section">
-  <h1 class="section-title">ReacQ</h1>
+  <h1 class="section-title">ReacQ<img src="images/河童.gif" alt="ReacQ" width="100px" height="100px"></h1>
   <div class="forms">
     <div class="form-wrapper is-active">
       <!--ログイン切り替え-->
