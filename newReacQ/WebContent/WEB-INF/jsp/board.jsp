@@ -27,7 +27,7 @@
   <!-- 投稿された質問の折りたたみメニュー -->
   <section class="">
   <c:forEach var="b" items="${Alllist}">
-  <form action="/newReacQ/BoardReplyServlet" name="post_form" method="POST">
+  <form action="/newReacQ/BoardReplyServlet" name="post_orm1" method="POST" id="form1">
   <div class="accordion">
       <p class="q-title"><span class="question">▼ ${b.question}</span> <span class="q_title_like">☆気になる:${b.count}</span></p>
       <div class="content">
@@ -38,7 +38,7 @@
   		  <h3>〇回答</h3>
    		  <input type="hidden" name="QUESTION" value="${b.question}">
   		  <p style="white-space:pre-wrap;">${b.question_reply}</p>
-          <textarea name="QUESTION_REPLY" class="reply_form" placeholder="回答"></textarea><br><input type ="submit" name="SUBMIT" class="send_btn" value="送信">
+          <textarea name="QUESTION_REPLY" class="reply_form" id="error" placeholder="回答"></textarea><br><input type ="submit" name="SUBMIT" class="send_btn" value="送信">
       </div>
   </div>
   </form>
@@ -57,13 +57,14 @@
 
 
    <!-- 投稿フォーム -->
-  <form action="/newReacQ/BoardPostServlet" method="POST">
+  <form action="/newReacQ/BoardPostServlet" method="POST" name="form1" onsubmit="return check()">
   	<div id = "post">
   		<div class="post1">
   		<h2 style="text-align:center">質問を入力してください。</h2>
   		<p style="color:#FF0000">※質問の重複を避けるため、投稿の前に自分と似たような質問をしている人が居ないか確認しましょう。</p>
-  		<textarea name="QUESTION" placeholder="質問内容" class="p_form_q"></textarea><br>
-  		<input type="submit" name="SUBMIT" class="p_btn" value="投稿"><input type="button" value ="閉じる" class="p_close_btn" onclick = "hidepost()">
+  		<span id="error_msg" style="color:#FF0000"></span><br>
+  		<textarea name="QUESTION" placeholder="質問内容" class="p_form_q" id="postform"></textarea><br>
+  		<input type="submit" name="SUBMIT" class="p_btn" id="error" value="投稿" onsubmit="return check()"><input type="button" value ="閉じる" class="p_close_btn" onclick = "hidepost()">
   		</div>
   	</div>
   </form>
@@ -81,6 +82,17 @@ for(let i=0; i < data.length; i++){
 	let short_str = data[i].textContent.substr(0,30);
 	data[i].textContent = short_str + "...";
 	}
+	
+function check(){
+    //必須チェック
+    if(document.form1.QUESTION.value == ""){
+        document.getElementById('error_msg').innerHTML = "この項目は入力必須です";
+        return false;
+    }
+    return true; //送信を実行
+}
+	
+
 </script>
 </body>
 </html>

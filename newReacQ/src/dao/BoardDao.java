@@ -24,7 +24,7 @@ public class BoardDao {
 			Class.forName("org.h2.Driver");
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/E-5/newReacQ", "sa", "");
 
-			String sql = "select b.id as bid, b.email as bemail, b.reply_status as brep, b.question_code as bqc, b.question as bq, b.reply_date as brd, br.question_reply as brq, br.reply_date as brrd, count(l.id) as count, u.name as name from ((board as b left join board_reply as br on b.question_code = br.q_reply_code) left join likes as l on br.q_reply_code = l.question_code) LEFT JOIN user_data as u ON b.email = u.email where b.question like ? group by bid, l.question_code order by count desc, brd desc";
+			String sql = "select b.id as bid, b.email as bemail, b.reply_status as bstatus, b.question_code as bcode, b.question as bq, b.reply_date as bdate, br.question_reply as brq, br.reply_date as brdate, count(l.id) as count, u.name as name from ((board as b left join board_reply as br on b.question_code = br.q_reply_code) left join likes as l on br.q_reply_code = l.question_code) LEFT JOIN user_data as u ON b.email = u.email where b.question like ? group by bid, l.question_code order by count desc, bdate desc";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			if (param.getQuestion() != null) {

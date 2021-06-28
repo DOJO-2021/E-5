@@ -58,13 +58,6 @@
 		        <tr>
 		        	<td class = "reply_date">${b.reply_date}</td>
 		        </tr>
- 				<tr>
- 				<th>質問内容</th>
-		        <td>${b.question}</td>
-		        </tr>
-		        <tr>
-
-				</tr>
 			</c:forEach>
 		    </table>
 		</form>
