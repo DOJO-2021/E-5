@@ -72,11 +72,10 @@ public class MenuReactionServlet extends HttpServlet {
 			 */
 			ReactionDao rDao = new ReactionDao();
 			String date=rDao.reset(new Reaction (0,"",4,"", ""));
-
-			int reaction0 = rDao.countmyT(0, date);
-			int reaction1 = rDao.countmyT(1, date);
-			int reaction2 = rDao.countmyT(2, date);
-			int reaction3 = rDao.countmyT(3, date);
+			int reaction0 = rDao.resetcount(0, date);
+    		int reaction1 = rDao.resetcount(1, date);
+    		int reaction2 = rDao.resetcount(2, date);
+    		int reaction3 = rDao.resetcount(3, date);
 
 			//リクエストスコープに格納する
 			request.setAttribute("rea0", reaction0);
