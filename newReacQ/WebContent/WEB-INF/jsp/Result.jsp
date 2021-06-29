@@ -10,6 +10,7 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/jsp/header.jsp" />
+
 	<h1><c:out value="${result.title}" /></h1>
 	<a href="${result.backTo}">戻る</a>
 

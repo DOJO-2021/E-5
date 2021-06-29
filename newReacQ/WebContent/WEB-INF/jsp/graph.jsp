@@ -5,7 +5,7 @@
 			<script type="text/javascript">
 				   // ▼グラフの中身
 				   var barChartData = {
-				      labels : ["説明可","わかる","わかるかも","わからない"],
+				      labels : ["説明できる","わかる","わかるかも","わからない"],
 				      datasets : [
 				         {
 				        	 fillColor : "rgba(255,225,109,0.6)",    // 塗りつぶし色

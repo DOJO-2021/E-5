@@ -40,7 +40,7 @@
 				<td><img src="/newReacQ/images/河童分からない_ホバー前.png" onmouseover="this.src='/newReacQ/images/河童分からない_ホバー後.png'" onmouseout="this.src='/newReacQ/images/河童分からない_ホバー前.png'" width="100px" alt="河童_分からない"></td>
 		</tr>
 		<tr class="ria">
-		<td><p>説明可</p></td>
+		<td><p>説明できる</p></td>
 		<td><p>分かる</p></td>
 		<td><p>分かるかも</p></td>
 		<td><p>分からない</p></td>
